@@ -2,32 +2,21 @@
 <link href = "~/Css/mainPageCss.css" rel = "stylesheet" />
 <link href="~/Css/locals-css.css" rel="stylesheet" />
 
-
-
-<style>
-  
-   
-
-</style>
 @{
     ViewBag.Title = "Index";
 }    
-  
         <div class="row">
-
             @foreach (var item in Model)
             {
-                <div class="col-4">
+                <div class="col-lg-4">
                     <a>
                         <div class="content shadow-lg rounded">
                             <div class="content-overlay"></div>
                             <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
-                         
                             <div class="content-details fadeIn-top">
-                                <h3>Name</h3>
+                                <h3>@item.Name</h3>
                                 <div>
                                     <p>stars</p>
-
                                 </div>
                             </div>
                         </div>
