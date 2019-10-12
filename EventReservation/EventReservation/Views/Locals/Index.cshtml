@@ -1,5 +1,14 @@
 ﻿@model IEnumerable<EventReservation.Models.Local>
+<link href = "~/Css/mainPageCss.css" rel = "stylesheet" />
+<link href="~/Css/locals-css.css" rel="stylesheet" />
 
+
+
+<style>
+  
+   
+
+</style>
 @{
     ViewBag.Title = "Index";
 }    
@@ -12,8 +21,8 @@
                     <a>
                         <div class="content shadow-lg rounded">
                             <div class="content-overlay"></div>
-                            <img class="content-image "src='~/App_Data/bestParties.jpg' alt="bla">
-                          
+                            <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
+                         
                             <div class="content-details fadeIn-top">
                                 <h3>Name</h3>
                                 <div>
