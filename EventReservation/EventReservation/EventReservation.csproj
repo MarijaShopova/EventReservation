@@ -199,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\bestParties.jpg" />
+    <Content Include="Content\alcohol-bar-beer.jpg" />
     <Content Include="Content\bestParties.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -206,21 +207,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\clubs.jpg" />
-    <Content Include="Content\IT_sliki\alcohol-bar-beer-989711.jpg" />
-    <Content Include="Content\IT_sliki\art-artistic-blur-721247.jpg" />
-    <Content Include="Content\IT_sliki\artists-audience-band-1763075.jpg" />
-    <Content Include="Content\IT_sliki\audience-backlit-blue-2078008.jpg" />
-    <Content Include="Content\IT_sliki\audience-celebration-concert-1805895.jpg" />
-    <Content Include="Content\IT_sliki\b52.jpg" />
-    <Content Include="Content\IT_sliki\bestParties.jpg" />
-    <Content Include="Content\IT_sliki\clubs.jpg" />
-    <Content Include="Content\IT_sliki\coctails.jpg" />
-    <Content Include="Content\IT_sliki\flaming-dr-pepper-shot.jpg" />
-    <Content Include="Content\IT_sliki\logo-neon-neon-light-2235130 %281%29.jpg" />
-    <Content Include="Content\IT_sliki\moments.jpg" />
-    <Content Include="Content\IT_sliki\opeeen.jpg" />
-    <Content Include="Content\IT_sliki\soad.jpg" />
+    <Content Include="Content\events-background-image.jpg" />
     <Content Include="Css\card-css.css" />
     <Content Include="Css\locals-css.css" />
     <Content Include="Css\mainPageCss.css" />
