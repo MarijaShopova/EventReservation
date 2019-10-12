@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EventReservation.Models.Local>
+
+@{
+    ViewBag.Title = "Index";
+}    
+  
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-4">
+                    <a>
+                        <div class="content shadow-lg rounded">
+                            <div class="content-overlay"></div>
+                            <img class="content-image "src='~/App_Data/bestParties.jpg' alt="bla">
+                          
+                            <div class="content-details fadeIn-top">
+                                <h3>Name</h3>
+                                <div>
+                                    <p>stars</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+          
+        }
+    </div>
+        <div class="container">
+            <nav class="offset-4 p-5">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+</body>
+
