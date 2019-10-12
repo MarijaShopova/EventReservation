@@ -42,7 +42,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: url("pictures/audience-backlit-blue-20780081.jpg") center center;
+    background-image: url('../Content/events-background-image.jpg');
     opacity: .2;
 }
 
