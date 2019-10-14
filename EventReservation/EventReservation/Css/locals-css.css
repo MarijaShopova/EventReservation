@@ -98,8 +98,8 @@
     top: 20%;
 }
 
-@media (max-width: 420px){
-    img{
+@media (max-width: 420px) {
+    img {
         width: 100%;
     }
 
@@ -111,4 +111,7 @@
     h2 {
         font-size: 0.8rem !important;
     }
-}
+
+    .container {
+        max-width: 900px;
+    }

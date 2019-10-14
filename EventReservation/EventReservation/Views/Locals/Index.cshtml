@@ -1,50 +1,49 @@
 ﻿@model IEnumerable<EventReservation.Models.Local>
-<link href = "~/Css/mainPageCss.css" rel = "stylesheet" />
 <link href="~/Css/locals-css.css" rel="stylesheet" />
-<link href="~/Css/card-css.css" rel="stylesheet" />
+
 @{
     ViewBag.Title = "Index";
-}    
-<div class="container py-5">
-        <div class="row container">
-            @foreach (var item in Model)
-            {
-                <div class="col-lg-4 p-5">
-                    <a>
-                        <div class="content shadow-lg rounded">
-                            <div class="content-overlay"></div>
-                            <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
-                            <div class="content-details fadeIn-top">
-                                <h3>@item.Name</h3>
-                                <div>
-                                    <p>stars</p>
-                                </div>
+}
+<div class="container py-5 ">
+    <div class="row py-5 container">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 container">
+                <a>
+                    <div class="content shadow-lg rounded">
+                        <div class="content-overlay"></div>
+                        <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
+                        <div class="content-details fadeIn-top">
+                            <h3>@item.Name</h3>
+                            <div>
+                                <p>stars</p>
                             </div>
                         </div>
-                    </a>
-                </div>
-          
+                    </div>
+                </a>
+            </div>
+
         }
     </div>
-    </div>
-        <div class="container">
-            <nav class="offset-4 p-5">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+</div>
+<div class="container">
+    <nav class="offset-4 p-5">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 </body>
 
