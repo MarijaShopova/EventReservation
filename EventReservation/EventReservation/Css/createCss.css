@@ -1,0 +1,24 @@
+﻿body {
+    background-color: #004E64;
+    align-content:center;
+     color:mintcream;
+}
+h4{
+    color: #efefef;
+}
+.row 
+{
+ align-content:center;
+    justify-content: center;
+}
+.btn {
+    float:right;
+}
+
+.form{
+    align-content:center;
+}
+
+h2{
+    margin-left:-17px;
+}

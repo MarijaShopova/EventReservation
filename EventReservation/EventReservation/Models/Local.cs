@@ -15,12 +15,16 @@ namespace EventReservation.Models
         public string Description { get; set; }
         [Required]
         public string City { get; set; }
+        [Display(Name = "Stret")]
         public string StreetName { get; set; }
         public int StreetNo { get; set; }
+        [Display(Name = "Opens")]
         public DateTime OpeningHour { get; set; }
+        [Display(Name = "Closes")]
         public DateTime ClosingHour { get; set; }
         [Required]
         [Range(0, int.MaxValue)]
+        [Display(Name = "Tables")]
         public int NoTables { get; set; }
         public Boolean Parking { get; set; }
         public virtual ICollection<Event> Events { get; set; }

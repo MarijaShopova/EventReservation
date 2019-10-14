@@ -224,6 +224,7 @@
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="Css\card-css.css" />
+    <Content Include="Css\createCss.css" />
     <Content Include="Css\locals-css.css" />
     <Content Include="Css\mainPageCss.css" />
     <Content Include="favicon.ico" />
