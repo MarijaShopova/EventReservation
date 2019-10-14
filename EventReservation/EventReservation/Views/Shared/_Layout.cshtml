@@ -6,13 +6,51 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Css/mainPageCss.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    
 </head>
+<style>
+    .meni {
+        color: white;
+        text-decoration: none !important;
+    }
+    .nav-link:hover {
+        text-decoration: none !important;
+    }
+</style>
 <body>
+    <nav class="navbar navbar-expand-lg  static-top " id="meni">
+        <div class="container ">
+            <a class="navbar-brand " style="font-size: 22px; color:white;" href="#">
+             LOGO   <span class="fa fa-cocktail text-white fa-2x"></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto meni">
+                    <li class="nav-item">
+                      <a class="nav-link meni" href="~/Home/Index">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link meni" href="~/Events/Index">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link meni" href="~/Locals/Index">Locals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link meni" href="~/ContactUs/Index">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
     <div class="body-content" style="background:black">
         @RenderBody()
-      
+
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
