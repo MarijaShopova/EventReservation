@@ -16,7 +16,6 @@
 }
 
 .bg-dark-picture {
-    background-color: black !important;
     position: relative;
     z-index: 1;
     padding-bottom: 1000px;

@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<EventReservation.Models.Local>
 <link href="~/Css/locals-css.css" rel="stylesheet" />
-
+<link href="~/Css/mainPageCss.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
+<div class="imperial-backgroud container">
 <div class="container py-5 ">
     <div class="row py-5 container">
         @foreach (var item in Model)
@@ -45,5 +46,6 @@
         </ul>
     </nav>
 </div>
-</body>
+    </div>
+
 

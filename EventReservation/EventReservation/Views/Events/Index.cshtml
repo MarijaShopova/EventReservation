@@ -4,52 +4,55 @@
     ViewBag.Title = "Index";
 }
 <link href="~/Css/card-css.css" rel="stylesheet" />
-<div class="bg-dark-picture container py-5">
-    <div class="container py-5">
-        @foreach (var item in Model)
-        {
-            <div class="row row-hover mt-4">
-                <div class="col-lg-4 p-0">
-                    <img src='@Url.Content("~/Content/alcohol-bar-beer.jpg")' class="img-responsive" />
-                </div>
-                <div class="col-lg-8 bg-light p-4">
-                    <div class="row text-imperial">
-                        <div class="col-lg-10">
-                            <h3 class="font-weight-bold mb-2 text-green">@item.Title</h3>
-                            <div><span class="fa fa-calendar-alt mr-2 mt-2 text-green"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.DateStart.ToString("hh:mm") pm - @item.DateEnd.ToString("hh:mm") pm</div>
+<div class="bg-imperial">
+    <div class="container py-5 bg-imperial">
+        <div class="container py-5">
+            @foreach (var item in Model)
+            {
+                <div class="row row-hover mt-4">
+                    <div class="col-lg-4 p-0">
+                        <img src='@Url.Content("~/Content/alcohol-bar-beer.jpg")' class="img-responsive" />
+                    </div>
+                    <div class="col-lg-8 bg-light p-4">
+                        <div class="row text-imperial">
+                            <div class="col-lg-10">
+                                <h3 class="font-weight-bold mb-2 text-green">@item.Title</h3>
+                                <div><span class="fa fa-calendar-alt mr-2 mt-2 text-green"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.DateStart.ToString("hh:mm") pm - @item.DateEnd.ToString("hh:mm") pm</div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="calendar-date text-center bg-green calendar">@item.DateStart.Day</div>
+                                <div class="calendar-month bg-imperial text-center calendar">@item.DateStart.ToString("MMM")</div>
+                            </div>
                         </div>
-                        <div class="col-lg-2">
-                            <div class="calendar-date text-center bg-green calendar">@item.DateStart.Day</div>
-                            <div class="calendar-month bg-imperial text-center calendar">@item.DateStart.ToString("MMM")</div>
+                        <div><span class="fa fa-map text-green mr-2 mt-2"></span>@item.local.Name, @item.local.StreetName, @item.local.StreetNo, @item.local.City, North Macedonia</div>
+                        <div><span class="fa fa-music text-green mr-2 mt-2"></span>@item.Genre</div>
+                        <div>
+                            <span class="fa fa-ticket-alt text-green mr-2 mt-2"></span>
+                            Entrance:
+                            @if (item.Ticket)
+                            {
+                                <span>@item.TicketPrice ден.</span>
+                            }
+                            else
+                            {
+                                <span>Free</span>
+                            }
                         </div>
+                        <div>
+                            <span class="fa fa-circle text-green mr-2 mt-2"></span>
+                            Hosted by
+                            <a href="#" class="text-decoration-none text-green">@item.local.Name</a>
+                            <span class="fa fa-star text-warning"></span>
+                            <span class="fa fa-star text-warning"></span>
+                            <span class="fa fa-star text-warning"></span>
+                            <span class="fa fa-star-half-alt text-warning"></span>
+                            <span class="far fa-star text-warning"></span>
+                        </div>
+                        <button class="btn btn-green mt-3">Read More</button>
                     </div>
-                    <div><span class="fa fa-map text-green mr-2 mt-2"></span>@item.local.Name, @item.local.StreetName, @item.local.StreetNo, @item.local.City, North Macedonia</div>
-                    <div><span class="fa fa-music text-green mr-2 mt-2"></span>@item.Genre</div>
-                    <div>
-                        <span class="fa fa-ticket-alt text-green mr-2 mt-2"></span>
-                        Entrance:
-                        @if (item.Ticket)
-                        {
-                            <span>@item.TicketPrice ден.</span>
-                        }
-                        else
-                        {
-                            <span>Free</span>
-                        }
-                    </div>
-                    <div>
-                        <span class="fa fa-circle text-green mr-2 mt-2"></span>
-                        Hosted by
-                        <a href="#" class="text-decoration-none text-green">@item.local.Name</a>
-                        <span class="fa fa-star text-warning"></span>
-                        <span class="fa fa-star text-warning"></span>
-                        <span class="fa fa-star text-warning"></span>
-                        <span class="fa fa-star-half-alt text-warning"></span>
-                        <span class="far fa-star text-warning"></span>
-                    </div>
-                    <button class="btn btn-green mt-3">Read More</button>
                 </div>
-            </div>
-        }
+
+            }
+        </div>
     </div>
 </div>

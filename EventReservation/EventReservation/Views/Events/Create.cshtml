@@ -5,8 +5,6 @@
 }
 <link href="~/Css/createCss.css" rel="stylesheet" />
 
-
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -14,7 +12,7 @@
 <div class="form-horizontal form container py-5">
     <div class="container">
         <h3 class="text-center py-5">Create а new event for your local</h3>
-        <div class="row">
+        <div class="row" style="font-size:24px;">
 
             <div class="col-lg-3">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -35,6 +33,13 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    @Html.LabelFor(model => model.BandName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BandName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BandName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
                     @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
@@ -52,25 +57,35 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.LocalId, "LocalId", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("LocalId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.LocalId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
                     @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LocalId, "Local", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("LocalId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LocalId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
             </div>
 
 
             <div class="col-lg-3">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ticket, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Ticket)
+                            @Html.ValidationMessageFor(model => model.Ticket, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.TicketPrice, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -86,28 +101,11 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.BandName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.BandName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.BandName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.Ticket)
-                            @Html.ValidationMessageFor(model => model.Ticket, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                
             </div>
 
         </div>
         <div class="row container text-center">
-            <div class="col-lg-6 offset-1">
+            <div class="col-lg-6 py-5 offset-1">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-primary btn-block float-lg-right" />

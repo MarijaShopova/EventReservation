@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 #meni {
     position: absolute;
@@ -75,6 +76,7 @@ h2{
     font-family: "Caveat";
     font-size: 3.1em;
 }
+
 
 /* override position and transform in 3.3.x */
 .carousel-inner .item.left.active {

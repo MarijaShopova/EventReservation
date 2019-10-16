@@ -20,12 +20,12 @@ namespace EventReservation.Models
         [Display(Name = "Ends")]
         public DateTime DateEnd { get; set; }
         public Boolean Ticket { get; set; }
-        [Display(Name = "Ticket Price")]
+        [Display(Name = "Ticket price")]
         public int TicketPrice { get; set; }
         [Required]
         [Display(Name = "Free tables")]
         public int FreeTables { get; set; }
-        [Display(Name = "Bends Name")]
+        [Display(Name = "Bend Name")]
         public string BandName { get; set; }
         [Required]
         public string Genre { get; set; }
