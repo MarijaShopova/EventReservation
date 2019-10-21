@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/counter.js"></script>
+
     <link href="~/Css/mainPageCss.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="~/Css/footer-css.css" rel="stylesheet" />
     <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
 
@@ -52,18 +53,35 @@
                         <a class="nav-link meni" href="~/Locals/Index">Locals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link meni" href="~/ContactUs/Index">Contact Us</a>
+                        <a class="nav-link meni" href="~/Home/About">About Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     
-    <div class="body-content">
+    <div>
         @RenderBody()
 
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="bg-dark">
+
+            <div class="row offset-1">
+                <div class="col-5 text-center text-white">
+                    We are an award-winning creative agency, dedicated to the best result in web design,
+                    promotion, business consulting, and marketing.
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <ul class="f-ul">
+                            <li><a href="#"><i class="fa f-fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa f-fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa f-fa fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa f-fa fa-instagram" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center">&copy; @DateTime.Now.Year - FINKI</p>
         </footer>
     </div>
 

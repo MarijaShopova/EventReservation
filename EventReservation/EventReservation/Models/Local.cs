@@ -29,6 +29,7 @@ namespace EventReservation.Models
         public Boolean Parking { get; set; }
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+
         public Local ()
         {
             Events = new List<Event>();

@@ -187,6 +187,10 @@
     <Compile Include="Migrations\201910121453560_Initial.Designer.cs">
       <DependentUpon>201910121453560_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910211444214_migracija2.cs" />
+    <Compile Include="Migrations\201910211444214_migracija2.Designer.cs">
+      <DependentUpon>201910211444214_migracija2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -223,8 +227,10 @@
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
+    <Content Include="Css\aboutUs-css.css" />
     <Content Include="Css\card-css.css" />
     <Content Include="Css\createCss.css" />
+    <Content Include="Css\footer-css.css" />
     <Content Include="Css\locals-css.css" />
     <Content Include="Css\mainPageCss.css" />
     <Content Include="favicon.ico" />
@@ -355,6 +361,7 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\Locals\Local.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -365,6 +372,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910121453560_Initial.resx">
       <DependentUpon>201910121453560_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211444214_migracija2.resx">
+      <DependentUpon>201910211444214_migracija2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

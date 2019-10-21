@@ -1,0 +1,90 @@
+﻿@model EventReservation.Models.Local
+
+@{
+    ViewBag.Title = "Local";
+}
+
+<h2>Local</h2>
+
+<div>
+    <h4>Local</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StreetNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpeningHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpeningHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosingHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClosingHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoTables)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoTables)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parking)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parking)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

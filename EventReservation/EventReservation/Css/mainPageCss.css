@@ -10,6 +10,17 @@ a{
     font-size: 20px;
     text-decoration:none;
 }
+.responsive {
+    width: 100%;
+    height: auto;
+}
+.heading {
+    color:white;
+    font-weight:bold;
+   
+    text-align:center;
+   
+}
 
 .centered {
     position: absolute;
