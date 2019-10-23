@@ -1,17 +1,1 @@
-﻿#meni {
-    position: absolute;
-    bottom: 550px;
-    width: 100%;
-    z-index:5;
-}
-
-a {
-    font-size: 20px;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+﻿
