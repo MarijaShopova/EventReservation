@@ -1,0 +1,25 @@
+﻿.nav-link {
+    font-size: 15px;
+    text-decoration: none;
+    color: #9fffcb;
+}
+
+.nav-link i {
+    color: #9fffcb;
+}
+
+.nav-link:hover, .nav-link:hover i {
+     color: #25a18e;
+}
+
+.fa {
+    color: white;
+}
+
+.navbar {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.nav-link:active {
+    color: #004e64;
+}

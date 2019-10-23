@@ -233,6 +233,7 @@
     <Content Include="Css\footer-css.css" />
     <Content Include="Css\locals-css.css" />
     <Content Include="Css\mainPageCss.css" />
+    <Content Include="Css\navbar.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />

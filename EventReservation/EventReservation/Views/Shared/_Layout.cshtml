@@ -3,88 +3,87 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Event Reservation</title>
+
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-
-    <link href="~/Css/mainPageCss.css" rel="stylesheet" />
-
-    <link href="~/Css/footer-css.css" rel="stylesheet" />
     <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+    <link href="~/Css/navbar.css" rel="stylesheet" />
+    <link href="~/Css/footer-css.css" rel="stylesheet" />
+
     @Scripts.Render("~/bundles/jquery")
-
     @Scripts.Render("~/bundles/bootstrap")
-
-
-
     @RenderSection("scripts", required: false)
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-
 </head>
-<style>
-    .meni {
-        color: white;
-      
-    }
-    .nav-link:hover {
-       text-decoration:none;
-       color:white;
-    }
-</style>
 <body>
-    <nav class="navbar navbar-expand-lg  static-top " id="meni">
-        <div class="container ">
+    <nav class="navbar navbar-expand-lg bg-dark static-top">
+        <div class="container">
             <a class="navbar-brand " style="font-size: 22px; color:white;" href="#">
-             LOGO   <span class="fa fa-cocktail text-white fa-2x"></span>
+                LOGO   <span class="fa fa-cocktail text-white fa-2x"></span>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto meni">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                      <a class="nav-link meni" href="~/Home/Index">Home</a>
+                        <a class="nav-link" href="~/Home/Index">
+                            <i class="fa fa-home"></i> Home
+                        </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link meni" href="~/Events/Index">Events</a>
+                        <a class="nav-link" href="~/Events/Index">
+                            <i class="fa fa-calendar-check"></i> Events
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link meni" href="~/Locals/Index">Locals</a>
+                        <a class="nav-link" href="~/Locals/Index">
+                            <i class="fa fa-map"></i> Locals
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link meni" href="~/Home/About">About Us</a>
+                        <a class="nav-link" href="~/Home/About">
+                            <i class="fa fa-info-circle"></i> About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-user"></i> Log in
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     <div>
         @RenderBody()
-
-        <footer class="bg-dark">
-
-            <div class="row offset-1">
-                <div class="col-5 text-center text-white">
-                    We are an award-winning creative agency, dedicated to the best result in web design,
-                    promotion, business consulting, and marketing.
-                </div>
-                <div class="col">
-                    <div class="container">
-                        <ul class="f-ul">
-                            <li><a href="#"><i class="fa f-fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa f-fa fa-twitter" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa f-fa fa-google-plus" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa f-fa fa-instagram" aria-hidden="true"></i></a></li>
-                        </ul>
-                    </div>
+    </div>
+    <footer class="bg-dark">
+        <div class="row offset-1">
+            <div class="col-5 text-center text-white">
+                We are an award-winning creative agency, dedicated to the best result in web design,
+                promotion, business consulting, and marketing.
+            </div>
+            <div class="col">
+                <div class="container">
+                    <ul class="f-ul">
+                        <li><a href="#"><i class="fa f-fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa f-fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa f-fa fa-google-plus" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa f-fa fa-instagram" aria-hidden="true"></i></a></li>
+                    </ul>
                 </div>
             </div>
-            <p class="text-center">&copy; @DateTime.Now.Year - FINKI</p>
-        </footer>
-    </div>
-
-   
+        </div>
+        <p class="text-center mb-0">&copy; @DateTime.Now.Year - FINKI</p>
+    </footer>
 </body>
 </html>
