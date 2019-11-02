@@ -7,5 +7,101 @@
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/counter.js"></script>
-
+<script src="~/Scripts/caroules.js"></script>
 <script src="~/Scripts/bootstrap.bundle.js"></script>
+<style>
+    .carousel {
+        width: 100%;
+    }
+
+    .carousel-item > div {
+        float: left;
+    }
+
+    .carousel-by-item [class*="cloneditem-"] {
+        display: none;
+    }
+    .card{
+        height:280px;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row container p-5 offset-1">
+        <div id="slider-2" class="carousel carousel-by-item slide container" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item active">
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                            <img src="~/Content/IT_sliki/audience-backlit-blue-2078008.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Unforgetable moments</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                          
+                            <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Unforgetable moments</h5>
+                            </div>
+                        </div>       
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                            <img src="~/Content/IT_sliki/coctails.jpg" height="200" width="100" class="card-img-bottom rounded" />
+                            <div class="card-body">
+                                <h5 class="card-title">The best coctails</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                            <img src="~/Content/IT_sliki/audience-backlit-blue-2078008.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Unforgetable moments</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                            <img src="~/Content/IT_sliki/coctails.jpg" height="200" width="100" class="card-img-bottom rounded" />
+                            <div class="card-body">
+                                <h5 class="card-title">The best coctails</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="col-md-3 col-sm-4 col-12">
+                        <div class="card">
+                            <img src="~/Content/IT_sliki/audience-backlit-blue-2078008.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Unforgetable moments</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#slider-2" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#slider-2" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+}

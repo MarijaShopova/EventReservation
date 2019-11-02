@@ -1,21 +1,29 @@
 ﻿.nav-link {
-    font-size: 20px;
+    font-size: 23px;
     text-decoration: none;
     color: #9fffcb;
+    font-family: "Caveat";
 }
 
 .nav-link i {
     color: #9fffcb;
+    font-size: 15px;
+    padding-left: 2px;
 }
 
 .nav-link:hover, .nav-link:hover i {
      color: #25a18e;
 }
 
-.fa {
-    color: white;
-}
-
 .navbar {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.navbar-brand {
+    font-family: "Indie Flower";
+    font-size: 25px !important;
+}
+
+.navbar-brand .fa {
+    font-size: 32px;
 }

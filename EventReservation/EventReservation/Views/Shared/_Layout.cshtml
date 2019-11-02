@@ -8,8 +8,8 @@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
     <link href="~/Css/navbar.css" rel="stylesheet" />
-    <link href="~/Css/footer-css.css" rel="stylesheet" />
-
+    <link href="~/Css/footer.css" rel="stylesheet" />
+    <link href="~/Css/shared.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
@@ -17,10 +17,10 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark static-top">
-        <div class="container">
-            <a class="navbar-brand " style="font-size: 22px; color:white;" href="#">
-                LOGO   <span class="fa fa-cocktail text-white fa-2x"></span>
+    <nav class="navbar navbar-expand-lg bg-imperial static-top">
+        <div class="container-page container">
+            <a class="navbar-brand text-mint" href="#">
+                LOGO   <span class="fa fa-cocktail text-mint fa-2x"></span>
             </a>
             <button class="navbar-toggler"
                     type="button"
@@ -66,24 +66,9 @@
     <div>
         @RenderBody()
     </div>
-    <footer class="bg-dark">
-        <div class="row offset-1">
-            <div class="col-5 text-center text-white">
-                We are an award-winning creative agency, dedicated to the best result in web design,
-                promotion, business consulting, and marketing.
-            </div>
-            <div class="col">
-                <div class="container">
-                    <ul class="f-ul">
-                        <li><a href="#"><i class="fa f-fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa f-fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa f-fa fa-google-plus" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa f-fa fa-instagram" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <p class="text-center mb-0">&copy; @DateTime.Now.Year - FINKI</p>
+
+    <footer class="bg-imperial"> 
+        <p class="text-center text-mint p-4 mb-0">I T &copy; @DateTime.Now.Year - FINKI, Skopje</p>
     </footer>
 </body>
 </html>

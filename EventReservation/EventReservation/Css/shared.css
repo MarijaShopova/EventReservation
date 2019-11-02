@@ -1,0 +1,37 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+.container-page {
+    max-width: 900px !important; 
+    margin:auto;
+}
+
+.bg-imperial {
+    background-color: #004E64;
+}
+
+.bg-green {
+    background-color: #25A18E;
+}
+
+.text-imperial {
+    color: #004E64 !important;
+}
+
+.text-green {
+    color: #25A18E;
+}
+
+.text-mint {
+    color: #9fffcb;
+}
+
+.bg-light {
+    background-color: #efefef !important;
+}
+
+.font-header {
+    font-family: "Caveat";
+    color: #25A18E;
+    text-shadow: 2px 2px 1px #25A28e;
+}

@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<EventReservation.Models.Local>
-<link href="~/Css/locals-css.css" rel="stylesheet" />
-<link href="~/Css/mainPageCss.css" rel="stylesheet" />
+<link href="~/Css/locals-index.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
-<div class="imperial-backgroud">
-<div class="container py-5 ">
-    <div class="row py-5 container">
+<div class="bg-light">
+<div class="container-page container pt-5 pb-4">
+    <h2 class="text-green text-center display-4 font-header">Our locals</h2>
+    <div class="row pb-5 pt-4">
         @foreach (var item in Model)
         {
-            <div class="col-lg-4 p-1 container">
-                <a>
-                    <div class="content shadow-lg rounded float-left">
+            <div class="col-lg-4 p-1">
+                <a class="border mt-3">
+                    <div class="content shadow-lg rounded">
                         <div class="content-overlay"></div>
                         <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
                         <div class="content-details fadeIn-top">

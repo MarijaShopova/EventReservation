@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
 .content {
     position: relative;
     max-width: 350px;
@@ -15,11 +15,13 @@
     transform: translate(-50%, -50%);
     text-shadow: 2px 2px 2px #000000;
 }
+
 #title{
     font-family: "Indie Flower";
     color: #004e64;
     text-shadow: 4px 5px 5px #25a18e;
 }
+
 .content .content-overlay {
     background: rgba(0,0,0,0.7);
     position: absolute;
@@ -39,14 +41,23 @@
     opacity: 1;
 }
 
-
 .content:hover .content-header{
     visibility: hidden;
 }
 
 .content-image {
-    width: 400px;
-    height: 300px;
+    width: 272px;
+    height: 230px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.60), 0 6px 6px rgba(0,0,0,0.73);
+}
+
+.border {
+  width: max-content;
+  border: 1px solid #507171 !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.51), 0 20px 20px rgba(0, 0, 0, 0.43) !important;
+  border-radius: 2%;
+  display: block;
+  margin: auto;
 }
 
 .content-details {
