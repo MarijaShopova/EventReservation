@@ -5,18 +5,39 @@
 
 <link href="~/Css/main-page.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="~/Scripts/counter.js"></script>     
+<script type="text/javascript" src="~/Scripts/counter.js"></script>
 <script src="~/Scripts/caroules.js"></script>
+<link href="~/Css/back-to-top-button.css" rel="stylesheet" />
 
+<form action="top">
+    <a href="#" id="back-to-top" class="back-to-top" onclick=" topFunction()" style="display: inline;">Top</a>
+</form>
+<!-- Fades in the button when you scroll down -->
+<script>
+    var link = document.getElementById("back-to-top");
+    var amountScrolled = 250;
+
+    window.addEventListener('scroll', function (e) {
+        if (window.pageYOffset > amountScrolled) {
+            link.classList.add('show');
+        } else {
+            link.className = 'back-to-top';
+        }
+    });
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
 <div>
     <img src="~/Content/IT_sliki/bestParties.jpg" class="fixed" alt="Cover photo" style="width: 1360px; height: 700px; opacity: 0.9; align-content: center">
     <div class="centered">
         <div class="row mb-2"><div class="col"> <p class="text-white font-weight-bold display-4 text-center">LOOKING FOR THE BEST PLACE TO PARTY?</p></div></div>
         <div class="row  text-center">
             <div class="col">
-                <a class="btn text-white rounded btn-lg btn-outline-secondary font-weight-bold" href="~/Locals" style="width: 170px;">
-                GO <i class="fa fa-arrow-right"></i>
-                    </a> <div class="col"></div>
+                <a class="btn text-white rounded btn-lg btn-outline-secondary font-weight-bold" href="~/Events" style="width: 170px;">
+                    GO <i class="fa fa-arrow-right"></i>
+                </a> <div class="col"></div>
             </div>
         </div>
     </div>
@@ -30,9 +51,9 @@
                 <div class="carousel-item active">
                     <div class="col-md-3 col-sm-4 col-12">
                         <div class="card">
-                            <img src="~/Content/IT_sliki/audience-backlit-blue-2078008.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <img src="~/Content/IT_sliki/audience.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Unforgetable moments</h5>
+                                <h5 class="card-title">Make unforgetable memories</h5>
                             </div>
                         </div>
                     </div>
@@ -40,9 +61,9 @@
                 <div class="carousel-item">
                     <div class="col-md-3 col-sm-4 col-12">
                         <div class="card">
-                            <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <img src="~/Content/IT_sliki/cocktail.jpeg" height="200" width="100" class="card-img-bottom rounded" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Unforgetable moments</h5>
+                                <h5 class="card-title">Taste the best cocktails</h5>
                             </div>
                         </div>
                     </div>
@@ -50,9 +71,9 @@
                 <div class="carousel-item">
                     <div class="col-md-3 col-sm-4 col-12">
                         <div class="card">
-                            <img src="~/Content/IT_sliki/coctails.jpg" height="200" width="100" class="card-img-bottom rounded" />
+                            <img src="~/Content/IT_sliki/smilemore.jpeg" height="200" width="100" class="card-img-bottom rounded" />
                             <div class="card-body">
-                                <h5 class="card-title">The best coctails</h5>
+                                <h5 class="card-title">Dance till dawn</h5>
                             </div>
                         </div>
                     </div>
@@ -60,9 +81,9 @@
                 <div class="carousel-item">
                     <div class="col-md-3 col-sm-4 col-12">
                         <div class="card">
-                            <img src="~/Content/IT_sliki/audience-backlit-blue-2078008.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
+                            <img src="~/Content/IT_sliki/band.jpeg" height="200" width="100" class="card-img-bottom rounded" />
                             <div class="card-body">
-                                <h5 class="card-title">Unforgetable moments</h5>
+                                <h5 class="card-title">Listen to your favourite band</h5>
                             </div>
                         </div>
                     </div>
@@ -70,19 +91,9 @@
                 <div class="carousel-item">
                     <div class="col-md-3 col-sm-4 col-12">
                         <div class="card">
-                            <img src="~/Content/IT_sliki/coctails.jpg" height="200" width="100" class="card-img-bottom rounded" />
+                            <img src="~/Content/IT_sliki/party.jpeg" height="200" width="100" class="card-img-bottom rounded" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">The best coctails</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="col-md-3 col-sm-4 col-12">
-                        <div class="card">
-                            <img src="~/Content/IT_sliki/audience-backlit-blue-2078008.jpg" height="200" width="100" class="card-img-bottom rounded" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Unforgetable moments</h5>
+                                <h5 class="card-title">Feel the party atmosphere</h5>
                             </div>
                         </div>
                     </div>
