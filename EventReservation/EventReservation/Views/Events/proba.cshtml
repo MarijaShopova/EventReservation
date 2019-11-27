@@ -1,149 +1,22 @@
-﻿@model EventReservation.Models.Event
+﻿<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+</head>
+<body>
+
+    <p>Date: <input type="text" id="datepicker"></p>
 
 
-
-@{
-    ViewBag.Title = "proba";
-}
-<script src="~/Scripts/proba.js"></script>
-<link href="~/Css/proba.css" rel="stylesheet" />
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-
-<h2>proba</h2>
-<form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
-    <ul id="progressbar">
-        <li class="active">User Information</li>
-        <li>Aquisition</li>
-        <li>Cultivation</li>
-
-    </ul>
-
-
-
-    <!-- USER INFORMATION FIELD SET -->
-    <fieldset>
-        <h2 class="fs-title">Basic Information</h2>
-        <h3 class="fs-subtitle">We just need some basic information to begin your scoring</h3>
-        <!-- Begin What's Your First Name Field -->
-        <div class="hs_firstname field hs-form-field">
-
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "label-text" })
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <!-- End What's Your First Name Field -->
-        <!-- Begin What's Your Email Field -->
-        <div class="hs_email field hs-form-field">
-
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "label-text" })
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <!-- End What's Your Email Field -->
-        <!-- Begin Total Number of Constituents in Your Database Field -->
-        <div class="hs_email field hs-form-field hs_total_number_of_constituents_in_your_database">
-
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.BandName, htmlAttributes: new { @class = "label-text" })
-                @Html.EditorFor(model => model.BandName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BandName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <!-- End Total Number of Constituents in Your Database Field -->
-        <input type="button" data-page="1" name="next" class="next action-button" value="Next" />
-        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
-    </fieldset>
-
-
-
-    <!-- ACQUISITION FIELD SET -->
-    <fieldset>
-        <h2 class="fs-title">Acquisition of Donors</h2>
-        <h3 class="fs-subtitle">How have you been doing in acquiring donors?</h3>
-        <!-- Begin Total Number of Donors in Year 1 Field -->
-        <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_1 field hs-form-field" id="webform-component-acquisition--amount-1">
-
-            <label for="edit-submitted-acquisition-amount-1 total_number_of_donors_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_6344">What was your number of total donors in year 1? *</label>
-
-            <input id="edit-submitted-acquisition-amount-1" class="form-text hs-input" name="total_number_of_donors_in_year_1" required="required" size="60" maxlength="128" type="number" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter a valid number">
-            <span class="error1" style="display: none;">
-                <i class="error-log fa fa-exclamation-triangle"></i>
-            </span>
-        </div>
-        <!-- End Total Number of Donors in Year 1 Field -->
-        <!-- Begin Total Number of Donors in Year 2 Field -->
-        <div class="form-item webform-component webform-component-textfield hs_total_number_of_donors_in_year_2 field hs-form-field" id="webform-component-acquisition--amount-2">
-
-            <label for="edit-submitted-acquisition-amount-2 total_number_of_donors_in_year_2-99a6d115-5e68-4355-a7d0-529207feb0b3_6344">What was your number of total donors in year 2? *</label>
-
-            <input id="edit-submitted-acquisition-amount-2" class="form-text hs-input" name="total_number_of_donors_in_year_2" required="required" size="60" maxlength="128" type="number" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter a valid number">
-            <span class="error1" style="display: none;">
-                <i class="error-log fa fa-exclamation-triangle"></i>
-            </span>
-        </div>
-        <!-- End Total Number of Donors in Year 2 Field -->
-        <!-- Begin Calc of Total Number of Donors Fields -->
-        <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
-        <div class="form-item webform-component webform-component-textfield webform-container-inline hs_total_donor_percent_change field hs-form-field">
-
-            <label for="edit-submitted-acquisition-percent-change total_donor_percent_change-99a6d115-5e68-4355-a7d0-529207feb0b3_6344">Total Donors Percent Change</label>
-
-            <input id="edit-submitted-acquisition-percent-change" class="form-text hs-input" name="total_donor_percent_change" readonly="readonly" size="60" maxlength="128" type="text" value="" placeholder="0">
-        </div>
-        <!-- End Calc of Total Number of Donors Fields -->
-        <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
-        <input type="button" data-page="2" name="next" class="next action-button" value="Next" />
-        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
-    </fieldset>
-
-
-
-    <!-- Cultivation FIELD SET -->
-    <fieldset>
-        <h2 class="fs-title">Cultivation and Nurturing your Donors</h2>
-        <h3 class="fs-subtitle">How have you been nurturing donors to get better donations?</h3>
-        <!-- Begin Average Gift Size in Year 1 Field -->
-        <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_1 field hs-form-field" id="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">
-
-            <label for="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">What was your average gift size in year 1? *</label>
-
-            <input id="edit-submitted-cultivation-amount-1" class="form-text hs-input" name="average_gift_size_in_year_1" required="required" size="60" maxlength="128" type="number" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter a valid number">
-            <span class="error1" style="display: none;">
-                <i class="error-log fa fa-exclamation-triangle"></i>
-            </span>
-        </div>
-        <!-- End Average Gift Size in Year 1 Field -->
-        <!-- Begin Average Gift Size in Year 2 Field -->
-        <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_2 field hs-form-field" id="webform-component-cultivation--amount-2">
-
-            <label for="edit-submitted-cultivation-amount-2 average_gift_size_in_year_2-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">What was your average gift size in year 2? *</label>
-
-            <input id="edit-submitted-cultivation-amount-2" class="form-text hs-input" name="average_gift_size_in_year_2" required="required" size="60" maxlength="128" type="number" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter a valid number">
-            <span class="error1" style="display: none;">
-                <i class="error-log fa fa-exclamation-triangle"></i>
-            </span>
-        </div>
-        <!-- End Average Gift Size in Year 2 Field -->
-        <!-- Begin Average Gift Size Perchent Change Field -->
-        <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
-        <div class="form-item webform-component webform-component-textfield webform-container-inline hs_average_gift_size_percent_change field hs-form-field" id="webform-component-cultivation--percent-change1">
-
-            <label for="edit-submitted-cultivation-percent-change1 average_gift_size_percent_change-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">Average Gift Size Percent Change</label>
-
-            <input id="edit-submitted-cultivation-percent-change1" class="form-text hs-input" name="average_gift_size_percent_change" readonly="readonly" size="60" maxlength="128" type="text" value="" placeholder="0">
-        </div>
-        <!-- End Average Gift Size Perchent Change Field -->
-        <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" />
-        <input type="button" data-page="3" name="next" class="next action-button" value="Next" />
-        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
-    </fieldset>
-</form>
+</body>
+</html>

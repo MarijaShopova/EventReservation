@@ -13,12 +13,22 @@ namespace EventReservation.Models
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }
+
+
+        
+
+        
         [Required]
         [Display(Name ="Begins")]
         public DateTime DateStart { get; set; }
         [Required]
         [Display(Name = "Ends")]
         public DateTime DateEnd { get; set; }
+
+
+
+
+
         public Boolean Ticket { get; set; }
         [Display(Name = "Ticket price")]
         public int TicketPrice { get; set; }
