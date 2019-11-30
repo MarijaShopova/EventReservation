@@ -1,6 +1,6 @@
 ﻿.back-to-top {
     background-color: #000000;
-    color: #FFFFFF;
+    color: #004E64;
     opacity: 0;
     transition: opacity .6s ease-in-out;
     z-index: 999;
@@ -14,7 +14,7 @@
 }
 
 a.back-to-top {
-    font-weight: 1000;
+    
     letter-spacing: 2px;
     font-size: 14px;
     text-transform: uppercase;

@@ -41,15 +41,17 @@
                     </div>
                     <div class="text-white">
                         <span class="fa fa-circle text-mint mr-2 mt-2"></span>
-                        Hosted by
+                        Hosted by                    
                         <a href="#" class="text-decoration-none text-mint">@item.local.Name</a>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star-half-alt text-warning"></span>
-                        <span class="far fa-star text-warning"></span>
+                        <span class="far fa-star text-warning"></span> 
                     </div>
-                    <button class="btn btn-green mt-3"  >Read More</button>
+
+                    
+                    <button class="btn btn-green mt-3">@Html.ActionLink("Read More", "Details", new { id = item.Id } , new { htmlAttributes = new { @class = "link" } } )</button>
                 </div>
             </div>
         }

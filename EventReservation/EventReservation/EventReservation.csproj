@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201910211444214_migracija2.Designer.cs">
       <DependentUpon>201910211444214_migracija2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911282100412_reguiredFieldChanged.cs" />
+    <Compile Include="Migrations\201911282100412_reguiredFieldChanged.Designer.cs">
+      <DependentUpon>201911282100412_reguiredFieldChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatePicker.cs" />
@@ -471,10 +475,11 @@
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="Css\about-us.css" />
     <Content Include="Css\back-to-top-button.css" />
-    <Content Include="Css\edit.css" />
+    <Content Include="Css\event-details.css" />
     <Content Include="Css\events-index.css" />
     <Content Include="Css\footer.css" />
     <Content Include="Css\locals-index.css" />
+    <Content Include="Css\login-form.css" />
     <Content Include="Css\main-page.css" />
     <Content Include="Css\multistep-form.css" />
     <Content Include="Css\navbar.css" />
@@ -535,8 +540,10 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login-form.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\multistep-form.js" />
+    <Content Include="Scripts\multistep-formL.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -627,6 +634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910211444214_migracija2.resx">
       <DependentUpon>201910211444214_migracija2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911282100412_reguiredFieldChanged.resx">
+      <DependentUpon>201911282100412_reguiredFieldChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

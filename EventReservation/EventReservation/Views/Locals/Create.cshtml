@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Create";
 }
-<script src="~/Scripts/multistep-form.js"></script>
+<script src="~/Scripts/multistep-formL.js"></script>
 <link href="~/Css/multistep-form.css" rel="stylesheet" />
 
 @using (Html.BeginForm())
@@ -30,15 +30,15 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control",@id="name" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-10">  
+               @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control",@id="desc" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,11 +46,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" ,@id="city"} })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
         </div>
-        <input id="next_btn1" onclick="next_step1()" type="button" value="Next">
+        <p id="text-validation">All fields are mandotory</p>
+        <input id="next_btn1" onclick="validate_step1()" type="button" value="Next">
     </fieldset>
 
 
@@ -60,27 +61,27 @@
         <h5 class="title">Date & Time</h5>
         <div class="form-group">
             @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control",@id="street" } })
             @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.StreetNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.StreetNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.StreetNo, new { htmlAttributes = new { @class = "form-control" ,@id="streetNo"} })
             @Html.ValidationMessageFor(model => model.StreetNo, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.OpeningHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @class = "form-control" ,@id="openingH"} })
             @Html.ValidationMessageFor(model => model.OpeningHour, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ClosingHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @class = "form-control" ,@id="closingH"} })
             @Html.ValidationMessageFor(model => model.ClosingHour, "", new { @class = "text-danger" })
         </div>
         <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous">
-        <input id="next_btn2" name="next" onclick="next_step2()" type="button" value="Next">
+        <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next">
     </fieldset>
 
     <fieldset id="third">
@@ -88,13 +89,13 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control",@id="NoOfTables" } })
             @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Parking, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="checkbox">
-                @Html.EditorFor(model => model.Parking)
+                @Html.EditorFor(model => model.Parking, new { htmlAttributes = new { @id = "parking" } })
                 @Html.ValidationMessageFor(model => model.Parking, "", new { @class = "text-danger" })
             </div>
             <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous">

@@ -1,0 +1,59 @@
+﻿.ikona {
+    background-color: #004E64;
+    border-radius: 50%;
+    padding: 15px;
+    position: center;
+}
+
+    .fa {
+        color: white;
+    }
+
+h6 {
+    color: #004E64;
+}
+
+.bg-imperial {
+    background-color: #004E64;
+}
+
+.text-mint {
+    color: #9fffcb;
+}
+
+.centered {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    color: white;
+}
+
+.centered1 {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: whitesmoke;
+}
+
+.aboutus-more {
+    border: 1px solid white;
+    border-radius: 25px;
+    color: white;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding: 7px 20px;
+    text-transform: uppercase;
+}
+
+    .aboutus-more:hover {
+        background: white;
+        color: #004e64;
+        text-decoration: none;
+        border: 1px solid #004e64;
+    }
