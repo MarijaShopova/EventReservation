@@ -1,38 +1,135 @@
-﻿var count = 0; // To count blank fields.
-function validation(event) {
-    var radio_check = document.getElementsByName('gender'); // Fetching radio button by name.
-    var input_field = document.getElementsByClassName('text_field'); // Fetching all inputs with same class name text_field and an html tag textarea.
-    var text_area = document.getElementsByTagName('textarea');
-    // Validating radio button.
-    if (radio_check[0].checked == false && radio_check[1].checked == false) {
-        var y = 0;
-    } else {
-        var y = 1;
-    }
-    // For loop to count blank inputs.
-    for (var i = input_field.length; i > count; i--) {
-        if (input_field[i - 1].value == '' || text_area.value == '') {
-            count = count + 1;
-        } else {
-            count = 0;
+﻿
+
+function validate_step1() {
+    var genre = document.getElementById("genre");
+    var desc = document.getElementById("description");
+    var band = document.getElementById("band");
+    var title = document.getElementById("title");
+    var flag = 1;
+    if (genre.value == "") {
+        genre.focus();
+        genre.style.borderWidth = "2px";
+        genre.style.borderColor = "red";
+        flag = 0;
+
         }
+    if (desc.value == "") {
+        desc.focus();
+        desc.style.borderWidth = "2px";
+        desc.style.borderColor = "red";
+        flag = 0;
     }
-    if (count != 0 || y == 0) {
-        alert("All Fields are mandatory"); // Notifying validation
-        event.preventDefault();
-    } else {
-        return true;
+    if (band.value == "") {
+        band.focus();
+        band.style.borderWidth = "2px";
+         band.style.borderColor = "red";
+         flag = 0;
+    }
+    if (title.value == "") {
+        title.focus();
+        title.style.borderWidth = "2px";
+         title.style.borderColor = "red";
+         flag = 0;
+    }
+    if (flag == 0) {
+        document.getElementById("text-validation").style.display = "block";
+                }
+    if (flag == 1) {
+       
+        next_step1();
     }
 }
+
+function validate_step2() {
+    var start = document.getElementById("start");
+    var end = document.getElementById("end");
+    var datepicker = document.getElementById("datepicker");
+    var flag = 1;
+    if (start.value == "") {
+        start.focus();
+        start.style.borderWidth = "2px";
+        start.style.borderColor = "red";
+        flag = 0;
+    }
+    if (end.value == "") {
+        end.focus();
+        end.style.borderWidth = "2px";
+        end.style.borderColor = "red";
+        flag = 0;
+    }
+    if (datepicker.value == "") {
+        datepicker.focus();
+        datepicker.style.borderWidth = "2px";
+        datepicker.style.borderColor = "red";
+        flag = 0;
+    }
+
+    if (flag == 0) {
+        document.getElementById("text-validation").style.display = "block";
+    }
+    if (flag == 1) {
+
+        next_step2();
+    }
+}
+
+
+function validate_step3() {
+    var start = document.getElementById("ticket");
+    var end = document.getElementById("price");
+    var datepicker = document.getElementById("table");
+    var flag = 1;
+    if (ticket.value == "") {
+        ticket.focus();
+        ticket.style.borderWidth = "2px";
+        ticket.style.borderColor = "red";
+        flag = 0;
+    }
+    if (price.value == "") {
+        price.focus();
+        price.style.borderWidth = "2px";
+        price.style.borderColor = "red";
+        flag = 0;
+    }
+    if (table.value == "") {
+        table.focus();
+        table.style.borderWidth = "2px";
+        table.style.borderColor = "red";
+        flag = 0;
+    }
+
+    if (flag == 0) {
+        document.getElementById("text-validation").style.display = "block";
+    }
+    if (flag == 1) {
+
+       
+    }
+
+}
+
+
 /*---------------------------------------------------------*/
 // Function that executes on click of first next button.
 function next_step1() {
-    document.getElementById("first").style.display = "none";
-    document.getElementById("second").style.display = "block";
-    document.getElementById("active2").style.color = "red";
+    document.getElementById("text-validation").style.display = "none";
+    document.getElementById("title").style.borderColor = "black";
+    document.getElementById("genre").style.borderColor = "black";
+    document.getElementById("description").style.borderColor = "black";
+    document.getElementById("band").style.borderColor = "black";
+    
+        document.getElementById("first").style.display = "none";
+        document.getElementById("second").style.display = "block";
+        document.getElementById("active2").style.color = "red";
+ 
 }
 // Function that executes on click of first previous button.
 function prev_step1() {
+
+    document.getElementById("text-validation").style.display = "none";
+    document.getElementById("start").style.borderColor = "black";
+    document.getElementById("end").style.borderColor = "black";
+    document.getElementById("datepicker").style.borderColor = "black";
     document.getElementById("first").style.display = "block";
     document.getElementById("second").style.display = "none";
     document.getElementById("active1").style.color = "red";
@@ -40,6 +137,10 @@ function prev_step1() {
 }
 // Function that executes on click of second next button.
 function next_step2() {
+    document.getElementById("text-validation").style.display = "none";
+    document.getElementById("start").style.borderColor = "black";
+    document.getElementById("end").style.borderColor = "black";
+    document.getElementById("datepicker").style.borderColor = "black";
     document.getElementById("second").style.display = "none";
     document.getElementById("third").style.display = "block";
     document.getElementById("active3").style.color = "red";
