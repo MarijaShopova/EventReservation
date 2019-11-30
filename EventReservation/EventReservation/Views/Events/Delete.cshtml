@@ -3,64 +3,72 @@
 @{
     ViewBag.Title = "Delete";
 }
-<link href="~/Css/create.css" rel="stylesheet" />
-<div class="container bg-imperial text-center py-5">
-    <h3 class="text-center py-5">Are you sure you want to delete this event?</h3>
-    <div class="row text-left">
-        <div class="col-lg-4 offset-1">
-            <dl class="dl-horizontal" style="font-size:22px;">
-                <!--<dt>
-        @Html.DisplayNameFor(model => model.local.Name):<span class="font22"> @Html.DisplayFor(model => model.local.Name)</span>
-    </dt>-->
+<style>
+    dt {
+        align-items: flex-start;
+    }
+</style>
+<link href="~/Css/edit.css" rel="stylesheet" />
+<div style="background-image: url('../../Content/bestParties.jpg'); opacity: 0.9;" class="div1">
+
+    <div class="container text-center py-5 form-class">
+        <h3 class="text-center py-5 font-klasa">Details for the event - @Model.Title </h3>
+        <div class="container row">
+            <div class="col" style="font-size:22px;">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Title): <span class="font22">@Html.DisplayFor(model => model.Title)</span>
+                    <div>
+                          @Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)
+                    </div>
+                  
                 </dt>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Description): <span class="font22">@Html.DisplayFor(model => model.Description)</span>
-</dt>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DateStart): <span class="font22">@Html.DisplayFor(model => model.DateStart)</span>
+                    @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
                 </dt>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.DateEnd):<span class="font22"> @Html.DisplayFor(model => model.DateEnd)</span>
-</dt>
+                    @Html.DisplayNameFor(model => model.DateStart):@Html.DisplayFor(model => model.DateStart)
+                </dt>
+
                 <dt>
-                    @Html.DisplayNameFor(model => model.Ticket): <span class="font22">@Html.DisplayFor(model => model.Ticket)</span>
-</dt>
-</div>
-        <div class="col-lg-4" style="font-size:22px;">
-            <dt>
-                @Html.DisplayNameFor(model => model.TicketPrice):<span class="font22"> @Html.DisplayFor(model => model.TicketPrice)</span>
-            </dt>
-            
-            <dt>
-                @Html.DisplayNameFor(model => model.FreeTables):  <span class="font22">@Html.DisplayFor(model => model.FreeTables)</span>
-            </dt>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.BandName): <span class="font22">@Html.DisplayFor(model => model.BandName)</span>
-            </dt>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Genre): <span class="font22"> @Html.DisplayFor(model => model.Genre)</span>
-            </dt>
-
-        </div>
-
-    </div>
- 
-        @Html.AntiForgeryToken()
-    <div class="row py-5 align-content-center">
-        <div class="col-3 offset-4">
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-primary btn-block" />
-                <!--   @Html.ActionLink("Back to List", "Index")-->
+                    @Html.DisplayNameFor(model => model.DateEnd):@Html.DisplayFor(model => model.DateEnd)
+                </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Ticket): @Html.DisplayFor(model => model.Ticket)
+                </dt>
             </div>
+            <div class="col" style="font-size:22px;">
+                <dt>
+                    @Html.DisplayNameFor(model => model.TicketPrice): @Html.DisplayFor(model => model.TicketPrice)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FreeTables):  @Html.DisplayFor(model => model.FreeTables)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BandName):@Html.DisplayFor(model => model.BandName)
+                </dt>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Genre):  @Html.DisplayFor(model => model.Genre)
+                </dt>
+
+            </div>
+
         </div>
-        <div class="col-5"></div>
+
+        @Html.AntiForgeryToken()
+        <div class="row py-5 align-content-center">
+            <div class="col-3 offset-4">
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-primary btn-block" />
+
+                    <!--   @Html.ActionLink("Back to List", "Index")-->
+                </div>
+            </div>
+            <div class="col-5"></div>
+        </div>
+
     </div>
-   
 </div>

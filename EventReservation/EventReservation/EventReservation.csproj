@@ -471,6 +471,7 @@
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="Css\about-us.css" />
     <Content Include="Css\back-to-top-button.css" />
+    <Content Include="Css\edit.css" />
     <Content Include="Css\events-index.css" />
     <Content Include="Css\footer.css" />
     <Content Include="Css\locals-index.css" />
