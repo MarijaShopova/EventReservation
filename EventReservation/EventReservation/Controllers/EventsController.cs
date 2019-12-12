@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using EventReservation.Models;
 
@@ -50,6 +49,7 @@ namespace EventReservation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,DateEnd,Ticket,TicketPrice,FreeTables,BandName,Genre,LocalId")] Event @event)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);

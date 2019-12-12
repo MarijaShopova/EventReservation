@@ -1,0 +1,102 @@
+﻿
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+.content {
+    margin: 50px;
+    padding-left: 350px;
+}
+
+#text-validation{
+    color:red;
+    display:none;
+}
+
+.bg-imperial {
+    background-color: #004E64;
+}
+
+.text-mint {
+    color: #9fffcb;
+}
+
+.progressbar {
+    padding: 0;
+    font-size: 18px;
+    margin-left: 160px;
+    color: #004E64;
+}
+
+.progressbar1 {
+    font-size: 18px;
+    margin-left: 135px;
+    padding: 0;
+}
+
+#active1 {
+    color: red;
+}
+
+fieldset {
+    display: none;
+    width: 350px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left: 85px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 25px 1px gray;
+}
+
+.li-text {
+    font-size: 12px;
+}
+
+#first {
+    display: block;
+    width: 350px;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
+    margin-left: 85px;
+    box-shadow: 3px 3px 25px 1px gray
+}
+
+input[type=text], input[type=password], select {
+    width: 100%;
+    margin: 10px 0;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 4px
+}
+
+
+
+input[type=submit], input[type=button] {
+    width: 100px;
+    margin: 15px 25px;
+    padding: 5px;
+    height: 40px;
+    color: #004E64;
+    border: none;
+    border-radius: 4px;
+}
+
+input[type=button] {
+    background: #004E64;
+    color: #9fffcb;
+}
+
+.title {
+    text-align: center;
+    
+    padding: 5px;
+}
+
+.li-multistep {
+    margin-right: 52px;
+    display: inline;
+}
+
+#next_btn1 {
+    float: right;
+}

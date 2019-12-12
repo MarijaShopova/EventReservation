@@ -1,0 +1,35 @@
+﻿.font-klasa {
+    font-family: "Caveat";
+    font-size: 50px;
+}
+a {
+    color:white;
+    text-decoration: none;
+}
+.klasa2 {
+    width: 200px;
+    margin-left: 100px;
+}
+
+.classwhite {
+    color: white !important;
+}
+
+.bg-imperial {
+    background-color: #004E64;
+}
+
+div {
+    color: #004E64;
+}
+
+.form-class {
+    border-radius: 15px;
+    background-color: white;
+}
+
+.div1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+

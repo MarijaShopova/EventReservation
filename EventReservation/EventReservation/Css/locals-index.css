@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+.content {
+    position: relative;
+    max-width: 350px;
+    overflow: hidden;
+    margin: auto;
+    width: fit-content;
+}
+
+.content-header{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 2px #000000;
+}
+
+#title{
+    font-family: "Indie Flower";
+    color: #004e64;
+    text-shadow: 4px 5px 5px #25a18e;
+}
+
+.content .content-overlay {
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    height: 300px;
+    width: 350%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+.content:hover .content-overlay{
+    opacity: 1;
+}
+
+.content:hover .content-header{
+    visibility: hidden;
+}
+
+.content-image {
+    width: 272px;
+    height: 230px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.60), 0 6px 6px rgba(0,0,0,0.73);
+}
+
+.border {
+  width: max-content;
+  border: 1px solid #507171 !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.51), 0 20px 20px rgba(0, 0, 0, 0.43) !important;
+  border-radius: 2%;
+  display: block;
+  margin: auto;
+}
+
+.content-details {
+    position: absolute;
+    text-align: center;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.content:hover .content-details{
+    top: 50%;
+    left: 50%;
+    opacity: 0.8;
+}
+
+.content-details h3{
+    font-size: 2vw;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+}
+
+.content-details div{
+    color: #fff;
+}
+
+.content-details p {
+    margin: 0;
+    font-size: 1vw;
+}
+
+.content-details button {
+    font-size: 1.2vw;
+    margin-top: 20px;
+}
+
+.fadeIn-top{
+    top: 20%;
+}
+
+@media (max-width: 420px) {
+    img {
+        width: 100%;
+    }
+
+    a {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    h2 {
+        font-size: 0.8rem !important;
+    }
+}

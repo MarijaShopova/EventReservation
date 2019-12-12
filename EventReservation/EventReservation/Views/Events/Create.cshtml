@@ -1,122 +1,163 @@
 ﻿@model EventReservation.Models.Event
 
 @{
+
     ViewBag.Title = "Create";
 }
-<link href="~/Css/createCss.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/Jquery")
 
-@using (Html.BeginForm()) 
+<script src="~/Scripts/multistep-form.js"></script>
+<link href="~/Css/multistep-form.css" rel="stylesheet" />
+<link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal form container py-5">
-    <div class="container">
-        <h3 class="text-center py-5">Create а new event for your local</h3>
-        <div class="row" style="font-size:24px;">
+    <form class="form-horizontal form py-5 content main" name="form">
+        <!-- Progressbar -->
+        <ul class="progressbar">
+            <li id="active1" class="li-multistep"><span><i class="fa fa-glass-martini fa-2x pr-2"></i></span></li>
+            <li id="active2" class="li-multistep"><span><i class="fa fa-glass-martini fa-2x pl-2 pr-2"></i></span></li>
+            <li id="active3" class="li-multistep"><span><i class="fa fa-glass-martini fa-2x pl-2"></i></span></li>
+        </ul>
+        <ul class="progressbar1">
+            <li class="li-multistep"><span class="li-text">General Details</span></li>
+            <li class="li-multistep"><span class="li-text" style="margin-left:-38px;">Time & Date</span></li>
+            <li class="li-multistep"><span class="li-text" style="margin-left:-35px;">Event Details</span></li>
+        </ul>
 
-            <div class="col-lg-3">
+
+        <fieldset id="first">
+            <h5 class="title">General Details</h5>
+
+            <div>
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.BandName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.BandName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.BandName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "label-text" })
+                   
+                   @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control",@id = "title" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger",@id = "valTitle" })
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "label-text" })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control " ,@id="description"} })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger ",@id= "valDesc" })
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LocalId, "Local", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("LocalId", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.LocalId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
             </div>
-
-
-            <div class="col-lg-3">
-
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.Ticket)
-                            @Html.ValidationMessageFor(model => model.Ticket, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                    @Html.LabelFor(model => model.BandName, htmlAttributes: new { @class = "label-text" })
+                    @Html.EditorFor(model => model.BandName, new { htmlAttributes = new { @class = "form-control",@id="band" } })
+                    @Html.ValidationMessageFor(model => model.BandName, "", new { @class = "text-danger ",@id="valBand" })
                 </div>
-
+            </div>
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TicketPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.TicketPrice, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TicketPrice, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
+                    @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control", @id="genre" } })
+                    @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger ",@id= "valGenre" })
                 </div>
+            </div>
+            <p id="text-validation">All fields are mandatory</p>
+            <input id="next_btn1" onclick="validate_step1()" type="button" value="Next">
+        </fieldset>
+
+        <fieldset id="second">
+            <h5 class="title">Date & Time</h5>
+            <div>
+                <p>Date: <input type="text" id="datepicker"></p>
+            </div>
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.FreeTables, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FreeTables, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FreeTables, "", new { @class = "text-danger" })
-                    </div>
+                    <label>Event starts at:</label>
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @class = "label-text", placeholder = "HH:MM", @id = "start" })
+
+                    @*  @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
+                @Html.EditorFor(model => model.DateStart, new { htmlAttributes = new { @class = "form-control", placeholder = "HH:MM" } })
+                @Html.ValidationMessageFor(model => model.DateStart, "", new { @class = "text-danger" })
+                    *@
+
+                </div>
+            </div>
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label>Event ends at:</label>
+                    @Html.TextBoxFor(model => model.DateEnd, htmlAttributes: new { @class = "label-text", placeholder = "HH:MM", @id = "end" })
+
+                    @* @Html.LabelFor(model => model.DateEnd, htmlAttributes: new { @class = "labet-text" })
+                @Html.EditorFor(model => model.DateEnd, new { htmlAttributes = new { @class = "form-control", placeholder = "HH:MM" } })
+                @Html.ValidationMessageFor(model => model.DateEnd, "", new { @class = "text-danger" })*@
                 </div>
 
             </div>
+            <p id="text-validation">All fields are mandatory</p>
+            <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous">
+            <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next">
 
-        </div>
-        <div class="row container text-center">
-            <div class="col-lg-6 py-5 offset-1">
+        </fieldset>
+        <fieldset id="third">
+            <h5 class="title">Event Details</h5>
+
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-primary btn-block float-lg-right" />
-                    </div>
+                    @Html.LabelFor(model => model.LocalId, "Local", htmlAttributes: new { @class = "label-text" })
+                    @Html.DropDownList("LocalId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LocalId, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
-    </div>
-    
-</div>
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Ticket, htmlAttributes: new { @class = "label-text" ,@id="ticket"})
+
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Ticket)
+                        @Html.ValidationMessageFor(model => model.Ticket, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.TicketPrice, htmlAttributes: new { @class = "label-text" })
+
+                @Html.EditorFor(model => model.TicketPrice, new { htmlAttributes = new { @class = "form-control",@id="price" } })
+                @Html.ValidationMessageFor(model => model.TicketPrice, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FreeTables, htmlAttributes: new { @class = "label-text" })
+                @Html.EditorFor(model => model.FreeTables, new { htmlAttributes = new { @class = "form-control",@id="tables" } })
+                @Html.ValidationMessageFor(model => model.FreeTables, "", new { @class = "text-danger" })
+
+            </div>
+            <p id="text-validation">All fields are mandatory</p>
+            <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous">
+            <input type="submit" value="Create" class="btn bg-imperial" style="color:#9fffcb;" />
+        </fieldset>
+
+    </form>
 }
+
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Back")

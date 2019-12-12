@@ -1,4 +1,4 @@
-namespace EventReservation.Migrations
+    namespace EventReservation.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
