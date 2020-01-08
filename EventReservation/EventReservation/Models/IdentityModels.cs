@@ -23,6 +23,8 @@ namespace EventReservation.Models
         public DbSet<Event> Events { get; set; }
         public DbSet<Local> Locals { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<LocalRequest> LocalRequests { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EventReservation.Models;
+using System.Security.Principal;
 
 namespace EventReservation.Controllers
 {
@@ -17,12 +18,11 @@ namespace EventReservation.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -156,7 +156,12 @@ namespace EventReservation.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    //add user to a role, 3 roles, Admin, Manager and User.
+                    UserManager.AddToRole(user.Id, "User");
+                    //var body = "";
+                    //body += "<div>Zdravo " + user.Email + "</div>";
+                    //UserManager.SendEmail(user.Id, "Registracija uspesna", body);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

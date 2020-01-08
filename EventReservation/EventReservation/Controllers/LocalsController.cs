@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using EventReservation.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EventReservation.Controllers
 {
@@ -17,7 +16,14 @@ namespace EventReservation.Controllers
         // GET: Locals
         public ActionResult Index()
         {
-            return View(db.Locals.ToList());
+            if (User.IsInRole("Manager"))
+            {
+                string user = User.Identity.Name;
+                Local local = db.Locals.Where(l => l.Manager.Equals(user)).First();
+                return View("~/Views/Locals/Details.cshtml", local);
+            }
+            else
+                return View(db.Locals.ToList());
         }
 
         // GET: Locals/Details/5
@@ -35,27 +41,47 @@ namespace EventReservation.Controllers
             return View(local);
         }
 
-        // GET: Locals/Create
-        public ActionResult Create()
+        // GET: Locals/Requests
+        public ActionResult Requests()
         {
-            return View();
+            return View("~/Views/Admin/LocalRequest.cshtml", db.LocalRequests.ToList());
         }
 
-        // POST: Locals/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,NoTables,Parking")] Local local)
+        //GET: Locals/Confirm/5
+        public ActionResult Confirm(int id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Locals.Add(local);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //find local request
+            LocalRequest request = db.LocalRequests.Find(id);
 
-            return View(local);
+            //create and save local
+            Local local = new Local();
+            local.City = request.LocalCity;
+            local.Name = request.LocalName;
+            local.Manager = request.Email;
+            db.Locals.Add(local);
+
+            // create new user
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                RequireUniqueEmail = true
+            };
+            string password = System.Web.Security.Membership.GeneratePassword(12, 4);
+            var user = new ApplicationUser();
+            user.Email = request.Email;
+            user.UserName = request.Email;
+            var result = UserManager.Create(user, password);
+
+            //add role 'Menager' to user
+            UserManager.AddToRole(user.Id, "Manager");
+
+            //remove request
+            db.LocalRequests.Remove(request);
+            db.SaveChanges();
+            //this needs to be made with ajax call so that it will only be deleted from the table
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Locals/Edit/5
@@ -78,7 +104,7 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,NoTables,Parking")] Local local)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking")] Local local)
         {
             if (ModelState.IsValid)
             {

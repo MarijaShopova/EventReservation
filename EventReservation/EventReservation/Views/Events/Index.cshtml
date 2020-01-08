@@ -7,6 +7,14 @@
 <div class="bg-light">
     <div class="container-page container py-4">
         <h2 class="font-header text-center display-4 py-4">Our Events</h2>
+
+        <!-- Filters -->
+
+
+
+
+
+        <!-- List events -->
       
         @foreach (var item in Model)
         {
@@ -18,7 +26,7 @@
                     <div class="row text-light">
                         <div class="col-lg-10 text-white">
                             <h2 class="mb-3 text-mint">@item.Title</h2>
-                            <div><span class="fa fa-calendar-alt mr-2 mt-2 text-mint"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.DateStart.ToString("hh:mm") pm - @item.DateEnd.ToString("hh:mm") pm</div>
+                            <div><span class="fa fa-calendar-alt mr-2 mt-2 text-mint"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.DateStart.ToString("hh:mm tt") - @item.DateEnd.ToString("hh:mm tt")</div>
                         </div>
                         <div class="col-lg-2 text-white">
                             <div class="calendar-date text-center bg-green calendar">@item.DateStart.Day</div>

@@ -24,13 +24,22 @@ namespace EventReservation.Models
         [Display(Name = "Ticket price")]
         public int TicketPrice { get; set; }
         [Required]
-        [Display(Name = "Free tables")]
-        public int FreeTables { get; set; }
+        [Range(0, int.MaxValue)]
+        [Display(Name = "Tables")]
+        public int NoTables { get; set; }
+        [Required]
+        [Display(Name = "Reserved tables")]
+        public int ReservedTables { get; set; }
         [Display(Name = "Band Name")]
         public string BandName { get; set; }
         [Required]
         public string Genre { get; set; }
         public int LocalId { get; set; }
         public Local local { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
+        public Event()
+        {
+            Reservations = new List<Reservation>();
+        }
     }
 }
