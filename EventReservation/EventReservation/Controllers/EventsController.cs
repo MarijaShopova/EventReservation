@@ -16,7 +16,7 @@ namespace EventReservation.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            var events = db.Events.Include(@event=> @event.local);
+            var events = db.Events.Include(@event => @event.local);
             return View(events.ToList());
         }
 
@@ -27,17 +27,27 @@ namespace EventReservation.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           
-            Event @event = db.Events.Find(id);
+            Event @event = db.Events.Include(m => m.local).SingleOrDefault(e => e.Id == id);
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NoFreeTables = @event.FreeTables;
             return View(@event);
         }
-        
-      
+
+        //POST: Events/Reserve/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public void Reserve(Reservation @reservation)
+        {
+            //this need to be in ajax call so there wont be any changes to the page and the modal should close at end
+            Event e = db.Events.Find(reservation.eventId);
+            e.ReservedTables += reservation.NoTables;
+            reservation.userEmail = User.Identity.Name;
+            db.Reservations.Add(reservation);
+            db.SaveChanges();
+        }
+
         // GET: Events/Create
         public ActionResult Create()
         {
@@ -52,7 +62,7 @@ namespace EventReservation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,DateEnd,Ticket,TicketPrice,FreeTables,BandName,Genre,LocalId")] Event @event)
         {
-            
+
             if (ModelState.IsValid)
             {
                 db.Events.Add(@event);

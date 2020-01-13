@@ -195,13 +195,36 @@
     <Compile Include="Migrations\201911282100412_reguiredFieldChanged.Designer.cs">
       <DependentUpon>201911282100412_reguiredFieldChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001070119106_changes to reservation model.cs" />
+    <Compile Include="Migrations\202001070119106_changes to reservation model.Designer.cs">
+      <DependentUpon>202001070119106_changes to reservation model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071850231_Add id as primary key to localRequest.cs" />
+    <Compile Include="Migrations\202001071850231_Add id as primary key to localRequest.Designer.cs">
+      <DependentUpon>202001071850231_Add id as primary key to localRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071951094_added menager id to local.cs" />
+    <Compile Include="Migrations\202001071951094_added menager id to local.Designer.cs">
+      <DependentUpon>202001071951094_added menager id to local.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001072302111_reservation table changed.cs" />
+    <Compile Include="Migrations\202001072302111_reservation table changed.Designer.cs">
+      <DependentUpon>202001072302111_reservation table changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001072358510_reservation table changed event id type.cs" />
+    <Compile Include="Migrations\202001072358510_reservation table changed event id type.Designer.cs">
+      <DependentUpon>202001072358510_reservation table changed event id type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatePicker.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventWithFiltersViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Local.cs" />
+    <Compile Include="Models\LocalRequest.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -591,10 +614,8 @@
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
-    <Content Include="Views\Locals\Create.cshtml" />
-    <Content Include="Views\Locals\Delete.cshtml" />
-    <Content Include="Views\Locals\Details.cshtml" />
     <Content Include="Views\Locals\Edit.cshtml" />
+    <Content Include="Views\Locals\Details.cshtml" />
     <Content Include="Views\Locals\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -620,7 +641,8 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
-    <Content Include="Views\Locals\Local.cshtml" />
+    <Content Include="Views\Admin\LocalRequest.cshtml" />
+    <Content Include="Views\Manager\Local.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -638,10 +660,26 @@
     <EmbeddedResource Include="Migrations\201911282100412_reguiredFieldChanged.resx">
       <DependentUpon>201911282100412_reguiredFieldChanged.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001070119106_changes to reservation model.resx">
+      <DependentUpon>202001070119106_changes to reservation model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071850231_Add id as primary key to localRequest.resx">
+      <DependentUpon>202001071850231_Add id as primary key to localRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071951094_added menager id to local.resx">
+      <DependentUpon>202001071951094_added menager id to local.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001072302111_reservation table changed.resx">
+      <DependentUpon>202001072302111_reservation table changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001072358510_reservation table changed event id type.resx">
+      <DependentUpon>202001072358510_reservation table changed event id type.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

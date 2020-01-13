@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+.heading {
+    color:white;
+    font-weight:bold;  
+    text-align:center;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.btn-outline-secondary {
+    border: 4px solid white;
+}
+.fa{
+    color: white;
+}
+.card {
+    background-color: #9fffcb;
+    border: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.45), 0 10px 10px rgba(0,0,0,0.75);
+    z-index:1;
+}
+.card-title {
+    color: #004e64;
+    text-align: center;
+    font-family: "Indie Flower";
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.cust_padding{
+    padding-top: 8%;
+    padding-bottom: 7%;
+}
+.open-photo {
+   color:white;
+    border-radius: 50px;
+}
+.own-text{
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    font-family: "Indie Flower";
+    font-size: 2.6em;
+}
+.cust_padding2{
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+.imperial-color {
+    color: #004e64;
+}
+.imperial-backgroud{
+    background-color: #004e64;
+    padding: 80px;
+}
+h2{
+   color: white;
+   font-weight: bold;
+}
+
+.offerText
+{
+    text-shadow: 4px 5px 5px #25a18e;
+    text-align: center;
+    padding-bottom: 35px;
+    color:#9fffcb;
+    font-family: "Caveat";
+    font-size: 3.1em;
+}
+
+
+
+
+

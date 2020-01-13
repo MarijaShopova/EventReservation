@@ -12,6 +12,8 @@ namespace EventReservation.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
+        public string Manager { get; set; }
         public string Description { get; set; }
         [Required]
         public string City { get; set; }
@@ -19,13 +21,9 @@ namespace EventReservation.Models
         public string StreetName { get; set; }
         public int StreetNo { get; set; }
         [Display(Name = "Opens")]
-        public DateTime OpeningHour { get; set; }
+        public DateTime OpeningHour { get; set; } = DateTime.Now;
         [Display(Name = "Closes")]
-        public DateTime ClosingHour { get; set; }
-        [Required]
-        [Range(0, int.MaxValue)]
-        [Display(Name = "Tables")]
-        public int NoTables { get; set; }
+        public DateTime ClosingHour { get; set; } = DateTime.Now;
         public Boolean Parking { get; set; }
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
