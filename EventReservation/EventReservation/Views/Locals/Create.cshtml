@@ -30,27 +30,30 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control",@id="name" } })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @id = "name" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                 </div>
+                <p id="NameH" class="hidden">Please enter the name of the local</p>
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">  
-               @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control",@id="desc" } })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "desc" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
+            <p id="DescriptionH" class="hidden">Please enter the description</p>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" ,@id="city"} })
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city" } })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                <p id="CityH" class="hidden">Please enter the city</p>
             </div>
         </div>
-        <p id="text-validation">All fields are mandotory</p>
+
         <input id="next_btn1" onclick="validate_step1()" type="button" value="Next">
     </fieldset>
 
@@ -61,25 +64,30 @@
         <h5 class="title">Date & Time</h5>
         <div class="form-group">
             @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control",@id="street" } })
+            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "street" } })
             @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+            <p id="StreetH" class="hidden">Please enter the street</p>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.StreetNo, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.StreetNo, new { htmlAttributes = new { @class = "form-control" ,@id="streetNo"} })
+            @Html.EditorFor(model => model.StreetNo, new { htmlAttributes = new { @class = "form-control", @id = "streetNo" } })
             @Html.ValidationMessageFor(model => model.StreetNo, "", new { @class = "text-danger" })
+            <p id="StreetNoH" class="hidden">Please enter the street number</p>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.OpeningHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @class = "form-control" ,@id="openingH"} })
+            @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @class = "form-control", @id = "openingH" } })
             @Html.ValidationMessageFor(model => model.OpeningHour, "", new { @class = "text-danger" })
+            <p id="OpenH" class="hidden">Please enter the opening hour</p>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.ClosingHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @class = "form-control" ,@id="closingH"} })
+            @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @class = "form-control", @id = "closingH" } })
             @Html.ValidationMessageFor(model => model.ClosingHour, "", new { @class = "text-danger" })
+            <p id="CloseH" class="hidden">Please enter the closing hour</p>
         </div>
+      
         <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous">
         <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next">
     </fieldset>
@@ -91,15 +99,18 @@
             @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control",@id="NoOfTables" } })
             @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
+            <p id="NoTablesH" class="hidden">Please enter the number of tables</p>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Parking, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="checkbox">
                 @Html.EditorFor(model => model.Parking, new { htmlAttributes = new { @id = "parking" } })
                 @Html.ValidationMessageFor(model => model.Parking, "", new { @class = "text-danger" })
+                <p id="ParkingH" class="hidden">Please enter the parking info</p>
             </div>
+         
             <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous">
-            <input type="submit" value="Create" class="btn bg-imperial" style="color:#9fffcb;"  />
+            <input type="submit" value="Create" class="btn bg-imperial" style="color:#9fffcb;" />
         </div>
     </fieldset>
 

@@ -11,6 +11,7 @@ function validate_step1() {
         name.style.borderWidth = "2px";
         name.style.borderColor = "red";
         flag = 0;
+        document.getElementById("NameH").style.display = "block";
 
     }
     if (desc.value == "") {
@@ -18,19 +19,24 @@ function validate_step1() {
         desc.style.borderWidth = "2px";
         desc.style.borderColor = "red";
         flag = 0;
+        document.getElementById("DescriptionH").style.display = "block";
+       
     }
     if (city.value == "") {
         city.focus();
         city.style.borderWidth = "2px";
         city.style.borderColor = "red";
         flag = 0;
+        document.getElementById("CityH").style.display = "block";
+    }
+    var numbers = /^[0-9]+$/;
+    if (city.value.match(numbers)) {
+        document.getElementById("CityH").innerText = "The value for city can contain only letters!";
+        document.getElementById("CityH").style.display = "block";
     }
     
-    if (flag == 0) {
-        document.getElementById("text-validation").style.display = "block";
-    }
-    if (flag == 1) {
-
+    if (flag != 0) {
+        
         next_step1();
     }
 }
@@ -46,6 +52,7 @@ function validate_step2() {
         street.focus();
         street.style.borderWidth = "2px";
         street.style.borderColor = "red";
+        document.getElementById("StreetH").style.display = "block";
         flag = 0;
     }
     if (streetNo.value == "") {
@@ -53,11 +60,23 @@ function validate_step2() {
         streetNo.style.borderWidth = "2px";
         streetNo.style.borderColor = "red";
         flag = 0;
+        document.getElementById("StreetNoH").style.display = "block";
+
     }
+
     if (opens.value == "") {
         opens.focus();
         opens.style.borderWidth = "2px";
         opens.style.borderColor = "red";
+        flag = 0;
+        document.getElementById("OpenH").style.display = "block";
+    }
+    status = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(opens.value);
+    alert(status + " opens");
+    if (!(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(opens.value))) {
+       
+        document.getElementById("OpenH").innerText = "We only accept HH:MM format for the value of opening hour";
+        document.getElementById("OpenH").style.display = "block";
         flag = 0;
     }
     if (closes.value == "") {
@@ -65,16 +84,20 @@ function validate_step2() {
         closes.style.borderWidth = "2px";
         closes.style.borderColor = "red";
         flag = 0;
+        document.getElementById("CloseH").style.display = "block";
     }
-    if (flag == 0) {
-        document.getElementById("text-validation").style.display = "block";
+   
+    if (!( /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(closes.value))) {
+        document.getElementById("CloseH").innerText = "We only accept HH:MM format for the value of closing hour";
+        document.getElementById("CloseH").style.display = "block";
+        flag = 0;
     }
-    if (flag == 1) {
 
+    if (flag != 0) {
         next_step2();
     }
+   
 }
-
 
 function validate_step3() {
     var tables = document.getElementById("NoOfTables");
@@ -86,60 +109,62 @@ function validate_step3() {
         tables.style.borderWidth = "2px";
         tables.style.borderColor = "red";
         flag = 0;
+        document.getElementById("NoTablesH").style.display = "block";
     }
     if (parking.value == "") {
         parking.focus();
         parking.style.borderWidth = "2px";
         parking.style.borderColor = "red";
         flag = 0;
+        document.getElementById("ParkingH").style.display = "block";
     }
     
-    if (flag == 0) {
-        document.getElementById("text-validation").style.display = "block";
-    }
-    
-
+   
 }
-
 
 /*---------------------------------------------------------*/
 // Function that executes on click of first next button.
 function next_step1() {
 
-
     document.getElementById("first").style.display = "none";
     document.getElementById("second").style.display = "block";
     document.getElementById("active2").style.color = "red";
-
 }
 // Function that executes on click of first previous button.
 function prev_step1() {
 
-    document.getElementById("text-validation").style.display = "none";
-    document.getElementById("name").style.borderColor = "black";
-    document.getElementById("desc").style.borderColor = "black";
-    document.getElementById("city").style.borderColor = "black";
+   
+    document.getElementById("first").style.display = "block";
     document.getElementById("second").style.display = "none";
     document.getElementById("active1").style.color = "red";
     document.getElementById("active2").style.color = "gray";
+    document.getElementById("NameH").style.display = "none";
+    document.getElementById("DescriptionH").style.display = "none";
+    document.getElementById("CityH").style.display = "none";
+    document.getElementById("name").style.borderColor = "black";
+    document.getElementById("desc").style.borderColor = "black";
+    document.getElementById("city").style.borderColor = "black";
 }
 // Function that executes on click of second next button.
 function next_step2() {
 
-   
     document.getElementById("second").style.display = "none";
     document.getElementById("third").style.display = "block";
     document.getElementById("active3").style.color = "red";
 }
 // Function that executes on click of second previous button.
 function prev_step2() {
-    ocument.getElementById("text-validation").style.display = "none";
-    document.getElementById("street").style.borderColor = "black";
-    document.getElementById("streetNo").style.borderColor = "black";
-    document.getElementById("opens").style.borderColor = "black";
-    document.getElementById("closes").style.display = "block";
+
     document.getElementById("third").style.display = "none";
     document.getElementById("second").style.display = "block";
     document.getElementById("active2").style.color = "red";
     document.getElementById("active3").style.color = "gray";
+    document.getElementById("StreetH").style.display = "none";
+    document.getElementById("StreetNoH").style.display = "none";
+    document.getElementById("OpenH").style.display = "none";
+    document.getElementById("CloseH").style.display = "none";
+    document.getElementById("street").style.borderColor = "black";
+    document.getElementById("streetNo").style.borderColor = "black";
+    document.getElementById("openingH").style.borderColor = "black";
+    document.getElementById("closingH").style.borderColor = "black";
 }

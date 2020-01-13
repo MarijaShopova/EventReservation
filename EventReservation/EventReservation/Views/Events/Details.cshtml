@@ -12,7 +12,6 @@
 
         <div class="centered">
 
-
             @Html.DisplayFor(model => model.Title)
         </div>
         <div class="centered1">
@@ -22,113 +21,129 @@
 
             <div class="p-2"><a class="aboutus-more" data-toggle="modal" data-target="#myModal" href="#">Reserve Table</a></div>
         </div>
+       
         <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+            @if (@ViewBag.NoFreeTables > 0)
+            {
+                <div class="modal-dialog">             
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="modal-title">Enter your contact information</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-2 col-form-label"><label for="formGroupExampleInput">Name</label></div>
+                                    <div class="col-10"><input type="text" class="form-control" id="formGroupExampleInput" placeholder="First & Last Name"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-2 col-form-label"> <label for="formGroupExampleInput2">E-mail</label></div>
+                                    <div class="col-10"> <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="name@example.com"></div>
+                                </div>
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
+                                <div class="form-group row">
+                                    <div class="col-sm-2 col-form-label"> <label for="numberT">Tables</label></div>
+                                    <div class="col-10"> <input type="number" id="numberT" class="form-control" placeholder="Number of tables"></div>
+                                </div>
+                            </form>
+                            <p class="small">By clicking <button class="btn btn-sm bg-imperial rounded text-white" style="padding:1px;">Reserve</button> you will receive an email confirmation for your reservation.</p>
+                        </div>
+                        <div class="modal-footer">
 
-                        <h6 class="modal-title">Enter your contact information</h6>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Reserve</button>
+                            <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Cancel</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-form-label"><label for="formGroupExampleInput">Name</label></div>
-                                <div class="col-10"><input type="text" class="form-control" id="formGroupExampleInput" placeholder="First & Last Name"></div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-form-label"> <label for="formGroupExampleInput2">E-mail</label></div>
-                                <div class="col-10"> <input type="email" class="form-control" id="formGroupExampleInput2" placeholder="name@example.com"></div>
-                            </div>
 
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-form-label"> <label for="numberT">Tables</label></div>
-                                <div class="col-10"> <input type="number" id="numberT" class="form-control" placeholder="Number of tables"></div>
-                            </div>
+                </div>
+            }
 
-                            
-                        </form>
-                        <p class="small">By clicking <button class="btn btn-sm bg-imperial rounded text-white" style="padding:1px;">Reserve</button> you will receive an email confirmation for your reservation.</p>
+
+            else
+            { <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="modal-title">There are no tables available.</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group row">
+                                    <p>
+                                        Unfortunately, all the tables for this event are booked.
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="modal-footer">
+            </div>
+                    }
 
-                        <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Reserve</button>
-                        <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Cancel</button>
-                    </div>
                 </div>
 
+                <div class="container pt-3 row pl-5">
+                    <div class="col-3"><i class="fa fa-clock ikona"></i></div>
+                    <div class="col-3"><i class="fa fa-music ikona"></i></div>
+                    <div class="col-3"><i class="fa fa-ticket-alt ikona"></i></div>
+                    <div class="col-3"><i class="fa fa-map ikona"></i></div>
+
+                </div>
+
+                <div class="row container pt-2 pl-5">
+                    <div class="col-3">
+                        <h6>TIME</h6>
+
+                        @Html.DisplayNameFor(model => model.DateStart)
+                        @Html.DisplayFor(model => model.DateStart)
+                        <br />
+                        @Html.DisplayNameFor(model => model.DateEnd):
+                        @Html.DisplayFor(model => model.DateEnd)
+
+                    </div>
+                    <div class="col-3">
+
+                        <h6>MUSIC</h6>
+
+                        @Html.DisplayNameFor(model => model.BandName):
+                        @Html.DisplayFor(model => model.BandName)
+                        <br />
+                        @Html.DisplayNameFor(model => model.Genre):
+                        @Html.DisplayFor(model => model.Genre)
+
+                    </div>
+                    <div class="col-3">
+
+                        @* @Html.DisplayNameFor(model => model.Ticket)
+
+                    @Html.DisplayFor(model => model.Ticket)
+                    <br />*@
+
+                        <h6>TICKETS & TABLES</h6>
+                        @Html.DisplayNameFor(model => model.TicketPrice):
+                        @Html.DisplayFor(model => model.TicketPrice)
+                        <br />
+                        @Html.DisplayNameFor(model => model.FreeTables):
+                        @Html.DisplayFor(model => model.FreeTables)
+
+                    </div>
+                    <div class="col-3">
+                        <h6>WHERE</h6>
+                        @Html.DisplayNameFor(model => model.local.Name):
+                        @Html.DisplayFor(model => model.local.Name)
+
+                    </div>
+                </div>
+                <br />
             </div>
-        </div>
-
-
-    </div>
-    <br />
-
-
-    <div class="container row pl-5">
-        <div class="col-3"><i class="fa fa-clock ikona"></i></div>
-        <div class="col-3"><i class="fa fa-music ikona"></i></div>
-        <div class="col-3"><i class="fa fa-ticket-alt ikona"></i></div>
-        <div class="col-3"><i class="fa fa-map ikona"></i></div>
-
-    </div>
-
-    <div class="row container pt-2 pl-5">
-        <div class="col-3">
-            <h6>TIME</h6>
-
-            @Html.DisplayNameFor(model => model.DateStart)
-            @Html.DisplayFor(model => model.DateStart)
-            <br />
-            @Html.DisplayNameFor(model => model.DateEnd):
-            @Html.DisplayFor(model => model.DateEnd)
-
-        </div>
-        <div class="col-3">
-
-            <h6>MUSIC</h6>
-
-            @Html.DisplayNameFor(model => model.BandName):
-            @Html.DisplayFor(model => model.BandName)
-            <br />
-            @Html.DisplayNameFor(model => model.Genre):
-            @Html.DisplayFor(model => model.Genre)
-
-        </div>
-        <div class="col-3">
-
-            @* @Html.DisplayNameFor(model => model.Ticket)
-
-                @Html.DisplayFor(model => model.Ticket)
-                <br />*@
-
-            <h6>TICKETS & TABLES</h6>
-            @Html.DisplayNameFor(model => model.TicketPrice):
-            @Html.DisplayFor(model => model.TicketPrice)
-            <br />
-            @Html.DisplayNameFor(model => model.FreeTables):
-            @Html.DisplayFor(model => model.FreeTables)
-
-        </div>
-        <div class="col-3">
-            <h6>WHERE</h6>
-            @Html.DisplayNameFor(model => model.local.Name):
-            @Html.DisplayFor(model => model.local.Name)
-
-        </div>
-    </div>
-    <br />
-</div>
 
 
 
 
 
-@*
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-*@
+        @*
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+        *@

@@ -27,14 +27,17 @@ namespace EventReservation.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+           
             Event @event = db.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.NoFreeTables = @event.FreeTables;
             return View(@event);
         }
-
+        
+      
         // GET: Events/Create
         public ActionResult Create()
         {
