@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
 using EventReservation.Models;
 
@@ -46,6 +47,24 @@ namespace EventReservation.Controllers
             reservation.userEmail = User.Identity.Name;
             db.Reservations.Add(reservation);
             db.SaveChanges();
+          //  Local l = db.Locals.Find(reservation.eventId);
+
+            MailMessage mm = new MailMessage("karachanakova98@gmail.com", reservation.userEmail);
+            mm.Subject = "Confrming for your reservation";
+            mm.Body = "Thank you for your reservation for the event " + reservation.Name + ". The event starts at " +
+              e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled";
+            mm.Body += " /n Have fun!";
+            mm.IsBodyHtml = false;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            NetworkCredential nc = new NetworkCredential("eventreservationit@gmail.com", "P@ssw0rdPassword");
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = nc;
+            smtp.Send(mm);
+           
         }
 
         // GET: Events/Create
