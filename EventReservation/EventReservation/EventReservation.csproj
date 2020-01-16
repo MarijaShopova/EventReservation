@@ -215,9 +215,16 @@
     <Compile Include="Migrations\202001072358510_reservation table changed event id type.Designer.cs">
       <DependentUpon>202001072358510_reservation table changed event id type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001161951297_changed date and time to event model.cs" />
+    <Compile Include="Migrations\202001161951297_changed date and time to event model.Designer.cs">
+      <DependentUpon>202001161951297_changed date and time to event model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.cs" />
+    <Compile Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.Designer.cs">
+      <DependentUpon>202001162054420_changed name in event model from ticket to hasticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DatePicker.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventWithFiltersViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -674,6 +681,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001072358510_reservation table changed event id type.resx">
       <DependentUpon>202001072358510_reservation table changed event id type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001161951297_changed date and time to event model.resx">
+      <DependentUpon>202001161951297_changed date and time to event model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.resx">
+      <DependentUpon>202001162054420_changed name in event model from ticket to hasticket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

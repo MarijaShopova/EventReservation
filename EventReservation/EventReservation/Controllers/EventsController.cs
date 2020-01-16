@@ -51,7 +51,8 @@ namespace EventReservation.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.LocalId = new SelectList(db.Locals, "Id", "Name");
+            var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+            ViewBag.LocalId = LocalId;
             return View();
         }
 
@@ -60,7 +61,7 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,DateEnd,Ticket,TicketPrice,FreeTables,BandName,Genre,LocalId")] Event @event)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,TimeStart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event)
         {
 
             if (ModelState.IsValid)
@@ -70,7 +71,8 @@ namespace EventReservation.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocalId = new SelectList(db.Locals, "Id", "Name", @event.LocalId);
+            var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+            ViewBag.LocalId = LocalId;
             return View(@event);
         }
 
