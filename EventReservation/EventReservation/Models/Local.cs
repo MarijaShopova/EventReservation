@@ -19,6 +19,7 @@ namespace EventReservation.Models
         public string City { get; set; }
         [Display(Name = "Stret")]
         public string StreetName { get; set; }
+        [Range(0,99999,ErrorMessage = "Please enter a valid number.")]
         public int StreetNo { get; set; }
         [Display(Name = "Opens")]
         public DateTime OpeningHour { get; set; } = DateTime.Now;
