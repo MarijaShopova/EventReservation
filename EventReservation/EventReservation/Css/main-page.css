@@ -112,3 +112,29 @@
     font-family:"Caveat";
 }
 
+.offerText {
+    text-shadow: 4px 5px 5px #25a18e;
+    text-align: center;
+    padding-bottom: 35px;
+    color: #9fffcb;
+    font-family: "Caveat";
+    font-size: 3.1em;
+}
+
+.join-us-text {
+    color: white;
+}
+
+#join-us-hr {
+    padding: 0;
+    margin: 0;
+    border: 2px solid #25a18e;
+}
+
+.join-us-btn {
+    //text-decoration: none;
+    color: white;
+    background-color: #25a18e;
+    border: none;
+    border-radius: 8px;
+}

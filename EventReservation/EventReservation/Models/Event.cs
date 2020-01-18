@@ -28,7 +28,7 @@ namespace EventReservation.Models
         public int TicketPrice { get; set; }
         [Required]
         [Range(0, int.MaxValue)]
-        [Display(Name = "Number of free tables")]
+        [Display(Name = "Free tables")]
         public int NoTables { get; set; }
         public int ReservedTables { get; set; }
         [Required]

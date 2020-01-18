@@ -75,9 +75,9 @@ namespace EventReservation.Controllers
             user.UserName = request.Email;
             var result = UserManager.Create(user, password);
             //P@ssw0rdPassword
-            MailMessage mm = new MailMessage("eventreservationit@gmail.com",user.Email);
+            MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
             mm.Subject = "Local accepted";
-            mm.Body = "Dear, your local has been added to our webside. Thank you for choosing us. You can now loging to"+
+            mm.Body = "Dear, your local has been added to our webside. Thank you for choosing us. You can now loging to" +
                 "your account";
             mm.Body += "Username: " + user.Email + "\n Password: " + "password";
             mm.IsBodyHtml = false;
@@ -128,21 +128,6 @@ namespace EventReservation.Controllers
                 db.Entry(local).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View(local);
-        }
-
-        // GET: Locals/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Local local = db.Locals.Find(id);
-            if (local == null)
-            {
-                return HttpNotFound();
             }
             return View(local);
         }
