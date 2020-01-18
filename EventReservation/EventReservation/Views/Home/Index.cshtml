@@ -128,16 +128,30 @@
     </div>
 </div>
 
-<div class="imperial-backgroud pb-5">
-    <div class="row">
-        <div class="open-photo col offset-1"><img src="~/Content/IT_sliki/opeeen.jpg" height="400" width="500" style="border-radius: 20px;" /></div>
-        <div class="col border imperial-color" style="border-radius: 20px;">
-            <h2 class="own-text offset-1">You own a place? </h2>
-            <h4 class="text-white"></h4>
-            <h4 class="text-white">Join us</h4>
-            <h4 class="text-white">Join us</h4>
-            <h4 class="text-white">Join us</h4>
-            <button class="btn btn-lg offset-8 ">Contact us</button>
+<div class="imperial-backgroud pb-5 text-center">
+    <div class="row text-center">
+        <div class="row justify-content-center" style="width:100%;">
+            <h2 class="offerText">You own a place?</h2>
+        </div>
+
+        <div class="row justify-content-center" style="width:100%;">
+            <div class="text-center">
+                <h5 class="join-us-text">Join us! Share the events that are happening in your place with us and with the whole world.</h5>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3 text-center" style="width:100%;">
+            @Html.ActionLink("Contact us", "Contact", "Home", new { @class = "btn join-us-btn" })
+        </div>
+
+        <div class="row justify-content-center m-5 text-center" style="width:100%" id="OnScroll">
+            <div class="images">
+                <img src="~/Content/join-us-images/img1.jpg" style="max-width: 200px; max-height: 265px; border:none; border-radius:8px;" id="myImage1">
+                <img src="~/Content/join-us-images/img2.jpg" style="max-width: 200px; max-height: 265px; border:none; border-radius:8px;" id="myImage2">
+                <img src="~/Content/join-us-images/img3.jpg" style="max-width: 200px; max-height: 265px; border:none; border-radius:8px;" id="myImage3">
+                <img src="~/Content/join-us-images/img4.jpg" style="max-width: 200px; max-height: 265px; border:none; border-radius:8px;" id="myImage4">
+                <img src="~/Content/join-us-images/img5.jpg" style="max-width: 200px; max-height: 265px; border:none; border-radius:8px;" id="myImage5">
+            </div>
         </div>
     </div>
 </div>
+<hr id="join-us-hr" />

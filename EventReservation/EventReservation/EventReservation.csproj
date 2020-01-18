@@ -479,6 +479,11 @@
     <Content Include="Content\IT_sliki\moments.jpg" />
     <Content Include="Content\IT_sliki\opeeen.jpg" />
     <Content Include="Content\IT_sliki\soad.jpg" />
+    <Content Include="Content\join-us-images\img1.jpg" />
+    <Content Include="Content\join-us-images\img2.jpg" />
+    <Content Include="Content\join-us-images\img3.jpg" />
+    <Content Include="Content\join-us-images\img4.jpg" />
+    <Content Include="Content\join-us-images\img5.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
@@ -693,7 +698,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\NewFolder1\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
