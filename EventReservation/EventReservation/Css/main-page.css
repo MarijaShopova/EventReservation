@@ -31,8 +31,8 @@
 }
  
 .centered {
-    position: absolute;
-    top: 50%;
+    position: absolute !important;
+    top: 13%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -132,7 +132,6 @@
 }
 
 .join-us-btn {
-    //text-decoration: none;
     color: white;
     background-color: #25a18e;
     border: none;
