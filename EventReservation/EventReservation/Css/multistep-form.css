@@ -109,3 +109,13 @@ input[type=button] {
     display: inline;
 }
 
+
+.field2 {
+    width: 70% !important;
+    margin-left: 13%;
+}
+
+.field1 {
+    width: 90% !important;
+    margin-left: 12%;
+}

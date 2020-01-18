@@ -4,52 +4,81 @@ function validate_step2() {
     var streetNo = document.getElementById("streetNo");
     var opens = document.getElementById("openingH");
     var closes = document.getElementById("closingH");
+   
+    street.style.borderColor = "black";
+    streetNo.style.borderColor = "black";
+    opens.style.borderColor = "black";
+    closes.style.borderColor = "black";
+    document.getElementById("StreetNoH").innerText = "";
+    document.getElementById("StreetH").innerText = "";
+    document.getElementById("OpenH").innerText = "";
+    document.getElementById("CloseH").innerText = "";
+
+
 
     var flag = 1;
     if (street.value == "") {
         street.focus();
+
+        document.getElementById("StreetH").innerText = "Street value is manadatory";
+        document.getElementById("StreetH").style.display = "block";
+        document.getElementById("StreetH").style.color = "red";
         street.style.borderWidth = "2px";
         street.style.borderColor = "red";
-        document.getElementById("StreetH").style.display = "block";
         flag = 0;
     }
-    if (streetNo.value == "") {
+    if (streetNo.value == 0) {
         streetNo.focus();
         streetNo.style.borderWidth = "2px";
         streetNo.style.borderColor = "red";
         flag = 0;
         document.getElementById("StreetNoH").style.display = "block";
+        document.getElementById("StreetNoH").innerText = "Street No. value is manadatory";
+        document.getElementById("StreetNoH").style.display = "block";
+        document.getElementById("StreetNoH").style.color = "red";
     }
-    status = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(opens.value);
+
     if (opens.value == "") {
         opens.focus();
         opens.style.borderWidth = "2px";
         opens.style.borderColor = "red";
         flag = 0;
+        document.getElementById("OpenH").innerText = "Please enter time in HH:MM format";
         document.getElementById("OpenH").style.display = "block";
+        document.getElementById("OpenH").style.color = "red";
     }
 
-    else if (!(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(opens.value))) {
-        document.getElementById("OpenH").style.display = "block";
+    if (!(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(opens.value))) {
+        opens.style.borderWidth = "2px";
+        opens.style.borderColor = "red";
+         document.getElementById("OpenH").innerText = "Please enter time in HH:MM format";
+         document.getElementById("OpenH").style.display = "block";
+         document.getElementById("OpenH").style.color = "red";
         flag = 0;
     }
-    else {
-        flag = 1;
-    }
 
-    if (closes.value == "") {
+    
+    if (closes.value == "") {  
         closes.focus();
         closes.style.borderWidth = "2px";
         closes.style.borderColor = "red";
         flag = 0;
+        document.getElementById("CloseH").innerText = "Please enter time in HH:MM format";
         document.getElementById("CloseH").style.display = "block";
+        document.getElementById("CloseH").style.color = "red";
+
     }
 
-    else if (!(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(closes.value))) {
+     if (!(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(closes.value))) {
+        closes.style.borderWidth = "2px";
+        closes.style.borderColor = "red";
+        flag = 0;
+        document.getElementById("CloseH").innerText = "Please enter time in HH:MM format";
         document.getElementById("CloseH").style.display = "block";
+        document.getElementById("CloseH").style.color = "red";
         flag = 0;
     }
-    else { flag = 1; }
+   
     if (flag != 0) {
         next_step2();
     }
@@ -65,7 +94,9 @@ function validate_step3() {
         desc.style.borderWidth = "2px";
         desc.style.borderColor = "red";
         flag = 0;
-        document.getElementById("descH").style.display = "block";
+        document.getElementById("descH").innerHTML = "Please enter a description";
+        document.getElementById("descH").style.color = "red";
+        
     }
  
 
@@ -86,7 +117,7 @@ function prev_step1() {
 
     document.getElementById("first").style.display = "block";
     document.getElementById("second").style.display = "none";
-    document.getElementById("active1").style.color = "red";
+    document.getElementById("active1").style.color = "#004E64";
     document.getElementById("active2").style.color = "lightgray";
 
 }
@@ -102,7 +133,7 @@ function prev_step2() {
 
     document.getElementById("third").style.display = "none";
     document.getElementById("second").style.display = "block";
-    document.getElementById("active2").style.color = "red";
+    document.getElementById("active2").style.color = "#004E64";
     document.getElementById("active3").style.color = "gray";
     document.getElementById("StreetH").style.display = "none";
     document.getElementById("StreetNoH").style.display = "none";
