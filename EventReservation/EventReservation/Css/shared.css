@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
 .container-page {
-    max-width: 900px !important; 
+    max-width: 80% !important; 
     margin:auto;
 }
 
