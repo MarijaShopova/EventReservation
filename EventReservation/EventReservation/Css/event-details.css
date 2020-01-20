@@ -23,7 +23,7 @@ h6 {
 
 .centered {
     position: absolute;
-    top: 45%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 50px;
@@ -32,7 +32,7 @@ h6 {
 
 .centered1 {
     position: absolute;
-    top: 55%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;

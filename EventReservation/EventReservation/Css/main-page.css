@@ -60,11 +60,11 @@
     font:28px;
 }
 
-    .btn-go:hover {
-        background: #004E64;
-        color: white;
-        border: #004E64;
-    }
+.btn-go:hover {
+    background: #004E64;
+    color: white;
+    border: 3px solid #004E64;
+}    
 
 .card-title {
     color: #004e64;
@@ -132,6 +132,7 @@
 }
 
 .join-us-btn {
+ 
     color: white;
     background-color: #25a18e;
     border: none;
