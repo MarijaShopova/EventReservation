@@ -17,8 +17,9 @@ namespace EventReservation.Models
         public string Description { get; set; }
         [Required]
         public string City { get; set; }
-        [Display(Name = "Stret")]
+        [Display(Name = "Street")]
         public string StreetName { get; set; }
+        [Display(Name = "Street No.")]
         public int StreetNo { get; set; }
         [Display(Name = "Opens")]
         public DateTime OpeningHour { get; set; } = DateTime.Now;

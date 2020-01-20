@@ -4,12 +4,31 @@
     ViewBag.Title = "Edit";
 }
 <link href="~/Css/edit.css" rel="stylesheet" />
+<style>
+    .klasa3 {
+        width: 120px;
+        margin-right: 190px;
+        margin-top: 30px;
+        color: #9fffcb !important;
+    }
+
+    .klasa4 {
+        width: 120px;
+        margin-right: 50px;
+        margin-top: 30px;
+    }
+
+    a {
+        color: #9fffcb !important;
+        text-decoration: none !important;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div style="background-image: url('../../Content/bestParties.jpg'); opacity: 0.9;" class="div1">
-        <div class="container form py-5 form-class">
+    <div class="div1">
+        <div class="container form py-5 form-class" style="border:2px solid #004E64; border-radius:10px;">
             <div class="form-horizontal container form-class2">
                 <h3 class="text-center py-5 font-klasa">Edit the event -   @Model.Title </h3>
                 <div class="container row">
@@ -65,10 +84,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.FreeTables, htmlAttributes: new { @class = "control-label col-md-6" })
+                            @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "control-label col-md-6" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.FreeTables, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.FreeTables, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -99,20 +118,20 @@
                     </div>
                 </div>
 
-                <div class="row py-5">
+                <div class="row p-3">
                     <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <input type="submit" value="Save" class="btn bg-imperial text-white klasa2" />
+                        <div class="row" style="float: right;">
+
+                            <div class="btn bg-imperial klasa4">
+                                <a href="">@Html.ActionLink("Cancel", "Index", new { @class = "classwhite" }) </a>
                             </div>
-                            <div class="col">
-                                <div class="btn bg-imperial klasa2">
-                                  <a href="">@Html.ActionLink("Cancel", "Index", new { @class = "classwhite" }) </a>
-                                </div>
-                            </div>
+
+                            <input type="submit" value="Save" class="btn bg-imperial text-white klasa3" />
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
