@@ -15,10 +15,35 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Events
-        public ActionResult Index()
+        public ActionResult Index(EventFiltersViewModel @filters)
         {
-            var events = db.Events.Include(@event => @event.local);
-            return View(events.ToList());
+            EventWithFiltersViewModel model = new EventWithFiltersViewModel();
+            model.locals = db.Locals.ToList();
+            model.cities = model.locals.Select(m => m.City).Distinct().ToList();
+            var result = db.Events.Include(@event => @event.local).ToList();
+            if (filters.city != null)
+            {
+                result = result.Where(e => e.local.City == filters.city).ToList();
+            }
+            if (filters.genre != null)
+            {
+                result = result.Where(e => e.Genre == filters.genre).ToList();
+            }
+            if (filters.localId != 0)
+            {
+                result = result.Where(e => e.local.Id == filters.localId).ToList();
+            }
+            if (filters.dateFrom.Year != 0001)
+            {
+                result = result.Where(e => e.DateStart.CompareTo(filters.dateFrom) >= 0).ToList();
+            }
+            if (filters.dateTo.Year != 0001)
+            {
+                result = result.Where(e => e.DateStart.CompareTo(filters.dateTo) <= 0).ToList();
+            }
+            model.events = result;
+            model.filters = filters;
+            return View(model);
         }
 
         // GET: Events/Details/5
