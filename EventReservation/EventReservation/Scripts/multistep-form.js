@@ -85,7 +85,7 @@ function validate_step2() {
         start.focus();
         start.style.borderWidth = "2px";
         start.style.borderColor = "red";
-        document.getElementById("startH").innerText = "We only accept HH:MM format for the value of closing hour";
+        document.getElementById("startH").innerText = "We only accept HH:MM format for the value of opening hour";
         document.getElementById("startH").style.display = "block";
         document.getElementById("startH").style.color = "red";
         flag = 0;
@@ -105,7 +105,7 @@ function validate_step2() {
         datepicker.focus();
         datepicker.style.borderWidth = "2px";
         datepicker.style.borderColor = "red";
-        document.getElementById("datepickerH").innerText = "We only accept HH:MM format for the value of closing hour";
+        document.getElementById("datepickerH").innerText = "Please choose date!";
         document.getElementById("datepickerH").style.display = "block";
         document.getElementById("datepickerH").style.color = "red";
         flag = 0;
@@ -154,8 +154,6 @@ function validate_step3() {
    
 
 }
-
-
 /*---------------------------------------------------------*/
 // Function that executes on click of first next button.
 function next_step1() {
@@ -212,7 +210,7 @@ function next_step2() {
     document.getElementById("second").style.display = "none";
     document.getElementById("third").style.display = "block";
     document.getElementById("active3").style.color = "#004E64";
-    document.getElementById("price").disabled = true;
+  
 }
 // Function that executes on click of second previous button.
 function prev_step2() {
@@ -221,3 +219,5 @@ function prev_step2() {
     document.getElementById("active2").style.color = "#004E64;";
     document.getElementById("active3").style.color = "gray";
 }
+
+

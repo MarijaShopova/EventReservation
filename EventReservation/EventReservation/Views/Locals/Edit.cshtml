@@ -69,8 +69,8 @@
 
 
                 </div>
-                <div style="float:right; width:195px;">
-                    <input onclick="next_step1()" type="button" value="Next">
+                <div style="float:right; width:150px;">
+                    <input onclick="next_step1()"  type="button" value="Next" class="btn pl-3 pr-3 btn-green">
                 </div>
 
             </fieldset>
@@ -97,8 +97,8 @@
                     <p id="CloseH"></p>
                 </div>
                 <div class="form-group field2">
-                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous">
-                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next">
+                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous"  class="btn pl-3 pr-3 btn-green">
+                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next"  class="btn pl-3 pr-3 btn-green float-right">
                 </div>
             </fieldset>
 
@@ -128,8 +128,8 @@
                 </div>
 
                 <div class="form-group field2">
-                    <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous">
-                    <input type="submit" onclick="validate_step3()" value="Edit" class="btn bg-imperial" style="color:#9fffcb;" />
+                    <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous"  class="btn pl-3 pr-3 btn-green">
+                    <input type="submit" onclick="validate_step3()" value="Edit" class="btn bg-imperial float-right" style="color:#9fffcb;" />
                 </div>
             </fieldset>
         </div>
@@ -143,7 +143,7 @@
     document.getElementById("active3").style.color = "lightgrey";
 </script>
 <div>
-    @Html.ActionLink("Back to List", "Back")
+  <a class="btn bg-imperial text-mint m-3" href="/Locals/Index"><span>Cancel</span></a>
 </div>
 
 @section Scripts {
