@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
 using EventReservation.Models;
 using Microsoft.AspNet.Identity;
@@ -73,6 +74,22 @@ namespace EventReservation.Controllers
             user.Email = request.Email;
             user.UserName = request.Email;
             var result = UserManager.Create(user, password);
+            //P@ssw0rdPassword
+            MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
+            mm.Subject = "Local accepted";
+            mm.Body = "Dear, your local has been added to our webside. Thank you for choosing us. You can now loging to" +
+                "your account";
+            mm.Body += "Username: " + user.Email + "\n Password: " + "password";
+            mm.IsBodyHtml = false;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            NetworkCredential nc = new NetworkCredential("eventreservationit@gmail.com", "P@ssw0rdPassword");
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = nc;
+            smtp.Send(mm);
 
             //add role 'Menager' to user
             UserManager.AddToRole(user.Id, "Manager");
@@ -111,21 +128,6 @@ namespace EventReservation.Controllers
                 db.Entry(local).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View(local);
-        }
-
-        // GET: Locals/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Local local = db.Locals.Find(id);
-            if (local == null)
-            {
-                return HttpNotFound();
             }
             return View(local);
         }

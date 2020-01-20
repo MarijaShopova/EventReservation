@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Mvc;
 using EventReservation.Models;
 
@@ -46,12 +47,29 @@ namespace EventReservation.Controllers
             reservation.userEmail = User.Identity.Name;
             db.Reservations.Add(reservation);
             db.SaveChanges();
+
+            MailMessage mm = new MailMessage("karachanakova98@gmail.com", reservation.userEmail);
+            mm.Subject = "Confrming for your reservation";
+            mm.Body = "Thank you for your reservation for the event " + reservation.Name + ". The event starts at " +
+              e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled!";
+            mm.Body += " /n Have fun! :)";
+            mm.IsBodyHtml = false;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            NetworkCredential nc = new NetworkCredential("eventreservationit@gmail.com", "P@ssw0rdPassword");
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = nc;
+            smtp.Send(mm);
         }
 
         // GET: Events/Create
         public ActionResult Create()
         {
-            ViewBag.LocalId = new SelectList(db.Locals, "Id", "Name");
+            var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+            ViewBag.LocalId = LocalId;
             return View();
         }
 
@@ -60,7 +78,7 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,DateEnd,Ticket,TicketPrice,FreeTables,BandName,Genre,LocalId")] Event @event)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,TimeStart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event)
         {
 
             if (ModelState.IsValid)
@@ -70,7 +88,8 @@ namespace EventReservation.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocalId = new SelectList(db.Locals, "Id", "Name", @event.LocalId);
+            var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+            ViewBag.LocalId = LocalId;
             return View(@event);
         }
 
@@ -86,7 +105,6 @@ namespace EventReservation.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocalId = new SelectList(db.Locals, "Id", "Name", @event.LocalId);
             return View(@event);
         }
 
@@ -95,29 +113,13 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,DateStart,DateEnd,Ticket,TicketPrice,FreeTables,BandName,Genre,LocalId")] Event @event)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,DateStart,Timestart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(@event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            ViewBag.LocalId = new SelectList(db.Locals, "Id", "Name", @event.LocalId);
-            return View(@event);
-        }
-
-        // GET: Events/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
             }
             return View(@event);
         }

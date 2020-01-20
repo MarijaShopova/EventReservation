@@ -19,10 +19,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44330</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -215,9 +215,24 @@
     <Compile Include="Migrations\202001072358510_reservation table changed event id type.Designer.cs">
       <DependentUpon>202001072358510_reservation table changed event id type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001161951297_changed date and time to event model.cs" />
+    <Compile Include="Migrations\202001161951297_changed date and time to event model.Designer.cs">
+      <DependentUpon>202001161951297_changed date and time to event model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.cs" />
+    <Compile Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.Designer.cs">
+      <DependentUpon>202001162054420_changed name in event model from ticket to hasticket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181751081_AspNetUsers table updated.cs" />
+    <Compile Include="Migrations\202001181751081_AspNetUsers table updated.Designer.cs">
+      <DependentUpon>202001181751081_AspNetUsers table updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181756343_AspNetUsers table updated2.cs" />
+    <Compile Include="Migrations\202001181756343_AspNetUsers table updated2.Designer.cs">
+      <DependentUpon>202001181756343_AspNetUsers table updated2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DatePicker.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventWithFiltersViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -248,6 +263,7 @@
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\arrow.png" />
     <Content Include="Content\images\icons-png\action-black.png" />
     <Content Include="Content\images\icons-png\action-white.png" />
     <Content Include="Content\images\icons-png\alert-black.png" />
@@ -448,6 +464,7 @@
     <Content Include="Content\images\icons-svg\user-white.svg" />
     <Content Include="Content\images\icons-svg\video-black.svg" />
     <Content Include="Content\images\icons-svg\video-white.svg" />
+    <Content Include="Content\images\top_arr.png" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -470,6 +487,11 @@
     <Content Include="Content\IT_sliki\moments.jpg" />
     <Content Include="Content\IT_sliki\opeeen.jpg" />
     <Content Include="Content\IT_sliki\soad.jpg" />
+    <Content Include="Content\join-us-images\img1.jpg" />
+    <Content Include="Content\join-us-images\img2.jpg" />
+    <Content Include="Content\join-us-images\img3.jpg" />
+    <Content Include="Content\join-us-images\img4.jpg" />
+    <Content Include="Content\join-us-images\img5.jpg" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
@@ -487,6 +509,7 @@
     <Content Include="Content\jquery.mobile.structure-1.4.5.min.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\regular.css" />
     <Content Include="Content\regular.min.css" />
     <Content Include="Content\Site.css" />
@@ -612,7 +635,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
     <Content Include="Views\Events\Details.cshtml" />
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
@@ -677,11 +699,25 @@
     <EmbeddedResource Include="Migrations\202001072358510_reservation table changed event id type.resx">
       <DependentUpon>202001072358510_reservation table changed event id type.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001161951297_changed date and time to event model.resx">
+      <DependentUpon>202001161951297_changed date and time to event model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.resx">
+      <DependentUpon>202001162054420_changed name in event model from ticket to hasticket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181751081_AspNetUsers table updated.resx">
+      <DependentUpon>202001181751081_AspNetUsers table updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181756343_AspNetUsers table updated2.resx">
+      <DependentUpon>202001181756343_AspNetUsers table updated2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\NewFolder1\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -701,7 +737,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57350</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57350/</IISUrl>
+          <IISUrl>https://localhost:44330/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

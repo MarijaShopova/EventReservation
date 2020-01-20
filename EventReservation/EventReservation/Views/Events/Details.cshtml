@@ -1,6 +1,8 @@
 ﻿@model EventReservation.Models.Event
 
 @{
+    /**/
+
     ViewBag.Title = "Details";
 }
 <link href="~/Css/event-details.css" rel="stylesheet" />
@@ -15,8 +17,8 @@
 
             @Html.DisplayFor(model => model.Title)
         </div>
-        <div class="centered1">
-           @* @Html.DisplayNameFor(model => model.Description)*@
+        <div class="centered1 mt-4">
+            @Html.DisplayNameFor(model => model.Description)
 
             @Html.DisplayFor(model => model.Description)
 
@@ -26,35 +28,44 @@
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h6 class="modal-title">Enter name for your reservation</h6>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                @if (Model.NoTables == Model.ReservedTables)
+                {
+                    <div class="modal-content">
+                        <h3>Sorry</h3>
+                        <h4>All tables for this event are reserved.</h4>
                     </div>
-                    @using (Html.BeginForm("Reserve", "Events", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="modal-body">
-                            @Html.Hidden("eventId", Model.Id)
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-form-label"><label for="formGroupExampleInput">Name</label></div>
-                                <div class="col-10"><input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="Name for reservation"></div>
+                } else
+                {
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <h6 class="modal-title">Make a reservation</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        @using (Html.BeginForm("Reserve", "Events", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+                                @Html.Hidden("eventId", Model.Id)
+                                <div class="form-group row">
+                                    <div class="col-sm-2 col-form-label"><label for="formGroupExampleInput">Reservation Name</label></div>
+                                    <div class="col-10"><input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="Name for reservation"></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-2 col-form-label"> <label for="numberT">Tables</label></div>
+                                    <div class="col-10"> <input type="number" id="numberT" class="form-control" name="notables" placeholder="Number of tables" min="1" max="3"></div>
+                                </div>
+                                <p class="small">By clicking <span class="btn btn-sm bg-imperial rounded text-white" style="padding:1px;">Reserve</span> you will receive an email confirmation for your reservation.</p>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-sm-2 col-form-label"> <label for="numberT">Tables</label></div>
-                                <div class="col-10"> <input type="number" id="numberT" class="form-control" name="notables" placeholder="Number of tables" min="1" max="3"></div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn bg-imperial text-mint">Reserve</button>
+                                <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Cancel</button>
                             </div>
-                            <p class="small">By clicking <span class="btn btn-sm bg-imperial rounded text-white" style="padding:1px;">Reserve</span> you will receive an email confirmation for your reservation.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn bg-imperial text-mint">Reserve</button>
-                            <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Cancel</button>
-                        </div>
-                    }
-                </div>
-
+                        }
+                    </div>
+                }
             </div>
         </div>
 
@@ -63,48 +74,46 @@
     <br />
 
 
-    <div class="container row pl-5">
+    <div class="container row pt-3 pl-5 ml-5">
         <div class="col-3"><i class="fa fa-clock ikona"></i></div>
         <div class="col-3"><i class="fa fa-music ikona"></i></div>
-        <div class="col-3"><i class="fa fa-ticket-alt ikona"></i></div>
+        <div class="col-3"><i class="fa fa-ticket-alt ikona ml-4"></i></div>
         <div class="col-3"><i class="fa fa-map ikona"></i></div>
 
     </div>
 
-    <div class="row container pt-2 pl-5">
+    <div class="row container pt-3 pb-2 pl-5 ml-5">
         <div class="col-3">
             <h6>TIME</h6>
-
-            @Html.DisplayNameFor(model => model.DateStart)
-            @Html.DisplayFor(model => model.DateStart)
+            @Html.DisplayNameFor(model => model.TimeStart)
+            <span>@Model.TimeStart.ToString("HH:mm")</span>
             <br />
-            @Html.DisplayNameFor(model => model.DateEnd):
-            @Html.DisplayFor(model => model.DateEnd)
-
+            @Html.DisplayNameFor(model => model.TimeEnd):
+            <span>@Model.TimeEnd.ToString("HH:mm")</span>
         </div>
+
         <div class="col-3">
-
             <h6>MUSIC</h6>
-
-            @Html.DisplayNameFor(model => model.BandName):
-            @Html.DisplayFor(model => model.BandName)
+            @Html.DisplayNameFor(model => model.Performer):
+            @Html.DisplayFor(model => model.Performer)
             <br />
             @Html.DisplayNameFor(model => model.Genre):
             @Html.DisplayFor(model => model.Genre)
-
         </div>
+
         <div class="col-3">
-
-            @* @Html.DisplayNameFor(model => model.Ticket)
-
-                @Html.DisplayFor(model => model.Ticket)
-                <br />*@
-
             <h6>TICKETS & TABLES</h6>
             @Html.DisplayNameFor(model => model.TicketPrice):
-            @Html.DisplayFor(model => model.TicketPrice)
+            @if (Model.HasTicket)
+            {
+                @Html.DisplayFor(model => model.TicketPrice) <span>den</span>
+            }
+            else
+            {
+                <span>Free</span>
+            }
             <br />
-            @Html.DisplayNameFor(model => model.NoTables):
+            @Html.DisplayNameFor(model => model.NoTables): 
             @if (Model.NoTables == Model.ReservedTables)
             {
                 <span class="font-weight-bold">All reserved</span>
@@ -113,25 +122,15 @@
             {
                 <span>Reserve Now</span>
             }
-
         </div>
+
         <div class="col-3">
             <h6>WHERE</h6>
-            @Html.DisplayNameFor(model => model.local.Name):
-            @Html.DisplayFor(model => model.local.Name)
-
+            <span>Place:</span>
+            @Html.DisplayFor(model => model.local.Name) <br />
+            @Html.DisplayNameFor(model => model.local.City):
+            @Html.DisplayFor(model => model.local.City)
         </div>
     </div>
     <br />
 </div>
-
-
-
-
-
-@*
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-*@

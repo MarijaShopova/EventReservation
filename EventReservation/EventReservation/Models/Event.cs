@@ -14,25 +14,28 @@ namespace EventReservation.Models
         public string Title { get; set; }
         public string Description { get; set; }    
         [Required]
-        [Display(Name ="Begins")]
+        [Display(Name ="Date")]
         public DateTime DateStart { get; set; }
         [Required]
-        [Display(Name = "Ends")]
-        public DateTime DateEnd { get; set; }
-        [Display(Name = "Has the event ticket?")]
-        public Boolean Ticket { get; set; }
+        [Display(Name = "Time Starts")]
+        public DateTime TimeStart { get; set; }
+        [Required]
+        [Display(Name = "Time Ends")]
+        public DateTime TimeEnd { get; set; }
+        [Display(Name = "Has the event a ticket?")]
+        public Boolean HasTicket { get; set; }
         [Display(Name = "Ticket price")]
         public int TicketPrice { get; set; }
         [Required]
         [Range(0, int.MaxValue)]
-        [Display(Name = "Tables")]
+        [Display(Name = "Free tables")]
         public int NoTables { get; set; }
-        [Required]
-        [Display(Name = "Reserved tables")]
         public int ReservedTables { get; set; }
-        [Display(Name = "Band Name")]
-        public string BandName { get; set; }
         [Required]
+        [Display(Name = "Performer")]
+        public string Performer { get; set; }
+        [Required]
+        [Display(Name = "Music Genre")]
         public string Genre { get; set; }
         public int LocalId { get; set; }
         public Local local { get; set; }

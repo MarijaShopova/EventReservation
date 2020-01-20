@@ -5,55 +5,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>LokalRequest</h2>
+<h4 class="text-green text-center display-4 font-header mt-5 mb-5">Local Requests</h4>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LocalName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LocalCity)
-        </th>
-        <th></th>
-    </tr>
+<div style="width: 80%; margin: auto">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalCity)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocalName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocalCity)
-        </td>
-        <td>
-            @Html.ActionLink("Confirm", "Confirm", "Locals", new { id = item.Id }, null)
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocalName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocalCity)
+                </td>
+                <td>
+                    @Html.ActionLink("Confirm", "Confirm", "Locals", new { id = item.Id }, null) 
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

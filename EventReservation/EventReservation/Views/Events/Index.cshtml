@@ -9,58 +9,53 @@
         <h2 class="font-header text-center display-4 py-4">Our Events</h2>
 
         <!-- Filters -->
-
-
-
-
-
         <!-- List events -->
-      
+
         @foreach (var item in Model)
         {
             <div class="row row-hover mt-4">
                 <div class="col-lg-4 p-0">
                     <img src='@Url.Content("~/Content/alcohol-bar-beer.jpg")' class="img-responsive" />
-                    
                 </div>
                 <div class="col-lg-8 bg-imperial p-4">
                     <div class="row text-light">
                         <div class="col-lg-10 text-white">
                             <h2 class="mb-3 text-mint">@item.Title</h2>
-                            <div><span class="fa fa-calendar-alt mr-2 mt-2 text-mint"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.DateStart.ToString("hh:mm tt") - @item.DateEnd.ToString("hh:mm tt")</div>
+                            <div><span class="fa fa-calendar-alt mr-2 mt-2 text-mint"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.TimeStart.ToString("hh:mm tt") - @item.TimeEnd.ToString("hh:mm tt")</div>
                         </div>
                         <div class="col-lg-2 text-white">
                             <div class="calendar-date text-center bg-green calendar">@item.DateStart.Day</div>
                             <div class="calendar-month bg-imperial text-center calendar">@item.DateStart.ToString("MMM")</div>
                         </div>
                     </div>
-                    <div class="text-white"><span class="fa fa-map text-mint mr-2 mt-2"></span>@item.local.Name, @item.local.StreetName, @item.local.StreetNo, @item.local.City, North Macedonia</div>
+                    <div class="text-white">
+                        <span class="fa fa-map text-mint mr-2 mt-2"></span>@item.local.Name,
+                        @if (@item.local.StreetName != null)
+                        {<span>@item.local.StreetName, @item.local.StreetNo,</span>}
+                        @item.local.City, North Macedonia
+                    </div>
                     <div class="text-white"><span class="fa fa-music text-mint mr-2 mt-2"></span>@item.Genre</div>
                     <div class="text-white">
                         <span class="fa fa-ticket-alt text-mint mr-2 mt-2"></span>
                         Entrance:
-                        @if (item.Ticket)
-                        {
-                            <span>@item.TicketPrice ден.</span>
-                        }
+                        @if (item.HasTicket)
+                        {<span>@item.TicketPrice ден.</span>}
                         else
-                        {
-                            <span>Free</span>
-                        }
+                        {<span>Free</span>}
                     </div>
                     <div class="text-white">
                         <span class="fa fa-circle text-mint mr-2 mt-2"></span>
-                        Hosted by                    
+                        Hosted by
                         <a href="#" class="text-decoration-none text-mint">@item.local.Name</a>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star-half-alt text-warning"></span>
-                        <span class="far fa-star text-warning"></span> 
-                    </div>  
+                        <span class="far fa-star text-warning"></span>
+                    </div>
 
-                    
-                    <button class="btn btn-green mt-3">@Html.ActionLink("Read More", "Details", new { id = item.Id } , new { htmlAttributes = new { @class = "link" } } )</button>
+
+                    <button class="btn btn-green mt-3">@Html.ActionLink("Read More", "Details", new { id = item.Id }, new { htmlAttributes = new { @class = "link" } })</button>
                 </div>
             </div>
         }
