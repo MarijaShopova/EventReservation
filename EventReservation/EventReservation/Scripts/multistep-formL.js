@@ -11,8 +11,8 @@ function validate_step2() {
     closes.style.borderColor = "black";
     document.getElementById("StreetNoH").innerText = "";
     document.getElementById("StreetH").innerText = "";
-    document.getElementById("OpenH").innerText = "";
-    document.getElementById("CloseH").innerText = "";
+    document.getElementById("opening_hour").innerText = "";
+    document.getElementById("closing_hour").innerText = "";
 
 
 
@@ -43,17 +43,17 @@ function validate_step2() {
         opens.style.borderWidth = "2px";
         opens.style.borderColor = "red";
         flag = 0;
-        document.getElementById("OpenH").innerText = "Please enter time in HH:MM format";
-        document.getElementById("OpenH").style.display = "block";
-        document.getElementById("OpenH").style.color = "red";
+        document.getElementById("opening_hour").innerText = "Please enter time in HH:MM format";
+        document.getElementById("opening_hour").style.display = "block";
+        document.getElementById("opening_hour").style.color = "red";
     }
 
     if (!(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(opens.value))) {
         opens.style.borderWidth = "2px";
         opens.style.borderColor = "red";
-         document.getElementById("OpenH").innerText = "Please enter time in HH:MM format";
-         document.getElementById("OpenH").style.display = "block";
-         document.getElementById("OpenH").style.color = "red";
+        document.getElementById("opening_hour").innerText = "Please enter time in HH:MM format";
+        document.getElementById("opening_hour").style.display = "block";
+        document.getElementById("opening_hour").style.color = "red";
         flag = 0;
     }
 
@@ -63,9 +63,9 @@ function validate_step2() {
         closes.style.borderWidth = "2px";
         closes.style.borderColor = "red";
         flag = 0;
-        document.getElementById("CloseH").innerText = "Please enter time in HH:MM format";
-        document.getElementById("CloseH").style.display = "block";
-        document.getElementById("CloseH").style.color = "red";
+        document.getElementById("closing_hour").innerText = "Please enter time in HH:MM format";
+        document.getElementById("closing_hour").style.display = "block";
+        document.getElementById("closing_hour").style.color = "red";
 
     }
 
@@ -73,9 +73,9 @@ function validate_step2() {
         closes.style.borderWidth = "2px";
         closes.style.borderColor = "red";
         flag = 0;
-        document.getElementById("CloseH").innerText = "Please enter time in HH:MM format";
-        document.getElementById("CloseH").style.display = "block";
-        document.getElementById("CloseH").style.color = "red";
+         document.getElementById("closing_hour").innerText = "Please enter time in HH:MM format";
+         document.getElementById("closing_hour").style.display = "block";
+         document.getElementById("closing_hour").style.color = "red";
         flag = 0;
     }
    
