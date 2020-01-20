@@ -11,6 +11,8 @@ namespace EventReservation.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
             return View();
@@ -38,6 +40,8 @@ namespace EventReservation.Controllers
         {
             if (ModelState.IsValid)
             {
+                db.LocalRequests.Add(model);
+                db.SaveChanges();
                 return RedirectToAction("Index", "Home");
             }
 

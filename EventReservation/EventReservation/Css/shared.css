@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
 .container-page {
-    max-width: 900px !important; 
+    max-width: 80% !important; 
     margin:auto;
 }
 
@@ -34,4 +34,13 @@
     font-family: "Caveat";
     color: #25A18E;
     text-shadow: 2px 2px 1px #25A28e;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 83px;
 }

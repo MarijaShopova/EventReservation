@@ -19,10 +19,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44330</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -222,6 +222,14 @@
     <Compile Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.cs" />
     <Compile Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.Designer.cs">
       <DependentUpon>202001162054420_changed name in event model from ticket to hasticket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181751081_AspNetUsers table updated.cs" />
+    <Compile Include="Migrations\202001181751081_AspNetUsers table updated.Designer.cs">
+      <DependentUpon>202001181751081_AspNetUsers table updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001181756343_AspNetUsers table updated2.cs" />
+    <Compile Include="Migrations\202001181756343_AspNetUsers table updated2.Designer.cs">
+      <DependentUpon>202001181756343_AspNetUsers table updated2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -501,6 +509,7 @@
     <Content Include="Content\jquery.mobile.structure-1.4.5.min.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\regular.css" />
     <Content Include="Content\regular.min.css" />
     <Content Include="Content\Site.css" />
@@ -521,6 +530,7 @@
     <Content Include="Css\multistep-form.css" />
     <Content Include="Css\navbar.css" />
     <Content Include="Css\shared.css" />
+    <Content Include="Css\showgallery.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -562,6 +572,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\galleryscript.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -694,6 +705,12 @@
     <EmbeddedResource Include="Migrations\202001162054420_changed name in event model from ticket to hasticket.resx">
       <DependentUpon>202001162054420_changed name in event model from ticket to hasticket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181751081_AspNetUsers table updated.resx">
+      <DependentUpon>202001181751081_AspNetUsers table updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001181756343_AspNetUsers table updated2.resx">
+      <DependentUpon>202001181756343_AspNetUsers table updated2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -720,7 +737,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>57350</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:57350/</IISUrl>
+          <IISUrl>https://localhost:44330/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
