@@ -63,7 +63,7 @@
     .btn-go:hover {
         background: #004E64;
         color: white;
-        border: #004E64;
+        border: 3px solid #004E64;
     }
 
 .card-title {
@@ -132,7 +132,7 @@
 }
 
 .join-us-btn {
-    //text-decoration: none;
+ 
     color: white;
     background-color: #25a18e;
     border: none;

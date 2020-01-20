@@ -82,16 +82,8 @@ input[type=text], input[type=password], select {
     border-radius: 4px
 }
 
-
-
-input[type=submit], input[type=button] {
-    width: 100px;
-    margin: 15px 25px;
-    padding: 5px;
-    height: 40px;
-    color: #004E64;
-    border: none;
-    border-radius: 4px;
+label{
+    margin-bottom: -20px !important;
 }
 
 input[type=button] {
