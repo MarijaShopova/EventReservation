@@ -190,9 +190,17 @@
 
             <div class="row localname">
                 <dt class="col localnamedt">
-                    @* @Html.DisplayFor(model => model.Name) *@
+                     @*@Html.DisplayFor(model => model.Name)*@
                     The Wam Bam Club
                 </dt>
+            </div>
+
+            <div>
+                <i class="fa fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
+                <i class="fa fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
+                <i class="fa fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
+                <i class="fa fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
+                <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
             </div>
 
             <div style="margin-right: -40px; margin-left: -20px; width: 650px; margin-top: 10px;">
@@ -260,8 +268,56 @@
             
         </div>
     </div>
-    
 </div> @*div container*@
+
+<script>
+    var numberStars = 0;
+
+    function changeColor(element) {
+        var id = parseInt(element.id[4]);
+
+        for (var i = 0; i < id; i++) {
+            var newId = "star" + (i + 1);
+            document.getElementById(newId).style.color = "yellow";
+        }
+    }
+
+    function changeBackColor() {
+
+        for (var i = numberStars; i < 5; i++) {
+            var newId = "star" + (i + 1);
+            document.getElementById(newId).style.color = "darkgray";
+        }
+
+    }
+
+    function rate(element) {
+        var id = parseInt(element.id[4]);
+
+        changeBackColor();
+        for (var i = 0; i < id; i++) {
+            var newId = "star" + (i + 1);
+            document.getElementById(newId).style.color = "yellow";
+        }
+
+        numberStars = id;
+
+        $.ajax({
+            url: "@Url.Content("~/Locals/Rating")",
+            type: 'POST',
+            data: JSON.stringify({
+                "Stars": numberStars
+            }),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                alert(data.success);
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+</script>
 
 
 
