@@ -1,10 +1,7 @@
-﻿
-
-function validate_step1() {
+﻿function validate_step1() {
     //alert("fleva")
     var title = document.getElementById("title");
     var desc = document.getElementById("description");
-    var band = document.getElementById("genre");
     var performer = document.getElementById("performer");
     var table = document.getElementById("tables");
 
@@ -20,13 +17,6 @@ function validate_step1() {
         flag = 0;
     }
 
-    if (!(/^[a-zA-Z]+$/.test(genre.value)) && genre.value != "") {
-        document.getElementById("GenreH").innerHTML = "We accept only letters as value of genre.";
-        document.getElementById("GenreH").style.display = "block";
-        document.getElementById("GenreH").style.color = "red";
-        flag = 0; 
-    }
-
     if (desc.value == "") {
         desc.focus();
         desc.style.borderWidth = "2px";
@@ -34,16 +24,6 @@ function validate_step1() {
         document.getElementById("DescriptionH").innerHTML = "We accept only letters as value of description.";
         document.getElementById("DescriptionH").style.display = "block";
         document.getElementById("DescriptionH").style.color = "red";
-        flag = 0;
-    }
-
-    if (band.value == "") {
-        band.focus();
-        band.style.borderWidth = "2px";
-        band.style.borderColor = "red";
-        document.getElementById("BandH").innerHTML = "We accept only letters as value of genre.";
-        document.getElementById("BandH").style.display = "block";
-        document.getElementById("BandH").style.color = "red";
         flag = 0;
     }
 
@@ -175,25 +155,21 @@ function prev_step1() {
     //document.getElementById("GenreH").style.display = "none";
     document.getElementById("TitleH").style.display = "none";
     document.getElementById("DescriptionH").style.display = "none";
-    document.getElementById("BandH").style.display = "none";
 }
 
 function refresh1() {
     var title = document.getElementById("title");
     var desc = document.getElementById("description");
-    var band = document.getElementById("genre");
     var performer = document.getElementById("performer");
     var table = document.getElementById("tables");
  
     document.getElementById("TitleH").style.display = "none";
     document.getElementById("DescriptionH").style.display = "none";
-    document.getElementById("BandH").style.display = "none";
   
     title.style.borderColor = "black";
     desc.style.borderColor = "black";
     table.style.borderColor = "black";
     performer.style.borderColor = "black";
-    band.style.borderColor = "black";
 }
 
 function refresh2() {

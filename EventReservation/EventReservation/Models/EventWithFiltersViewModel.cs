@@ -16,13 +16,7 @@ namespace EventReservation.Models
 
         public EventWithFiltersViewModel()
         {
-            genres = new List<string>();
-            genres.Add("Rock");
-            genres.Add("Pop");
-            genres.Add("Techno");
-            genres.Add("Balkan");
-            genres.Add("Hip Hop");
-            genres.Add("XY hits");
+            genres = new List<string>() {"Rock", "Pop","Techno", "Balkan", "Hip Hop", "XY Hits" };
         }
     }
 }

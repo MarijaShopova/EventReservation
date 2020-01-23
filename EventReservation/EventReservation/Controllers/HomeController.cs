@@ -29,7 +29,9 @@ namespace EventReservation.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            var cities = new List<String>() { "Skopje", "Strumica", "Stip", "Ohrid", "Bitola", "Prilep", "Gevgelija",
+                "Berovo", "Gostivar", "Kumanovo", "Kocani", "Kicevo", "Krushevo", "Struga", "Negotino", "Veles", "Radovis", "Tetovo" };
+            ViewBag.cities = cities;
             return View();
         }
 

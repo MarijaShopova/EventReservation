@@ -32,7 +32,7 @@
                                     <input type="text" id="inputLocalName" class="form-control" placeholder="Name of Local" name="LocalName" required autofocus>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="text" id="inputLocalCity" class="form-control" placeholder="City of Local" name="LocalCity" required autofocus>
+                                    @Html.DropDownList("LocalCity", new SelectList(ViewBag.cities), new { @class = "form-control", @required = true, @id = "inputLocalCity" })
                                 </div>
 
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
