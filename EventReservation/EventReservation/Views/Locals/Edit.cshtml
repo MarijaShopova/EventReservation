@@ -50,56 +50,59 @@
             <fieldset id="first" style="width:500px;">
                 <h5 class="title">General Info</h5>
                 <div>
-                    <div class="form-group field1">
+                    <div class="form-group">
                         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control, disable", @id = "Name" } })
-                        </div>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control disable cust-width", @id = "Name" } })
+
                     </div>
                 </div>
-                <div class="form-group field1">
+                <div class="form-group ">
                     @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city" } })
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control cust-width", @id = "city" } })
+
+                </div>
+                <div class="form-group ">
+                    <div>
+                        <label>Picture add</label>
                     </div>
-                </div>
-                <div class="pl-3 form-group field2">
-                    <div>  <label>Picture add</label></div>
-                    <input type="file" name="photo" />
-
-
-                </div>
-                <div style="float:right; width:150px;">
-                    <input onclick="next_step1()"  type="button" value="Next" class="btn pl-3 pr-3 btn-green">
+                    <input type="file" class="ml-5" name="photo" />
                 </div>
 
+                <div class="form-group field2">
+                    <a class="btn pl-3 pr-3 btn-green" href="/Locals/Index">Cancel</a>
+                    <input onclick="next_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
+                </div>
+               
             </fieldset>
             <fieldset id="second" style="width:500px;">
                 <h5 class="title">Date & Time</h5>
-                <div class="form-group field2">
+                <div class="form-group">
                     @Html.LabelFor(model => model.StreetName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control", @id = "street" } })
+                    @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control cust-width", @id = "street" } })
                     <span id="StreetH"></span>
                 </div>
-                <div class="form-group field2">
+                <div class="form-group">
                     @Html.LabelFor(model => model.StreetNo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.StreetNo, new { htmlAttributes = new { @class = "form-control", @id = "streetNo" } })
+                    @Html.EditorFor(model => model.StreetNo, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "streetNo" } })
                     <p id="StreetNoH"></p>
                 </div>
-                <div class="form-group field2">
+                <div class="form-group">
                     @Html.LabelFor(model => model.OpeningHour, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @Value = Model.OpeningHour.ToString("HH:mm"), @class = "form-control", @id = "opening_hour", @placeholder = "hh:mm" } })
+                    @Html.EditorFor(model => model.OpeningHour, new { htmlAttributes = new { @Value = Model.OpeningHour.ToString("HH:mm"), @class = "form-control cust-width cust-border", @id = "opening_hour", @placeholder = "hh:mm" } })
                     <p id="OpenH"></p>
                 </div>
-                <div class="form-group field2">
+                <div class="form-group">
                     @Html.LabelFor(model => model.ClosingHour, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @Value = Model.ClosingHour.ToString("HH:mm"), @class = "form-control", @id = "closing_hour", @placeholder = "hh:mm" } })
+                    @Html.EditorFor(model => model.ClosingHour, new { htmlAttributes = new { @Value = Model.ClosingHour.ToString("HH:mm"), @class = "form-control cust-width cust-border", @id = "closing_hour", @placeholder = "hh:mm" } })
                     <p id="CloseH"></p>
                 </div>
-                <div class="form-group field2">
-                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous"  class="btn pl-3 pr-3 btn-green">
-                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next"  class="btn pl-3 pr-3 btn-green float-right">
-                </div>
+              
+                    <div class="row form-group field2 m-auto">
+                    <div class="col-4"><button id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">Previous</button></div>    
+                    <div class="col-4"><a class="btn ml-2 pl-3 pr-3 btn-green"  href="/Locals/Index" value="Cancel">Cancel </a></div>
+                    <div class="col-4"><button id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class="btn pl-3 pr-3 btn-green">Next </button></div>
+                   
+                    </div>
             </fieldset>
 
             <fieldset id="third" style="width:500px;">
@@ -111,25 +114,23 @@
                         @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
                     </div>*@
 
-                <div class="form-group field2">
-
+                <div class="form-group">
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "desc" } })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control cust-width", @id = "desc" } })
                     <p id="descH" hidden>Please enter a description!</p>
-
                 </div>
 
-                <div class="form-group field2">
-                    @Html.LabelFor(model => model.Parking, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-group">
+                     @Html.LabelFor(model => model.Parking, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.Parking, new { htmlAttributes = new { @id = "parking" } })
-
+                        @Html.EditorFor(model => model.Parking, new { htmlAttributes = new { @id = "parking" ,@class="ml-5"} })
                     </div>
                 </div>
 
-                <div class="form-group field2">
-                    <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous"  class="btn pl-3 pr-3 btn-green">
-                    <input type="submit" onclick="validate_step3()" value="Edit" class="btn bg-imperial float-right" style="color:#9fffcb;" />
+                <div class="row form-group field2 m-auto">
+                     <div class="col-4"><button id="pre_btn2" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">Previous</button> </div>
+                     <div class="col-4"><a class="btn bg-imperial ml-2 text-mint" href="/Locals/Index">Cancel</a> </div>              
+                     <div class="col-4"><button type="submit" onclick="validate_step3()" value="Edit" class="btn bg-imperial" style="color:#9fffcb;">Edit</button> </div>
                 </div>
             </fieldset>
         </div>

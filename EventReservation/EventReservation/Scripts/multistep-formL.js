@@ -22,6 +22,7 @@ function validate_step2() {
         street.style.borderColor = "red";
         flag = 0;
     }
+
     if (streetNo.value == 0) {
         streetNo.focus();
         streetNo.style.borderWidth = "2px";
@@ -51,8 +52,7 @@ function validate_step2() {
         document.getElementById("opening_hour").style.color = "red";
         flag = 0;
     }
-
-    
+   
     if (closes.value == "") {  
         closes.focus();
         closes.style.borderWidth = "2px";
@@ -94,8 +94,6 @@ function validate_step3() {
         
     }
  
-
-
 }
 
 /*---------------------------------------------------------*/
@@ -109,12 +107,10 @@ function next_step1() {
 // Function that executes on click of first previous button.
 function prev_step1() {
 
-
     document.getElementById("first").style.display = "block";
     document.getElementById("second").style.display = "none";
     document.getElementById("active1").style.color = "#004E64";
-    document.getElementById("active2").style.color = "lightgray";
-
+    document.getElementById("active2").style.color = "lightgrey";
 }
 // Function that executes on click of second next button.
 function next_step2() {
@@ -129,7 +125,7 @@ function prev_step2() {
     document.getElementById("third").style.display = "none";
     document.getElementById("second").style.display = "block";
     document.getElementById("active2").style.color = "#004E64";
-    document.getElementById("active3").style.color = "gray";
+    document.getElementById("active3").style.color = "lightgrey";
     document.getElementById("StreetH").style.display = "none";
     document.getElementById("StreetNoH").style.display = "none";
     document.getElementById("OpenH").style.display = "none";

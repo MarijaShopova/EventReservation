@@ -1,7 +1,6 @@
 ﻿@model EventReservation.Models.Event
-
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
 @Scripts.Render("~/bundles/Jquery")
 
@@ -11,143 +10,177 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link href="~/Content/timepicki.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="~/Content/timepicki.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-    $(function () {
-        $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
-        $('#time_end').timepicki({
-            show_meridian: false,
-            min_hour_value: 0,
-            max_hour_value: 23,
-            step_size_minutes: 15,
-            increase_direction: 'up',
-            start_time: [@Model.TimeEnd.Hour.ToString(), @Model.TimeEnd.Minute.ToString()]
-        });
-        $('#time_start').timepicki({
-            show_meridian: false,
-            min_hour_value: 0,
-            max_hour_value: 23,
-            step_size_minutes: 15,
-            increase_direction: 'up',
-            start_time: [@Model.TimeStart.Hour.ToString(), @Model.TimeStart.Minute.ToString()]
-        });
-    });
-</script>
+<script src="~/Content/timepicki.js"></script>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <form class="form-horizontal form py-5 content main" name="form">
-        <!-- Progressbar -->
-        <ul class="progressbar">
-            <li id="active1" class="li-multistep"><span><i class="fa fa-glass-martini fa-2x pr-2"></i></span></li>
-            <li id="active2" class="li-multistep"><span><i class="fa fa-glass-martini fa-2x pl-2 pr-2"></i></span></li>
-            <li id="active3" class="li-multistep"><span><i class="fa fa-glass-martini fa-2x pl-2"></i></span></li>
-        </ul>
-        <ul class="progressbar1">
-            <li class="li-multistep"><span class="li-text">General Details</span></li>
-            <li class="li-multistep"><span class="li-text" style="margin-left:-38px;">Time & Date</span></li>
-            <li class="li-multistep"><span class="li-text" style="margin-left:-35px;">Additional Details</span></li>
-        </ul>
+    <div class="form-horizontal form py-5 container content main">
+        <div style="margin-left:80px;">
+            <ul class="progressbar">
+                <li id="active1" class="li-multistep"><span><i class="fa fa-glass-martini text-imperial pr-2"></i></span></li>
+                <li id="active2" class="li-multistep"><span><i class="fa fa-glass-martini  pl-2 pr-2"></i></span></li>
+                <li id="active3" class="li-multistep"><span><i class="fa fa-glass-martini  fa-1x pl-2"></i></span></li>
+            </ul>
+            <ul class="progressbar1">
+                <li class="li-multistep"><span class="li-text">General Info</span></li>
+                <li class="li-multistep"><span class="li-text" style="margin-left:-30px;">Time & Date</span></li>
+                <li class="li-multistep"><span class="li-text" style="margin-left:-37px;">Additional Info</span></li>
+            </ul>
+        </div>
+        <div style="margin-top: -25px; margin-left: auto;">
 
+            <fieldset id="first" style="width:500px;">
+                <h5 class="title">General Details</h5>
+                @Html.Hidden("LocalId", (object)ViewBag.LocalId)
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "label-text" })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control cust-width", @id = "title" } })
+                        <p id="TitleH"></p>
 
-        <fieldset id="first">
-            <h5 class="title">General Details</h5>
-            @Html.Hidden("LocalId", Model.LocalId)
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "title" } })
-                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger", @id = "valTitle" })
+                    </div>
                 </div>
-            </div>
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control ", @id = "description" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger ", @id = "valDesc" })
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "label-text" })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control cust-width", @id = "description" } })
+                        <p id="DescriptionH"></p>
+                    </div>
                 </div>
-            </div>
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control", @id = "genre" } })
-                    @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger ", @id = "valGenre" })
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.DropDownList("genre", new SelectList(Model.Genre), "", new { @class = "form-control" })
+                        @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
+                        @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control cust-width", @id = "genre" } })
+                        <p id="BandH"></p>
+                    </div>
                 </div>
-            </div>
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Performer, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.Performer, new { htmlAttributes = new { @class = "form-control", @id = "performer" } })
-                    @Html.ValidationMessageFor(model => model.Performer, "", new { @class = "text-danger ", @id = "valPerformer" })
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Performer, htmlAttributes: new { @class = "label-text" })
+                        @Html.EditorFor(model => model.Performer, new { htmlAttributes = new { @class = "form-control cust-width", @id = "performer" } })
+                        <p id="PerformerH"></p>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text" })
-                @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control", @id = "tables" } })
-                @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text" })
+                    @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control cust-width", @id = "tables" } })
+                    <p id="tableH"></p>
+                </div>
+                <div class="form-group" style="margin-right:45px;">
+                    <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
+                </div>
+                </fieldset>
 
-            </div>
-            <p id="text-validation">All fields are mandatory</p>
-            <input id="next_btn1" onclick="next_step1()" type="button" value="Next">
-        </fieldset>
-
-        <fieldset id="second">
-            <h5 class="title">Date & Time</h5>
-            <div>
-                @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
-                @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @Value = Model.DateStart.ToString("dd.MM.yyyy"), @placeholder = "Select date", @id = "datepicker" })
-            </div>
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @Value = Model.TimeStart.ToString("HH:mm"), @class = "form-control", @id = "time_start", @placeholder = "hh:mm" } })
+            <fieldset id="second" style="width:500px;">
+                <h5 class="title">Date & Time</h5>
+                <div>
+                    @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class="cust-width"})
+                    <p id="datepickerH"></p>
                 </div>
-            </div>
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "label-text" })
+                        @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "start", @placeholder = "hh:mm" } })
+                        <p id="startH"></p>
+                    </div>
+                </div>
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "label-text" })
+                        @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "end", @placeholder = "hh:mm" } })
+                        <p id="endH"></p>
+                    </div>
+                </div>
+                <div class="form-group field2">
+                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
+                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right">
+                </div>
+            </fieldset>
+
+            <fieldset id="third" style="width:500px;">
+
+                <h5 class="title">Additional Details</h5>
+                <div class="pt-3">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.HasTicket, htmlAttributes: new { @class = "label-text cust-width" })
+                        <br />
+                        <input type="radio" onclick="handleClick(this);" id="yes" name="HasTicker" class="ml-5" value="Yes" />Yes
+                        <input type="radio" onclick="handleClick(this);" checked name="HasTicker" class="ml-3" value="No" />No
+
+                    </div>
+                </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @Value = Model.TimeEnd.ToString("HH:mm"), @class = "form-control", @id = "time_end", @placeholder = "hh:mm" } })
+                    @Html.LabelFor(model => model.TicketPrice, htmlAttributes: new { @class = "label-text cust-width" })
+                    <input type="text" id="price" class="form-control cust-width cust-border" disabled>
+
+                </div>
+                <div class="form-group pl-5">
+                    <div>Event Image</div>
+                    <input type="file" />
                 </div>
 
-            </div>
-            <p id="text-validation">All fields are mandatory</p>
-            <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous">
-            <input id="next_btn2" name="next" onclick="next_step2()" type="button" value="Next">
-        </fieldset>
-
-        <fieldset id="third">
-            <h5 class="title">Additional Details</h5>
-
-            <div>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.HasTicket, htmlAttributes: new { @class = "label-text" })
-                    @Html.RadioButton("HasTicket", true, htmlAttributes: new { @class = "ml-3" }) Yes
-                    @Html.RadioButton("HasTicket", false, htmlAttributes: new { @class = "ml-3" }) No
+                <div class="form-group field2">
+                    <input id="pre_btn1" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 mt-3 btn-green">
+                    <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 mt-3 float-right" />
                 </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.TicketPrice, htmlAttributes: new { @class = "label-text" })
-                @Html.EditorFor(model => model.TicketPrice, new { htmlAttributes = new { @class = "form-control", @id = "price" } })
-                @Html.ValidationMessageFor(model => model.TicketPrice, "", new { @class = "text-danger" })
-            </div>
-            <p>Event Image</p>
-            <p id="text-validation">All fields are mandatory</p>
-            <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous">
-            <button type="submit" value="Edit" class="btn bg-imperial" style="color:#9fffcb;">Save</button>
-        </fieldset>
-    </form>
+            </fieldset>
+
+        </div>
+    </div>
 }
+
+<script type="text/javascript">
+    $(function () {
+        $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
+        $('#end').timepicki({
+            show_meridian: false,
+            min_hour_value: 0,
+            max_hour_value: 23,
+            step_size_minutes: 15,
+            increase_direction: 'up',
+            start_time: ["20", "00"]
+        });
+        $('#start').timepicki({
+            show_meridian: false,
+            min_hour_value: 0,
+            max_hour_value: 23,
+            step_size_minutes: 15,
+            increase_direction: 'up',
+            start_time: ["20", "00"]
+        });
+    });
+
+    function handleClick(HasTicker) {
+
+        if (HasTicker.value == "Yes") {
+            document.getElementById("price").disabled = false;
+            document.getElementById("price").focus();
+        }
+        if (HasTicker.value == "No") {
+            document.getElementById("price").disabled = true;
+
+        }
+    }
+
+
+
+    document.getElementById("active2").style.color = "lightgrey";
+    document.getElementById("active3").style.color = "lightgrey";
+</script>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

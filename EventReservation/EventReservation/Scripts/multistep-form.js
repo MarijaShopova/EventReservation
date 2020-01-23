@@ -14,7 +14,7 @@ function validate_step1() {
         title.focus();
         title.style.borderWidth = "2px";
         title.style.borderColor = "red";
-        document.getElementById("TitleH").innerHTML = "Please enter a value for genre";
+        document.getElementById("TitleH").innerHTML = "Please enter a value for title";
         document.getElementById("TitleH").style.display = "block";
         document.getElementById("TitleH").style.color = "red";
         flag = 0;
@@ -31,7 +31,7 @@ function validate_step1() {
         desc.focus();
         desc.style.borderWidth = "2px";
         desc.style.borderColor = "red";
-        document.getElementById("DescriptionH").innerHTML = "We accept only letters as value of description.";
+        document.getElementById("DescriptionH").innerHTML = "Please enter a value for description.";
         document.getElementById("DescriptionH").style.display = "block";
         document.getElementById("DescriptionH").style.color = "red";
         flag = 0;
@@ -168,14 +168,14 @@ function prev_step1() {
     document.getElementById("first").style.display = "block";
     document.getElementById("second").style.display = "none";
     document.getElementById("active1").style.color = "#004E64;";
-    document.getElementById("active2").style.color = "gray";
-    //document.getElementById("start").style.borderColor = "black";
+    document.getElementById("active2").style.color = "lightgrey";
     document.getElementById("end").style.borderColor = "black";
     document.getElementById("datepicker").style.borderColor = "black";
-    //document.getElementById("GenreH").style.display = "none";
     document.getElementById("TitleH").style.display = "none";
     document.getElementById("DescriptionH").style.display = "none";
     document.getElementById("BandH").style.display = "none";
+    document.getElementById("PerformerH").style.display = "none";
+    document.getElementById("tableH").style.display = "none";
 }
 
 function refresh1() {
@@ -217,7 +217,7 @@ function prev_step2() {
     document.getElementById("third").style.display = "none";
     document.getElementById("second").style.display = "block";
     document.getElementById("active2").style.color = "#004E64;";
-    document.getElementById("active3").style.color = "gray";
+    document.getElementById("active3").style.color = "lightgrey";
 }
 
 

@@ -37,10 +37,11 @@
                 <h5 class="title">General Details</h5>
                 @Html.Hidden("LocalId", (object)ViewBag.LocalId)
                 <div>
+                    <br />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @id = "title" } })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control cust-width", @id = "title" } })
                         <p id="TitleH"></p>
                         
                     </div>
@@ -49,7 +50,7 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control ", @id = "description" } })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control cust-width ", @id = "description" } })
                         <p id="DescriptionH"></p>
                     </div>
                 </div>
@@ -57,7 +58,7 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control", @id = "genre" } })
+                        @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control cust-width", @id = "genre" } })
                         <p id="BandH"></p>
                     </div>
                 </div>
@@ -65,31 +66,33 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Performer, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.Performer, new { htmlAttributes = new { @class = "form-control", @id = "performer" } })
+                        @Html.EditorFor(model => model.Performer, new { htmlAttributes = new { @class = "form-control cust-width", @id = "performer" } })
                         <p id="PerformerH"></p>
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text" })
-                    @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control", @id = "tables" } })
+                    @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control cust-width border solid", @id = "tables" } , min=1})
                    <p id="tableH"></p>
                 </div>
-                <p id="text-validation">All fields are mandatory</p>
-                <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
+              
+                <div class="form-group" style="margin-right:45px;"> 
+                    <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
+                </div>
             </fieldset>
 
             <fieldset id="second" style="width:500px;">
                 <h5 class="title">Date & Time</h5>
                 <div>
                     @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
-                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker" })
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class="cust-width" })
                     <p id="datepickerH"></p>
                 </div>
                 <div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control", @id = "start", @placeholder = "hh:mm" } })
+                        @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "start", @placeholder = "hh:mm" } })
                         <p id="startH"></p>
                     </div>
                 </div>
@@ -97,7 +100,7 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control", @id = "end", @placeholder = "hh:mm" } })
+                        @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "end", @placeholder = "hh:mm" } })
                         <p id="endH"></p>
                     </div>
                 </div>
@@ -121,17 +124,16 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.TicketPrice, htmlAttributes: new { @class = "label-text" })
-                    <input type="text" id="price" class="form-control" disabled>
+                    <input type="text" id="price" class="form-control cust-width" disabled>
                   
                 </div>
-                <div class="form-group">
-                    <p>Event Image</p>
+                <div class="form-group pl-5">
+                    <div>Event Image</div>
                     <input type="file"/>
                 </div>
 
                 <div class="form-group field2">
-                   
-                    <input id="pre_btn2" class="btn btn-green mt-3" onclick="prev_step2()" type="button" value="Previous">
+                    <input id="pre_btn2" class="btn btn-green pl-3 pr-3 mt-3" onclick="prev_step2()" type="button" value="Previous">
                     <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 mt-3 float-right" />
                 </div>
             </fieldset>
@@ -141,7 +143,25 @@
 }
 
 <script type="text/javascript">
-
+ $(function () {
+        $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
+        $('#end').timepicki({
+            show_meridian: false,
+            min_hour_value: 0,
+            max_hour_value: 23,
+            step_size_minutes: 15,
+            increase_direction: 'up',
+            start_time: ["20", "00"]
+        });
+        $('#start').timepicki({
+            show_meridian: false,
+            min_hour_value: 0,
+            max_hour_value: 23,
+            step_size_minutes: 15,
+            increase_direction: 'up',
+            start_time: ["20", "00"]
+        });
+    });
   
     function handleClick(HasTicker) {
      
@@ -155,25 +175,7 @@
     }
 } 
 
-    $(function () {
-        $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
-        $('#time_end').timepicki({
-            show_meridian: false,
-            min_hour_value: 0,
-            max_hour_value: 23,
-            step_size_minutes: 15,
-            increase_direction: 'up',
-            start_time: ["20", "00"]
-        });
-        $('#time_start').timepicki({
-            show_meridian: false,
-            min_hour_value: 0,
-            max_hour_value: 23,
-            step_size_minutes: 15,
-            increase_direction: 'up',
-            start_time: ["20", "00"]
-        });
-    });
+   
 
     document.getElementById("active2").style.color = "lightgrey";
     document.getElementById("active3").style.color = "lightgrey";
