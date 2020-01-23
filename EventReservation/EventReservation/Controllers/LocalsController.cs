@@ -79,7 +79,7 @@ namespace EventReservation.Controllers
             mm.Subject = "Local accepted";
             mm.Body = "Dear, your local has been added to our webside. Thank you for choosing us. You can now loging to" +
                 "your account";
-            mm.Body += "Username: " + user.Email + "\n Password: " + "password";
+            mm.Body += "Username: " + user.Email + "\n Password: " + password;
             mm.IsBodyHtml = false;
 
             SmtpClient smtp = new SmtpClient();
