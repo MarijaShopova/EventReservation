@@ -38,8 +38,8 @@
     .single {
         padding: 30px 15px;
         margin-top: 20px;
-        background: #25A18E;
-        border: 1px solid #004E64;
+        background: #fcfcfc;
+        border: 1px solid #f0f0f0;
         border-radius: 28px;
     }
 
@@ -147,7 +147,7 @@
         font-weight: bold;
         font-family: ChunkFiveRegular;
         font-style: oblique;
-        text-decoration: underline;
+        
     }
 
     .localnamedt {
@@ -160,19 +160,19 @@
 <div class="container container1">
 
     <div class="row row1">
-        <div class="col-6" style="border-top-left-radius: 28px; border-top-right-radius: 28px; border: 5px solid #004E64; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">
+        <div class="col-7" style="border-top-left-radius: 28px; border-top-right-radius: 28px;border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">
             <div class="row">
                 <div>
                     <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox" style="border-top-left-radius: 23px; border-top-right-radius: 23px;">
+                        <div class="carousel-inner" role="listbox" style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
                             <div class="carousel-item active">
-                                <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 320px; width: 575px;">
+                                <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 385px; width: 685px;">
                             </div>
                             <div class="carousel-item">
-                                <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 320px; width: 575px;">
+                                <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 385px; width: 685px;">
                             </div>
                             <div class="carousel-item">
-                                <img src="~/Content/IT_sliki/clubs.jpg" style="height: 320px; width: 575px;">
+                                <img src="~/Content/IT_sliki/clubs.jpg" style="height: 385px; width: 685px;">
                             </div>
                         </div>
 
@@ -190,8 +190,8 @@
 
             <div class="row localname">
                 <dt class="col localnamedt">
-                     @*@Html.DisplayFor(model => model.Name)*@
-                    The Wam Bam Club
+                     @Html.DisplayFor(model => model.Name)
+                    
                 </dt>
             </div>
 
@@ -203,7 +203,7 @@
                 <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
             </div>
 
-            <div style="margin-right: -40px; margin-left: -20px; width: 650px; margin-top: 10px;">
+            <div style=" width: 700px; margin-top: 10px;">
                 <div class="row">
                     <div class="col-6">
                         <div class="row">
@@ -223,18 +223,25 @@
                             </dt>
                         </div>
                     </div>
-                    <div class="col" style="margin-right: 70px;">
+                    <div class="col" style="margin-left: -20px;">
                         <div class="row" style="margin-top: 30px; color: #004E64; font-size: 20px;">
-                            <div class="fa fa-clock fa-stack-1x"> Working time:<br /> @Model.OpeningHour.ToString("hh:mm tt") - @Model.ClosingHour.ToString("hh:mm tt") </div>
+                            <div class="fa fa-clock fa-stack-1x">
+                                Opening time <label style="text-transform:lowercase"> - @Model.OpeningHour.ToString("hh:mm tt")</label>
+                                <br /> Closing time <label style="text-transform:lowercase"> - @Model.ClosingHour.ToString("hh:mm tt")</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-6" style="margin-top: -20px;">
+        <div class="col-5" style="margin-top: -20px;">
             <div class="single category">
                 <h3 class="side-title1" style="font-weight: bold:">EVENTS</h3>
                 <h3 class="side-title">CALENDAR</h3>
+                @if (Model.Events.Count() == 0)
+                {
+                    <h5 class="mt-4 text-imperial text-center">There are no events at the moment. </h5>
+                }
                 @foreach (var item in Model.Events)
                 {
                     <div class="row">
