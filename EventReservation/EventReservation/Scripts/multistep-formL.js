@@ -1,20 +1,15 @@
 ﻿
 function validate_step2() {
+
     var street = document.getElementById("street");
     var streetNo = document.getElementById("streetNo");
-    var opens = document.getElementById("openingH");
-    var closes = document.getElementById("closingH");
-   
-    street.style.borderColor = "black";
-    streetNo.style.borderColor = "black";
-    opens.style.borderColor = "black";
-    closes.style.borderColor = "black";
+    var opens = document.getElementById("opening_hour");
+    var closes = document.getElementById("closing_hour");
+
     document.getElementById("StreetNoH").innerText = "";
     document.getElementById("StreetH").innerText = "";
     document.getElementById("opening_hour").innerText = "";
     document.getElementById("closing_hour").innerText = "";
-
-
 
     var flag = 1;
     if (street.value == "") {

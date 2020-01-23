@@ -18,67 +18,67 @@
 </head>
 <body>
     <div id="page-container">
-        @*<div id="content-wrap">*@
-        <nav class="navbar navbar-expand-lg bg-imperial static-top navId">
-            <div class="container-page container">
-                <a class="navbar-brand text-mint" href="/Home/Index">
-                    @*LOGO   <span class="fa fa-cocktail text-mint fa-2x"></span>*@
-                    <img src="~/Content/logo.png" />
-                </a>
-                <button class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarResponsive"
-                        aria-controls="navbarResponsive"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Home/Index">
-                                <i class="fa fa-home"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="~/Events/Index">
-                                <i class="fa fa-calendar-check"></i> Events
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Locals/Index">
-                                <i class="fa fa-map"></i> Locals
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Home/About">
-                                <i class="fa fa-info-circle"></i> About Us
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Locals/Requests">
-                                <i class="fa fa-info-circle"></i> Requests
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Account/Login">
-                                <i class="fa fa-user"></i> Log in
-                            </a>
-                        </li>
+@*<div id="content-wrap">*@
+<nav class="navbar navbar-expand-lg bg-imperial static-top">
+    <div class="container-page container">
+        <a class="navbar-brand text-mint" href="#">
+            @*LOGO   <span class="fa fa-cocktail text-mint fa-2x"></span>*@
+          <a href="/Home/Index"><img src="~/Content/logo.png" /></a>  
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Index">
+                        <i class="fa fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="~/Events/Index">
+                        <i class="fa fa-calendar-check"></i> Events
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Locals/Index">
+                        <i class="fa fa-map"></i> Locals
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/About">
+                        <i class="fa fa-info-circle"></i> About Us
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Locals/Requests">
+                        <i class="fa fa-info-circle"></i> Requests
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Account/Login">
+                        <i class="fa fa-user"></i> Log in
+                    </a>
+                </li>
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div style="padding-bottom: 83px">
-            @RenderBody()
+            </ul>
         </div>
-        @*</div>*@
-        <footer class="bg-imperial" id="footerId">
-            <p class="text-center text-mint p-4 mb-0">I T &copy; @DateTime.Now.Year - FINKI, Skopje</p>
-        </footer>
     </div>
+</nav>
+
+<div style="padding-bottom: 83px">
+    @RenderBody()
+</div>
+@*</div>*@
+<footer class="bg-imperial">
+    <p class="text-center text-mint p-4 mb-0">I T &copy; @DateTime.Now.Year - FINKI, Skopje</p>
+</footer>
+</div>
 </body>
 </html>

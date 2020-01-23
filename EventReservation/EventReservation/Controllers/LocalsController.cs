@@ -151,5 +151,12 @@ namespace EventReservation.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public ActionResult Rating(Review data)
+        {
+            Review review = new Review { Stars = data.Stars };
+            return Json(new { success = true });
+        }
     }
 }

@@ -1,17 +1,62 @@
-﻿@model IEnumerable<EventReservation.Models.Event>
-
+﻿@model  EventReservation.Models.EventWithFiltersViewModel
 @{
     ViewBag.Title = "Index";
 }
 <link href="~/Css/events-index.css" rel="stylesheet" />
-<div class="bg-light container">
+<link href="~/Content/fontawesome-all.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#dateFrom").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
+        $("#dateTo").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
+    });
+</script>
+<div class="bg-light">
     <div class="container-page container py-4">
         <h2 class="font-header text-center display-4 py-4">Our Events</h2>
 
         <!-- Filters -->
+
+        @using (Html.BeginForm("Index", "Events"))
+        {
+            <div class="form-group">
+                <label>Select city:</label>
+                @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Select local:</label>
+                @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Select genre:</label>
+                @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="dateFrom">Date from:</label>
+                @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="dateFrom">Date to:</label>
+                @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control" })
+            </div>
+
+            <button class="btn btn-primary" type="submit">Filter</button>
+            <button class="btn btn-primary" type="button">Clear Filter</button>
+        }
         <!-- List events -->
 
-        @foreach (var item in Model)
+        @if (Model.events.Count() == 0)
+        {
+            <h4 class="mt-4 text-imperial text-center">No events to show :( </h4>
+        }
+
+        @foreach (var item in Model.events)
         {
             <div class="row row-hover mt-4">
                 <div class="col-lg-4 p-0">
@@ -40,21 +85,19 @@
                         Entrance:
                         @if (item.HasTicket)
                         {<span>@item.TicketPrice ден.</span>}
-                        else
-                        {<span>Free</span>}
+                    else
+                    {<span>Free</span>}
                     </div>
                     <div class="text-white">
                         <span class="fa fa-circle text-mint mr-2 mt-2"></span>
                         Hosted by
-                        <a href="#" class="text-decoration-none text-mint">@item.local.Name</a>
+                        <a href="/Locals/Details/@item.local.Id" class="text-decoration-none text-mint">@item.local.Name</a>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star text-warning"></span>
                         <span class="fa fa-star-half-alt text-warning"></span>
                         <span class="far fa-star text-warning"></span>
                     </div>
-
-
                     <button class="btn btn-green mt-3">@Html.ActionLink("Read More", "Details", new { id = item.Id }, new { htmlAttributes = new { @class = "link" } })</button>
                 </div>
             </div>

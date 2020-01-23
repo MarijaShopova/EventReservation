@@ -1,24 +1,14 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Lobster');
 
-
-
 .img-responsive {
     width: 300px;
     height: 296px;
 }
 
-a {
-    color: #9fffcb !important;
-    text-decoration: none !important;
-}
 .btn-green {
     background-color: #25A18E;
     color: #9fffcb !important;
     box-shadow: 3px 7px 8px rgba(0,0,0,0.4), 0 4px 2px rgba(0,0,0,0.23)
-}
-
-a:hover {
-    color: #004E64;
 }
 
 .calendar {
@@ -44,4 +34,3 @@ a:hover {
 .row-hover:hover {
     transform: scale(1.05);
 }
-
