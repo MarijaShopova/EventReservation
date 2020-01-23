@@ -38,8 +38,8 @@
     .single {
         padding: 30px 15px;
         margin-top: 20px;
-        background: #25A18E;
-        border: 1px solid #004E64;
+        background: #fcfcfc;
+        border: 1px solid #f0f0f0;
         border-radius: 28px;
     }
 
@@ -108,7 +108,7 @@
         color: #004E64 !important;
         box-shadow: 3px 7px 8px rgba(0,0,0,0.4), 0 4px 2px rgba(0,0,0,0.23)
     }
-    
+
 
 
     div.gallery {
@@ -147,32 +147,30 @@
         font-weight: bold;
         font-family: ChunkFiveRegular;
         font-style: oblique;
-        text-decoration: underline;
     }
 
     .localnamedt {
         margin-top: 5px;
     }
-    
 </style>
 
 
 <div class="container container1">
 
     <div class="row row1">
-        <div class="col-6" style="border-top-left-radius: 28px; border-top-right-radius: 28px; border: 5px solid #004E64; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">
-            <div class="row">
+        <div class="col-8" style="border-top-left-radius: 28px; border-top-right-radius: 28px; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px;">
+            <div class="row" style="margin-top: -2px;">
                 <div>
                     <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox" style="border-top-left-radius: 23px; border-top-right-radius: 23px;">
+                        <div class="carousel-inner" role="listbox" style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
                             <div class="carousel-item active">
-                                <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 320px; width: 575px;">
+                                <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 450px; width: 750px;">
                             </div>
                             <div class="carousel-item">
-                                <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 320px; width: 575px;">
+                                <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 450px; width: 750px;">
                             </div>
                             <div class="carousel-item">
-                                <img src="~/Content/IT_sliki/clubs.jpg" style="height: 320px; width: 575px;">
+                                <img src="~/Content/IT_sliki/clubs.jpg" style="height: 450px; width: 750px;">
                             </div>
                         </div>
 
@@ -195,7 +193,7 @@
                 </dt>
             </div>
 
-            <div style="margin-right: -40px; margin-left: -20px; width: 650px; margin-top: 10px;">
+            <div style="margin-left: 10px; width: 850px; margin-top: 10px;">
                 <div class="row">
                     <div class="col-6">
                         <div class="row">
@@ -215,18 +213,19 @@
                             </dt>
                         </div>
                     </div>
-                    <div class="col" style="margin-right: 70px;">
+                    <div class="col" style="margin-left: -120px;">
                         <div class="row" style="margin-top: 30px; color: #004E64; font-size: 20px;">
-                            <div class="fa fa-clock fa-stack-1x"> Working time:<br /> @Model.OpeningHour.ToString("hh:mm tt") - @Model.ClosingHour.ToString("hh:mm tt") </div>
+                            <div class="fa fa-clock fa-stack-1x"> Work time:<br /> @Model.OpeningHour.ToString("hh:mm tt") - @Model.ClosingHour.ToString("hh:mm tt") </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-6" style="margin-top: -20px;">
+        <div class="col-4" style="margin-top: -20px;">
             <div class="single category">
                 <h3 class="side-title1" style="font-weight: bold:">EVENTS</h3>
                 <h3 class="side-title">CALENDAR</h3>
+
                 @foreach (var item in Model.Events)
                 {
                     <div class="row">
@@ -245,6 +244,8 @@
                         </div>
                     </div>
                 }
+
+
                 <p style="float: right;" class="seemore">
                     @if (User.IsInRole("Manager"))
                     {
@@ -257,10 +258,10 @@
                     }
                 </p>
             </div>
-            
+
         </div>
     </div>
-    
+
 </div> @*div container*@
 
 
