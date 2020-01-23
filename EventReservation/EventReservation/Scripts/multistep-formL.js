@@ -80,24 +80,6 @@ function validate_step2() {
 
 }
 
-function validate_step3() {
-   
-    var desc = document.getElementById("desc");
-
-    if (desc.value == "") {
-        desc.focus();
-        desc.style.borderWidth = "2px";
-        desc.style.borderColor = "red";
-        flag = 0;
-        document.getElementById("descH").innerHTML = "Please enter a description";
-        document.getElementById("descH").style.color = "red";
-        
-    }
- 
-
-
-}
-
 /*---------------------------------------------------------*/
 // Function that executes on click of first next button.
 function next_step1() {

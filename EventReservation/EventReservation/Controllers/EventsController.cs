@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web.Mvc;
 using EventReservation.Models;
+using PagedList;
 
 namespace EventReservation.Controllers
 {
@@ -41,7 +42,7 @@ namespace EventReservation.Controllers
             {
                 result = result.Where(e => e.DateStart.CompareTo(filters.dateTo) <= 0).ToList();
             }
-            model.events = result;
+            model.events = result.Where(m => m.DateStart.CompareTo(DateTime.Now) >= 0).OrderBy(m => m.DateStart).ToList();
             model.filters = filters;
             return View(model);
         }

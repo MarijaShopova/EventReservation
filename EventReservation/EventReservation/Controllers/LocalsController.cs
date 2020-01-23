@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using EventReservation.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace EventReservation.Controllers
 {
@@ -15,7 +16,7 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Locals
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             if (User.IsInRole("Manager"))
             {
@@ -24,7 +25,7 @@ namespace EventReservation.Controllers
                 return View("~/Views/Locals/Details.cshtml", local);
             }
             else
-                return View(db.Locals.ToList());
+                return View(db.Locals.OrderBy(m => m.Name).ToPagedList(page ?? 1, 2));
         }
 
         // GET: Locals/Details/5
@@ -121,7 +122,7 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking")] Local local)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking,Manager")] Local local)
         {
             if (ModelState.IsValid)
             {

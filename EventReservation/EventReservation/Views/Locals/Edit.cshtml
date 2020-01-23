@@ -24,7 +24,7 @@
             max_hour_value: 23,
             step_size_minutes: 15,
             increase_direction: 'up',
-            start_time: [@Model.ClosingHour.Hour.ToString(), @Model.ClosingHour.Minute.ToString()]
+            start_time: [@Model.ClosingHour.Hour.ToString(), @Model.OpeningHour.Minute.ToString()]
         });
     });
 </script>
@@ -48,19 +48,22 @@
         </div>
         <div style="margin-top: -25px; margin-left: auto;">
             <fieldset id="first" style="width:500px;">
+                @Html.HiddenFor(m => m.Manager)
+                @Html.HiddenFor(m => m.Name)
+                @Html.HiddenFor(m => m.City)
                 <h5 class="title">General Info</h5>
                 <div>
                     <div class="form-group field1">
                         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control, disable", @id = "Name" } })
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control, disable", @id = "Name", @disabled = true } })
                         </div>
                     </div>
                 </div>
                 <div class="form-group field1">
                     @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city" } })
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @id = "city", @disabled = true } })
                     </div>
                 </div>
                 <div class="pl-3 form-group field2">
@@ -70,7 +73,7 @@
 
                 </div>
                 <div style="float:right; width:150px;">
-                    <input onclick="next_step1()"  type="button" value="Next" class="btn pl-3 pr-3 btn-green">
+                    <input onclick="next_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green">
                 </div>
 
             </fieldset>
@@ -97,53 +100,37 @@
                     <p id="CloseH"></p>
                 </div>
                 <div class="form-group field2">
-                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous"  class="btn pl-3 pr-3 btn-green">
-                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next"  class="btn pl-3 pr-3 btn-green float-right">
+                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
+                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
             </fieldset>
 
             <fieldset id="third" style="width:500px;">
                 <h5 class="title">Additional Info</h5>
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control",@id="NoOfTables" } })
-                        @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
-                    </div>*@
-
                 <div class="form-group field2">
-
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "desc" } })
                     <p id="descH" hidden>Please enter a description!</p>
-
                 </div>
 
                 <div class="form-group field2">
                     @Html.LabelFor(model => model.Parking, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="checkbox">
                         @Html.EditorFor(model => model.Parking, new { htmlAttributes = new { @id = "parking" } })
-
                     </div>
                 </div>
 
                 <div class="form-group field2">
-                    <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous"  class="btn pl-3 pr-3 btn-green">
-                    <input type="submit" onclick="validate_step3()" value="Edit" class="btn bg-imperial float-right" style="color:#9fffcb;" />
+                    <input id="pre_btn2" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
+                    <button type="submit" value="Edit" class="btn bg-imperial float-right" style="color:#9fffcb;">Save</button>
                 </div>
             </fieldset>
         </div>
     </div>
 }
 
-<script type="text/javascript">
-    document.getElementById("Name").disabled = true;
-    document.getElementById("city").disabled = true;
-    document.getElementById("active2").style.color = "lightgrey";
-    document.getElementById("active3").style.color = "lightgrey";
-</script>
 <div>
-  <a class="btn bg-imperial text-mint m-3" href="/Locals/Index"><span>Cancel</span></a>
+    <a class="btn bg-imperial text-mint m-3" href="/Locals/Index"><span>Cancel</span></a>
 </div>
 
 @section Scripts {

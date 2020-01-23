@@ -1,60 +1,62 @@
-﻿@model IEnumerable<EventReservation.Models.Local>
+﻿@model PagedList.IPagedList<EventReservation.Models.Local>
+@using PagedList.Mvc;
 
 <link href="~/Css/locals-index.css" rel="stylesheet" />
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    ul li {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border: 1px lightgray solid;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+
+    ul li:hover {
+        background-color: lightgray;
+    }
+</style>
 
 <div class="bg-light">
-<div class="container-page container pt-5 pb-4">
-    <h2 class="text-green text-center display-4 font-header">Our locals</h2>
-    <div class="row pb-5 pt-4">
-        @foreach (var item in Model)
-        {
-            <div class="col-lg-4 p-1">
-                <a class="border mt-3" href="/Locals/Details/@item.Id">
-                    <div class="content shadow-lg rounded">
-                        <div class="content-overlay"></div>
-                        <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
-                        <div class="content-details fadeIn-top">
-                            <h3>@item.Name</h3>
-                            <div>
+    <div class="container-page container pt-5 pb-4">
+        <h2 class="text-green text-center display-4 font-header">Our locals</h2>
+        <div class="row pb-5 pt-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 p-1">
+                    <a class="border mt-3" href="/Locals/Details/@item.Id">
+                        <div class="content shadow-lg rounded">
+                            <div class="content-overlay"></div>
+                            <img class="content-image " src='@Url.Content("~/Content/bestParties.jpg")' alt="bla">
+                            <div class="content-details fadeIn-top">
+                                <h3>@item.Name</h3>
                                 <div>
-                                    <i class="fa fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                    <i class="fa fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                    <i class="fa fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                    <i class="fa fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                    <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                </div>
+                                    <div>
+                                        <i class="fa fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-        }
+            }
+        </div>
+    </div>
+
+    <div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+     new { page }))
     </div>
 </div>
-<div class="container">
-    <nav class="offset-4 p-5">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
-    </div>
 
 

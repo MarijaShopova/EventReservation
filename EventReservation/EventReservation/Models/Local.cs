@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -22,9 +23,9 @@ namespace EventReservation.Models
         [Range(0,99999,ErrorMessage = "Please enter a valid number.")]
         public int StreetNo { get; set; }
         [Display(Name = "Opens")]
-        public DateTime OpeningHour { get; set; } = DateTime.Now;
+        public DateTime OpeningHour { get; set; } = DateTime.Parse("Jan 1, 2000");
         [Display(Name = "Closes")]
-        public DateTime ClosingHour { get; set; } = DateTime.Now;
+        public DateTime ClosingHour { get; set; } = DateTime.Parse("Jan 1, 2000");
         public Boolean Parking { get; set; }
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
