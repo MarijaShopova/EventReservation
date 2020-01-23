@@ -85,14 +85,31 @@ input[type=text], input[type=password], select {
 
 .btn-green {
     background-color: #004E64;
-    
     color: #9fffcb !important;
     padding: 5px;
 }
 
 label{
     margin-bottom: -20px !important;
+    margin-left:45px;
 }
+p {
+    margin-left: 45px !important;
+}
+
+#tables {
+    border: 1px solid black !important;
+}
+
+.cust-border {
+    border: 1px solid black !important;
+}
+
+.cust-width { 
+    margin-left: 45px !important;
+    margin-right: 45px !important;
+    width: 370px !important;
+} 
 
 input[type=button] {
     background: #004E64;
