@@ -1,6 +1,8 @@
 ﻿@model  EventReservation.Models.EventWithFiltersViewModel
 @using PagedList.Mvc;
 @{
+    /**/
+
     ViewBag.Title = "Index";
 }
 <link href="~/Css/events-index.css" rel="stylesheet" />
@@ -14,7 +16,7 @@
         $("#dateTo").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
     });
 </script>
-<div class="bg-light container">
+<div class="bg-light">
     <div class="container-page container py-4">
         <h2 class="font-header text-center display-4 py-4">Our Events</h2>
 
@@ -22,37 +24,39 @@
 
         @using (Html.BeginForm("Index", "Events"))
         {
-    <div class="row">
-        <div class="form-inline col-4" style="padding-right:0px;">
-            <label class="mr-3">Select city:</label>  
-            @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control w60" })
-        </div>
+            <div class="row">
+                <div class="form-inline col-4" style="padding-right:0px;">
+                    <label class="mr-3">Select city:</label>
+                    @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control w60" })
+                </div>
 
-        <div class="form-inline col-4" style="padding-right:0px;">
-            <label class="mr-3">Select local:</label>
-            @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control w60" })
-        </div>
+                <div class="form-inline col-4" style="padding-right:0px;">
+                    <label class="mr-3">Select local:</label>
+                    @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control w60" })
+                </div>
 
-        <div class="form-inline col-4" style="padding-right:0px;">
-            <label class="mr-3">Select genre:</label>
-            @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control w60" })
-        </div>
-     
-        </div>
-       <br />
-    <div class="row ">
-        <div class="form-inline col-4" style="padding-right:0px;">
-            <label for="dateFrom" class="mr-3">Date from:</label>
-            @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control w60" })
-        </div>
+                <div class="form-inline col-4" style="padding-right:0px;">
+                    <label class="mr-3">Select genre:</label>
+                    @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control w60" })
+                </div>
 
-            <div class="form-group">
-                <label for="dateFrom">Date to:</label>
-                @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control" })
             </div>
+            <br />
+            <div class="row ">
+                <div class="form-inline col-4" style="padding-right:0px;">
+                    <label for="dateFrom" class="mr-3">Date from:</label>
+                    @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control w60" })
+                </div>
 
-            <button class="btn btn-primary pl-4 pr-4 mx-auto" type="submit">Filter</button>
-            <a class="btn btn-primary" href="/events/index">Clear Filter</a>
+                <div class="form-group col-4">
+                    <label for="dateFrom">Date to:</label>
+                    @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control" })
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary pl-4 pr-4 mx-auto" type="submit">Filter</button>
+                    <a class="btn btn-primary" href="/events/index">Clear Filter</a>
+                </div>
+            </div>
         }
         <!-- List events -->
 
