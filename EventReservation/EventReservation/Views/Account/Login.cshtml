@@ -4,7 +4,15 @@
     ViewBag.Title = "Log in";
 }
 <link href="~/Css/login-form.css" rel="stylesheet" />
-
+<style>
+    footer {
+        visibility: collapse;
+    }
+    nav {
+        visibility: collapse;
+    }
+          
+</style>
 <section id="loginForm">
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
@@ -23,10 +31,7 @@
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required autofocus>
                                 </div>
 
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" name="rememberMe">
-                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                </div>
+                                
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                                 <hr class="my-4">
                                 <div class="text-center">

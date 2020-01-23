@@ -124,10 +124,15 @@
         <div class="col-3">
             <h6>WHERE</h6>
             <span>Place:</span>
-            @Html.DisplayFor(model => model.local.Name) <br />
+            <a href="/Locals/Details/@Model.local.Id">
+                @Html.DisplayFor(model => model.local.Name) <br />
+            </a>
 
-            @Html.DisplayNameFor(model => model.local.City):
-            @Html.DisplayFor(model => model.local.City)
+
+
+                @Html.DisplayNameFor(model => model.local.City):
+                @Html.DisplayFor(model => model.local.City)
+           
         </div>
     </div>
     <br />

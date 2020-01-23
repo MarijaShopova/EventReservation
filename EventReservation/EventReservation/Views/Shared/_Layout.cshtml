@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Reservation</title>
-
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
     <link href="~/Css/navbar.css" rel="stylesheet" />
@@ -16,16 +15,16 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
+
 <body>
     <div id="page-container">
-@*<div id="content-wrap">*@
-<nav class="navbar navbar-expand-lg bg-imperial static-top">
+      
+
+<nav class="navbar navbar-expand-lg bg-imperial static-top" id="proba">
     <div class="container-page container">
-        <a class="navbar-brand text-mint" href="#">
-            @*LOGO   <span class="fa fa-cocktail text-mint fa-2x"></span>*@
-          <a href="/Home/Index"><img src="~/Content/logo.png" /></a>  
-        </a>
-        <button class="navbar-toggler"
+        <a class="navbar-brand text-mint" href="/Home/Index"><img src="~/Content/logo.png">  </a>
+       <button class="navbar-toggler"
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarResponsive"
@@ -75,10 +74,15 @@
 <div style="padding-bottom: 83px">
     @RenderBody()
 </div>
-@*</div>*@
+
 <footer class="bg-imperial">
     <p class="text-center text-mint p-4 mb-0">I T &copy; @DateTime.Now.Year - FINKI, Skopje</p>
 </footer>
 </div>
 </body>
 </html>
+<style>
+    #proba{
+      
+    }
+</style>
