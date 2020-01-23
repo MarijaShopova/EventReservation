@@ -8,34 +8,51 @@
 <script type="text/javascript" src="~/Scripts/counter.js"></script>
 <script src="~/Scripts/caroules.js"></script>
 <link href="~/Css/back-to-top-button.css" rel="stylesheet" />
+<style>
 
+    .overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */   
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(0,0,0); /* Black fallback color */
+  background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+
+
+/* Position the close button (top right corner) */
+
+
+</style>
 <form action="top">
     <a href="#" id="back-to-top" class="back-to-top" onclick=" topFunction()" style="display: inline;"><i class="fa fa-arrow-up fa-2x"></i></a>
 </form>
 <!-- Fades in the button when you scroll down -->
-<script>
-    var link = document.getElementById("back-to-top");
-    var amountScrolled = 250;
 
-    window.addEventListener('scroll', function (e) {
-        if (window.pageYOffset > amountScrolled) {
-            link.classList.add('show');
-        } else {
-            link.className = 'back-to-top';
-        }
-    });
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
-</script>
 <div>
-    <img src="~/Content/IT_sliki/bestParties.jpg" class="fixed" alt="Cover photo" style="width: 1360px; height: 700px; opacity: 0.9; align-content: center">
+    <img src="~/Content/IT_sliki/bestParties.jpg" alt="Cover photo" style="width: 1360px; opacity:0.9; height: 700px;" class="bgimg">
     <div class="centered">
-        <div class="row"><div class="col"> <p class="text-white font-weight-bold display-4 text-center">LOOKING FOR THE BEST PLACE TO PARTY?</p></div></div>
+        <div class="row"><div class="col"> <p class="text-white font-weight-bold display-4 text-center">
+            LOOKING FOR THE BEST PLACE TO PARTY?</p></div></div>
         <div class="row text-center">
             <div class="col">
-                <a class="btn btn-go btn-lg" href="~/Events" style="width: 170px;">
+                <a class="btn btn-go btn-lg" href="~/Events" style="width: 170px; ">
                     GO <i class="fa fa-arrow-right"></i>
                 </a>
                  
@@ -155,3 +172,27 @@
     </div>
 </div>
 <hr id="join-us-hr" />
+
+<script>
+    var navv = document.getElementById("proba");
+    navv.classList.add("centered2");
+    navv.classList.add("shadow");
+    
+
+
+
+    var link = document.getElementById("back-to-top");
+    var amountScrolled = 250;
+
+    window.addEventListener('scroll', function (e) {
+        if (window.pageYOffset > amountScrolled) {
+            link.classList.add('show');
+        } else {
+            link.className = 'back-to-top';
+        }
+    });
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>

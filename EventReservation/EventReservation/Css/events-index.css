@@ -5,6 +5,10 @@
     height: 296px;
 }
 
+.w60 {
+    width:59% !important;
+}
+
 .btn-green {
     background-color: #25A18E;
     color: #9fffcb !important;
@@ -14,6 +18,7 @@
 .calendar {
     box-shadow: 0 10px 20px rgba(0,0,0,0.60), 0 6px 6px rgba(0,0,0,0.23);
 }
+
 
 .calendar-date {
     color: #9fffcb;

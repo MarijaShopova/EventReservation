@@ -22,36 +22,38 @@
         @using (Html.BeginForm("Index", "Events"))
         {
     <div class="row">
-        <div class="form-group col-4">
-            <label>Select city:</label>
-            @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control" })
+        <div class="form-inline col-4" style="padding-right:0px;">
+            <label class="mr-3">Select city:</label>  
+            @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control w60" })
         </div>
 
-        <div class="form-group col-4">
-            <label>Select local:</label>
-            @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control" })
+        <div class="form-inline col-4" style="padding-right:0px;">
+            <label class="mr-3">Select local:</label>
+            @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control w60" })
         </div>
 
-        <div class="form-group col-4">
-            <label>Select genre:</label>
-            @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control" })
+        <div class="form-inline col-4" style="padding-right:0px;">
+            <label class="mr-3">Select genre:</label>
+            @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control w60" })
         </div>
+     
         </div>
-    <div class="row">
-        <div class="form-group col-3">
-            <label for="dateFrom">Date from:</label>
-            @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control" })
+       <br />
+    <div class="row ">
+        <div class="form-inline col-4" style="padding-right:0px;">
+            <label for="dateFrom" class="mr-3">Date from:</label>
+            @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control w60" })
         </div>
 
-        <div class="form-group col-3">
-            <label for="dateFrom">Date to:</label>
-            @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control" })
+        <div class="form-inline col-4" style="padding-right:0px;">
+            <label for="dateFrom" class="mr-4">Date to:</label>
+            @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control w60 ml-3" })
         </div>
-        <div class="col-3 form-group align-self-end">
-            <button class="btn btn-primary pl-3 pr-3" type="submit">Filter</button>
+        <div class="col-4 form-inline align-self-end ">
+            <button class="btn btn-primary pl-4 pr-4 mx-auto" type="submit">Filter</button>
             <button class="btn btn-primary" type="button">Clear Filter</button>
         </div>
-        <div class="col-3"></div>
+       
     </div>
         }
         <!-- List events -->

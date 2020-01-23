@@ -29,12 +29,24 @@
     height: 280px;
     margin-bottom: 15px;
 }
- 
+
+.bgimg {
+    margin-top:-90px;
+    top: 0;
+    left: 0;
+    background-attachment: scroll;
+    background-position: center top;
+}
+
 .centered {
     position: absolute !important;
     top: 13%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.centered2 {
+    background-color: transparent !important;
+    z-index:1;
 }
 
 .btn-outline-secondary {
@@ -129,6 +141,9 @@
     padding: 0;
     margin: 0;
     border: 2px solid #25a18e;
+}
+.shadow {
+    box-shadow: 0 0 0 0 !important;
 }
 
 .join-us-btn {
