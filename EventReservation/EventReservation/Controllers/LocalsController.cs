@@ -1,13 +1,14 @@
 ﻿using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using System.Web.Mvc;
 using EventReservation.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using PagedList;
 
 namespace EventReservation.Controllers
 {
@@ -16,7 +17,7 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Locals
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
             if (User.IsInRole("Manager"))
             {
@@ -25,8 +26,30 @@ namespace EventReservation.Controllers
                 return View("~/Views/Locals/Details.cshtml", local);
             }
             else
-                return View(db.Locals.OrderBy(m => m.Name).ToPagedList(page ?? 1, 2));
+                return View(db.Locals.ToList());
         }
+
+        public ActionResult AddImage()
+        {
+            Local l1 = new Local();
+
+            return View(l1);
+        }
+
+        [HttpPost]
+        /* public ActionResult AddImage([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking")] Local local,HttpPostedFileBase photo)
+          {
+              var db = new Entities();
+              if (photo != null) {
+                  local.LocalsImage = new byte[photo.ContentLength];
+                  photo.InputStream.Read(local.LocalsImage, 0, photo.ContentLength);
+              }
+              //  db.Locals.Add(local);
+              db.Entry(local).State = EntityState.Modified;
+              db.SaveChanges();
+              return View(local);
+          }
+          */
 
         // GET: Locals/Details/5
         public ActionResult Details(int? id)
@@ -78,7 +101,7 @@ namespace EventReservation.Controllers
             //P@ssw0rdPassword
             MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
             mm.Subject = "Local accepted";
-            mm.Body = "Dear, your local has been added to our webside. Thank you for choosing us. You can now loging to" +
+            mm.Body = "Dear" + user.Email + ", your local has been added to our webside. Thank you for choosing us. You can now loging to" +
                 "your account";
             mm.Body += "Username: " + user.Email + "\n Password: " + password;
             mm.IsBodyHtml = false;
@@ -86,9 +109,9 @@ namespace EventReservation.Controllers
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
             smtp.Port = 587;
-            smtp.EnableSsl = true;
+            // smtp.EnableSsl = true;
             NetworkCredential nc = new NetworkCredential("eventreservationit@gmail.com", "P@ssw0rdPassword");
-            smtp.UseDefaultCredentials = true;
+            smtp.UseDefaultCredentials = false;
             smtp.Credentials = nc;
             smtp.Send(mm);
 
@@ -122,10 +145,18 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking,Manager")] Local local)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,Manager,ClosingHour,Parking")] Local local, HttpPostedFileBase LocalsImage)
         {
+
             if (ModelState.IsValid)
             {
+                using (var ms = new MemoryStream())
+                {
+                    LocalsImage.InputStream.CopyTo(ms);
+                    local.LocalsImage = ms.ToArray();
+                }
+                db.Locals.Add(local);
+
                 db.Entry(local).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

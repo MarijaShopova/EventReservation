@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using System.Web.Mvc;
 using EventReservation.Models;
 using PagedList;
@@ -105,11 +107,16 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,TimeStart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,TimeStart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event, HttpPostedFileBase EventImage)
         {
 
             if (ModelState.IsValid)
             {
+                using (var ms = new MemoryStream())
+                {
+                    EventImage.InputStream.CopyTo(ms);
+                    @event.EventImage = ms.ToArray();
+                }
                 db.Events.Add(@event);
                 db.SaveChanges();
                 return RedirectToAction("Index");

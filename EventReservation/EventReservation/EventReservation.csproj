@@ -249,6 +249,18 @@
     <Compile Include="Migrations\202001232131152_date check in locals revert.Designer.cs">
       <DependentUpon>202001232131152_date check in locals revert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001232325184_bla.cs" />
+    <Compile Include="Migrations\202001232325184_bla.Designer.cs">
+      <DependentUpon>202001232325184_bla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001240017362_eventsModelEdited.cs" />
+    <Compile Include="Migrations\202001240017362_eventsModelEdited.Designer.cs">
+      <DependentUpon>202001240017362_eventsModelEdited.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001240033509_localsModelEdited.cs" />
+    <Compile Include="Migrations\202001240033509_localsModelEdited.Designer.cs">
+      <DependentUpon>202001240033509_localsModelEdited.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -739,6 +751,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001232131152_date check in locals revert.resx">
       <DependentUpon>202001232131152_date check in locals revert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001232325184_bla.resx">
+      <DependentUpon>202001232325184_bla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001240017362_eventsModelEdited.resx">
+      <DependentUpon>202001240017362_eventsModelEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001240033509_localsModelEdited.resx">
+      <DependentUpon>202001240033509_localsModelEdited.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -30,6 +30,9 @@ namespace EventReservation.Models
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
 
+        [Column(TypeName = "image")]
+        public byte[] LocalsImage { get; set; }
+
         public Local ()
         {
             Events = new List<Event>();

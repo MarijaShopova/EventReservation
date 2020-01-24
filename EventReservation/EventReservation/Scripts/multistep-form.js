@@ -4,12 +4,12 @@ function validate_step1() {
     //alert("fleva")
     var title = document.getElementById("title");
     var desc = document.getElementById("description");
-    var band = document.getElementById("genre");
+   
     var performer = document.getElementById("performer");
     var table = document.getElementById("tables");
 
     var flag = 1;
-    refresh1();
+    //refresh1();
     if (title.value == "") {
         title.focus();
         title.style.borderWidth = "2px";
@@ -20,13 +20,7 @@ function validate_step1() {
         flag = 0;
     }
 
-    if (!(/^[a-zA-Z]+$/.test(genre.value)) && genre.value != "") {
-        document.getElementById("GenreH").innerHTML = "We accept only letters as value of genre.";
-        document.getElementById("GenreH").style.display = "block";
-        document.getElementById("GenreH").style.color = "red";
-        flag = 0; 
-    }
-
+ 
     if (desc.value == "") {
         desc.focus();
         desc.style.borderWidth = "2px";
@@ -37,15 +31,6 @@ function validate_step1() {
         flag = 0;
     }
 
-    if (band.value == "") {
-        band.focus();
-        band.style.borderWidth = "2px";
-        band.style.borderColor = "red";
-        document.getElementById("BandH").innerHTML = "We accept only letters as value of genre.";
-        document.getElementById("BandH").style.display = "block";
-        document.getElementById("BandH").style.color = "red";
-        flag = 0;
-    }
 
     if (performer.value == "") {
         performer.focus();
@@ -80,7 +65,7 @@ function validate_step2() {
     var end = document.getElementById("end");
     var datepicker = document.getElementById("datepicker");
     var flag = 1;
-    refresh2();
+   // refresh2();
     if (start.value == "") {
         start.focus();
         start.style.borderWidth = "2px";
@@ -177,7 +162,7 @@ function prev_step1() {
     document.getElementById("PerformerH").style.display = "none";
     document.getElementById("tableH").style.display = "none";
 }
-
+/*
 function refresh1() {
     var title = document.getElementById("title");
     var desc = document.getElementById("description");
@@ -205,14 +190,11 @@ function refresh2() {
     document.getElementById("datepicker").style.borderColor = "black";
 }
 // Function that executes on click of second next button.
-function next_step2() {
 
-    document.getElementById("second").style.display = "none";
-    document.getElementById("third").style.display = "block";
-    document.getElementById("active3").style.color = "#004E64";
-  
-}
 // Function that executes on click of second previous button.
+
+
+*/
 function prev_step2() {
     document.getElementById("third").style.display = "none";
     document.getElementById("second").style.display = "block";
@@ -221,3 +203,10 @@ function prev_step2() {
 }
 
 
+function next_step2() {
+
+    document.getElementById("second").style.display = "none";
+    document.getElementById("third").style.display = "block";
+    document.getElementById("active3").style.color = "#004E64";
+
+}

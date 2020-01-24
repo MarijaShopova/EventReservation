@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -39,6 +40,10 @@ namespace EventReservation.Models
         public string Genre { get; set; }
         public int LocalId { get; set; }
         public Local local { get; set; }
+
+        [Column(TypeName = "image")]
+        public byte[] EventImage { get; set; }
+
         public virtual ICollection<Reservation> Reservations { get; set; }
         public Event()
         {

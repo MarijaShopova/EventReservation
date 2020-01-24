@@ -19,5 +19,9 @@ namespace EventReservation.Models
         public String Surname { get; set; }
         public String LocalName { get; set; }
         public String LocalCity { get; set; }
+
+        [Column(TypeName = "image")]
+        public byte[] LocalsImage { get; set; }
+
     }
 }
