@@ -128,6 +128,7 @@ namespace EventReservation.Controllers
             ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
             var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
             ViewBag.LocalId = LocalId;
+            ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
             return View(@event);
         }
 
