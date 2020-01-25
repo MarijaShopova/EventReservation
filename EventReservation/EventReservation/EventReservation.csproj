@@ -699,6 +699,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Admin\LocalRequest.cshtml" />
     <Content Include="Views\Manager\Local.cshtml" />
+    <Content Include="Views\Events\ListReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

@@ -33,7 +33,7 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id="@item.Id">
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
@@ -53,10 +53,32 @@
                     @Html.DisplayFor(modelItem => item.LocalCity)
                 </td>
                 <td>
-                    @Html.ActionLink("Confirm", "Confirm", "Locals", new { id = item.Id }, null) 
+                    @Html.ActionLink("Confirm", "Confirm", "Locals", new { id = item.Id }, new { @class = "btn btn-link" , style = "padding: 0 !important" })
+                    <button type="button" class="btn btn-link" style="padding: 0 !important" onclick="post(@item.Id)">Delete</button>
                 </td>
             </tr>
         }
 
     </table>
 </div>
+
+<script>
+    function post(id) {
+        var formData = new FormData();
+        formData.append("id", id);
+        $.ajax({
+            url: "/Locals/DeleteRequest/",
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function () {
+                $("#" + id).remove();
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+</script>

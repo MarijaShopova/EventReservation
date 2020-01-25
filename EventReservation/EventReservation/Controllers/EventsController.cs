@@ -184,5 +184,28 @@ namespace EventReservation.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET
+        public ActionResult ListReservations() {
+            var currentUser = User.Identity.Name;
+
+            //if(User.IsInRole("Manager"))
+            {
+                var eventIds = db.Locals
+                    .Include(l => l.Events)
+                    .Where(l => l.Manager == currentUser)
+                    .SelectMany(l => l.Events)
+                    .Select(e => e.Id);
+
+                var events = db.Reservations
+                    .Include(r => r.Event)
+                    .Where(r => eventIds.Contains(r.eventId))
+                    .Select(r => r.Event);
+
+                return View(events);
+            }
+
+            return View();
+        }
     }
 }

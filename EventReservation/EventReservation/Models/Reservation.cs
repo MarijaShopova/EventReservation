@@ -15,5 +15,6 @@ namespace EventReservation.Models
         public int eventId { get; set; }
         public int NoTables { get; set; }
         public string userEmail { get; set; }
+        public Event Event { get; set; }
     }
 }

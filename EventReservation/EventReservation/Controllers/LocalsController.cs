@@ -133,6 +133,26 @@ namespace EventReservation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //POST: Locals/Delete
+        [HttpPost]
+        public ActionResult DeleteRequest(FormCollection data)
+        {
+            int id = int.Parse(data["id"]);
+            //find local request
+            LocalRequest request = db.LocalRequests.Find(id);
+
+            if(request == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                db.LocalRequests.Remove(request);
+                db.SaveChanges();
+                return Json("{}");
+            }
+        }
+
         // GET: Locals/Edit/5
         public ActionResult Edit(int? id)
         {
