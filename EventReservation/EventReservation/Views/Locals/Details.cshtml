@@ -108,7 +108,7 @@
         color: #004E64 !important;
         box-shadow: 3px 7px 8px rgba(0,0,0,0.4), 0 4px 2px rgba(0,0,0,0.23)
     }
-    
+
 
 
     div.gallery {
@@ -147,13 +147,11 @@
         font-weight: bold;
         font-family: ChunkFiveRegular;
         font-style: oblique;
-        
     }
 
     .localnamedt {
         margin-top: 5px;
     }
-    
 </style>
 
 
@@ -190,8 +188,8 @@
 
             <div class="row localname">
                 <dt class="col localnamedt">
-                     @Html.DisplayFor(model => model.Name)
-                    
+                    @Html.DisplayFor(model => model.Name)
+
                 </dt>
             </div>
 
@@ -250,7 +248,7 @@
                                 <li>
                                     <a href="@Url.Action("Details", "Events", new { id = item.Id } )" style="font-size: 18px;">
                                         <span style="float:left; margin-top: 5px;">
-                                            <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 30px; width: 50px;">
+                                     
                                         </span>
                                         <span style="margin-left: 10px;">@item.Title</span>
                                         <span style="float: right;">@item.DateStart.ToString("MMM dd").ToUpper()</span>
@@ -272,7 +270,7 @@
                     }
                 </p>
             </div>
-            
+
         </div>
     </div>
 </div> @*div container*@

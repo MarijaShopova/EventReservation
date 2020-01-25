@@ -14,7 +14,7 @@
 <script src="~/Content/timepicki.js"></script>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -56,8 +56,8 @@
                 <div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.DropDownList("genre", new SelectList(Model.Genre), "", new { @class = "form-control" })
-                        @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" }) 
+
+                        @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
                         @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control cust-width", @id = "genre" } })
                         <p id="BandH"></p>
                     </div>
@@ -75,10 +75,11 @@
                     @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control cust-width", @id = "tables" } })
                     <p id="tableH"></p>
                 </div>
-                <div class="form-group" style="margin-right:45px;">
+                <div class="form-group field2" style="margin-right:45px;">
+                    <a class="btn pl-3 pr-3 btn-green" href="/Events/Index">Cancel</a>
                     <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
-                </fieldset>
+            </fieldset>
 
             <fieldset id="second" style="width:500px;">
                 <h5 class="title">Date & Time</h5>
@@ -103,11 +104,13 @@
                         <p id="endH"></p>
                     </div>
                 </div>
-                <div class="form-group field2">
-                    <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
-                    <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right">
+                <div class="form-group field2 row">
+
+                    <div class="col-4">  <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green"></div>
+                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
+                    <div class="col-4"><input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right"></div>
                 </div>
-            </fieldset>
+</fieldset>
 
             <fieldset id="third" style="width:500px;">
 
@@ -128,13 +131,14 @@
 
                 </div>
                 <div class="form-group pl-5">
-                    <div>Event Image</div>
-                    <input type="file" />
-                </div>
+                    @Html.TextBoxFor(m => m.EventImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", @class = "form-control" })
 
-                <div class="form-group field2">
-                    <input id="pre_btn1" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 mt-3 btn-green">
-                    <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 mt-3 float-right" />
+                </div>
+                <div class="form-group field2 row">
+
+                    <div class="col-4">  <input id="pre_btn1" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green"></div>
+                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
+                    <div class="col-4">  <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 mt-3 float-right" />></div>
                 </div>
             </fieldset>
 

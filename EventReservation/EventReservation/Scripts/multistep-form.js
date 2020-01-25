@@ -9,7 +9,7 @@ function validate_step1() {
     var table = document.getElementById("tables");
 
     var flag = 1;
-    //refresh1();
+  refresh1();
     if (title.value == "") {
         title.focus();
         title.style.borderWidth = "2px";
@@ -65,7 +65,7 @@ function validate_step2() {
     var end = document.getElementById("end");
     var datepicker = document.getElementById("datepicker");
     var flag = 1;
-   // refresh2();
+    refresh2();
     if (start.value == "") {
         start.focus();
         start.style.borderWidth = "2px";
@@ -162,11 +162,11 @@ function prev_step1() {
     document.getElementById("PerformerH").style.display = "none";
     document.getElementById("tableH").style.display = "none";
 }
-/*
+
 function refresh1() {
     var title = document.getElementById("title");
     var desc = document.getElementById("description");
-    var band = document.getElementById("genre");
+
     var performer = document.getElementById("performer");
     var table = document.getElementById("tables");
  
@@ -178,7 +178,7 @@ function refresh1() {
     desc.style.borderColor = "black";
     table.style.borderColor = "black";
     performer.style.borderColor = "black";
-    band.style.borderColor = "black";
+
 }
 
 function refresh2() {
@@ -189,12 +189,7 @@ function refresh2() {
     document.getElementById("end").style.borderColor = "black";
     document.getElementById("datepicker").style.borderColor = "black";
 }
-// Function that executes on click of second next button.
 
-// Function that executes on click of second previous button.
-
-
-*/
 function prev_step2() {
     document.getElementById("third").style.display = "none";
     document.getElementById("second").style.display = "block";

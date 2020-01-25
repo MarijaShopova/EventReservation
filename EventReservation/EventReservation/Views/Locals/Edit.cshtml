@@ -64,14 +64,14 @@
                     <div>
                         <label>Picture add</label>
                     </div>
-                    @Html.TextBoxFor(m => m.LocalsImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", @class = "form-control" })
+                    @Html.TextBoxFor(m => m.LocalsImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", @class = "form-control cust-width m-1" })
                 </div>
 
                 <div class="form-group field2">
                     <a class="btn pl-3 pr-3 btn-green" href="/Locals/Index">Cancel</a>
                     <input onclick="next_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
-
+                @Html.HiddenFor(m => m.Manager)
             </fieldset>
             <fieldset id="second" style="width:500px;">
                 <h5 class="title">Date & Time</h5>
@@ -125,9 +125,9 @@
                         @Html.EditorFor(model => model.Parking, new { htmlAttributes = new { @id = "parking", @class = "ml-5" } })
                     </div>
                 </div>
-                @Html.HiddenFor(model => model.Manager);
-                @Html.HiddenFor(model => model.City);
-                @Html.HiddenFor(model => model.Name);
+                @Html.HiddenFor(model => model.Manager)
+                @Html.HiddenFor(model => model.City)
+                @Html.HiddenFor(model => model.Name)
 
                 <div class="row form-group field2 m-auto">
                     <div class="col-4"><button id="pre_btn2" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">Previous</button> </div>
@@ -151,4 +151,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
- Global.asax 
