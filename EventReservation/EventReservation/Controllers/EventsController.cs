@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -78,7 +79,7 @@ namespace EventReservation.Controllers
 
             MailMessage mm = new MailMessage("eventreservationit@gmail.com", reservation.userEmail);
             mm.Subject = "Confrming for your reservation";
-            mm.Body = "Thank you for your reservation for the event " + reservation.Name + ". The event starts at " +
+            mm.Body = "Thank you for your reservation for the event " + e.Title + ". The event starts at " +
               e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled!";
             mm.Body += "<br/>Have fun! :)";
             mm.IsBodyHtml = true;
@@ -123,7 +124,8 @@ namespace EventReservation.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+           
+            ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
             var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
             ViewBag.LocalId = LocalId;
             ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
@@ -184,6 +186,41 @@ namespace EventReservation.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public ActionResult List()
+        {
+            var currentUser = User.Identity.Name;
+            var events = db.Reservations
+                .Include(r => r.Event)
+                .Where(r => r.userEmail == currentUser)
+                .Select(r => r.Event);
+
+            return View(events);
+        }
+
+        // GET
+        public ActionResult ListReservations() {
+            var currentUser = User.Identity.Name;
+
+            //if(User.IsInRole("Manager"))
+            {
+                var eventIds = db.Locals
+                    .Include(l => l.Events)
+                    .Where(l => l.Manager == currentUser)
+                    .SelectMany(l => l.Events)
+                    .Select(e => e.Id);
+
+                var events = db.Reservations
+                    .Include(r => r.Event)
+                    .Where(r => eventIds.Contains(r.eventId))
+                    .Select(r => r.Event);
+
+                return View(events);
+            }
+
+            return View();
         }
     }
 }

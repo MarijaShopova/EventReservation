@@ -23,8 +23,14 @@
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center">Register</h5>
-                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <div>
+                                <div class="float-left">
+                                    <a title="Go back" class="card-title" href="/"><i class="fa fa-fw fa-arrow-left"></i></a>
+                                </div>
+                                <div class="text-center">
+                                    <h5 class="card-title">Register</h5>
+                                </div>
+                            </div>
                             <form class="form-signin">
                                 <div class="form-label-group">
                                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", type = "email", required = "true", autofocus = "autofocus" })
@@ -33,11 +39,15 @@
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "required", autofocus = "autofocus" })
                                 </div>
                                 <div class="form-label-group">
-                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Password", required = "required", autofocus = "autofocus" })
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password", required = "required", autofocus = "autofocus" })
+                                </div>
+                                <div class="row">
+                                    @Html.ValidationSummary("", new { @class = "text-danger small " })
                                 </div>
 
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create account</button>
-
+                                <div class="form-label-group">
+                                    <input value="Create account" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" />
+                                </div>
                             </form>
 
                         </div>

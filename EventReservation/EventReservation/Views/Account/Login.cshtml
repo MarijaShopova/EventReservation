@@ -18,11 +18,19 @@
     {
         @Html.AntiForgeryToken()
         <div class="container">
+            
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                     <div class="card card-signin my-5">
                         <div class="card-body">
-                            <h5 class="card-title text-center">Sign In</h5>
+                            <div>
+                                <div class="float-left">
+                                    <a title="Go back" class="card-title" href="/"><i class="fa fa-fw fa-arrow-left"></i></a>
+                                </div>
+                                <div class="text-center">
+                                    <h5 class="card-title">Sign In</h5>
+                                </div>
+                            </div>
                             <form class="form-signin">
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
@@ -30,13 +38,17 @@
                                 <div class="form-label-group">
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required autofocus>
                                 </div>
+                                <div class="row">
+                                    @Html.ValidationSummary("", new { @class = "text-danger small " })
+                                </div>
 
-                                
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                                <div class="form-label-group">
+                                    <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" value="Sign in">
+                                </div>
                                 <hr class="my-4">
                                 <div class="text-center">
-                                    <span style="font-size: smaller" class="pr-3">Don't have an account? </span>
-                                    @Html.ActionLink("Register as a new user", "Register")
+                                    <span class="pr-3 small">Don't have an account? </span>
+                                    @Html.ActionLink("Register as a new user", "Register", null, new { @class = "small" })
                                 </div>
                             </form>
                         </div>

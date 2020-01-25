@@ -64,10 +64,10 @@
         {
             <h4 class="mt-4 text-imperial text-center">No events to show :( </h4>
         }
-
+        <br />
         @foreach (var item in Model.events)
         {
-            <div class="row row-hover mt-4">
+            <div class="row container row-hover mt-4">
                 <div class="col-lg-4 p-0">
                     <span>
                         @{
@@ -78,7 +78,7 @@
                         <img src="@imgSrc" style="width:250px; height:300px;" />
                     </span>
                 </div>
-                <div class="col-lg-8 bg-imperial p-4">
+                <div class="col-lg-8 bg-imperial py-4 pr-4">
                     <div class="row text-light">
                         <div class="col-lg-10 text-white">
                             <h2 class="mb-3 text-mint">@item.Title</h2>

@@ -27,23 +27,10 @@ namespace EventReservation.Controllers
                 return View("~/Views/Locals/Details.cshtml", local);
             }
             else
-                return View(db.Locals.OrderByDescending(l => l.Id).ToPagedList(page ?? 1, pageSize ?? 2));
+                return View(db.Locals.Include(l => l.LocalImages).OrderByDescending(l => l.Id).ToPagedList(page ?? 1, pageSize ?? 9));
         }
 
-        /*[HttpPost]
-         public ActionResult AddImage([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking")] Local local,HttpPostedFileBase photo)
-          {
-              var db = new Entities();
-              if (photo != null) {
-                  local.LocalsImage = new byte[photo.ContentLength];
-                  photo.InputStream.Read(local.LocalsImage, 0, photo.ContentLength);
-              }
-              //  db.Locals.Add(local);
-              db.Entry(local).State = EntityState.Modified;
-              db.SaveChanges();
-              return View(local);
-          }
-          */
+       
 
         // GET: Locals/Details/5
         public ActionResult Details(int? id)
@@ -133,6 +120,26 @@ namespace EventReservation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //POST: Locals/Delete
+        [HttpPost]
+        public ActionResult DeleteRequest(FormCollection data)
+        {
+            int id = int.Parse(data["id"]);
+            //find local request
+            LocalRequest request = db.LocalRequests.Find(id);
+
+            if(request == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                db.LocalRequests.Remove(request);
+                db.SaveChanges();
+                return Json("{}");
+            }
+        }
+
         // GET: Locals/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -153,15 +160,28 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,Manager,ClosingHour,Parking")] Local local, HttpPostedFileBase LocalsImage)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,Manager,ClosingHour,Parking")] Local local)
         {
+            var files = Request.Files;
 
             if (ModelState.IsValid)
             {
-                using (var ms = new MemoryStream())
+                if (files != null)
                 {
-                    LocalsImage.InputStream.CopyTo(ms);
-                    local.LocalsImage = ms.ToArray();
+                    foreach (HttpPostedFileBase file in files)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            file.InputStream.CopyTo(ms);
+                            var localImage = new LocalImage
+                            {
+                                Local = local,
+                                Image = ms.ToArray()
+                            };
+
+                            local.LocalImages.Add(localImage);
+                        }
+                    }
                 }
                 db.Locals.Add(local);
 
