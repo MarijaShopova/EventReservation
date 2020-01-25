@@ -32,14 +32,19 @@
                     <a class="border mt-3" href="/Locals/Details/@item.Id">
                         <div class="content shadow-lg rounded">
                             <div class="content-overlay"></div>
-
-                            <div>
-                                @{
-                                    var base64 = Convert.ToBase64String(@item.LocalsImage);
-                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                                }
-                                <img src="@imgSrc" style="height: 30px; width: 50px;" class="content-image" />
-                            </div>
+                            @if (@item.LocalsImage == null)
+                            {
+                                <img src="~/Content/IT_sliki/b52.jpg" style="height: 30px; width: 50px; " class="content-image" />
+                            }
+                            else
+                            {
+                                <div>
+                                    @{
+                                        var base64 = Convert.ToBase64String(@item.LocalsImage);
+                                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    }
+                                    <img src="@imgSrc" style="height: 30px; width: 50px;" class="content-image" />
+                                </div>}
                             <div class="content-details fadeIn-top">
                                 <h3>@item.Name</h3>
                                 <div>
@@ -87,6 +92,5 @@
 
 
 <div class="text-center">
-@Html.PagedListPager(Model, page => Url.Action("Index",
- new { page }))
-    </div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>

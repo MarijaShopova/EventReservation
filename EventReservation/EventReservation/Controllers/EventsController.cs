@@ -67,7 +67,7 @@ namespace EventReservation.Controllers
         //POST: Events/Reserve/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public void Reserve(Reservation @reservation)
+        public ActionResult Reserve(Reservation @reservation)
         {
             //this need to be in ajax call so there wont be any changes to the page and the modal should close at end
             Event e = db.Events.Find(reservation.eventId);
@@ -80,8 +80,8 @@ namespace EventReservation.Controllers
             mm.Subject = "Confrming for your reservation";
             mm.Body = "Thank you for your reservation for the event " + reservation.Name + ". The event starts at " +
               e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled!";
-            mm.Body += " /n Have fun! :)";
-            mm.IsBodyHtml = false;
+            mm.Body += "<br/>Have fun! :)";
+            mm.IsBodyHtml = true;
 
             SmtpClient smtp = new SmtpClient();
             smtp.Host = "smtp.gmail.com";
@@ -91,6 +91,8 @@ namespace EventReservation.Controllers
             smtp.UseDefaultCredentials = true;
             smtp.Credentials = nc;
             smtp.Send(mm);
+
+            return RedirectToAction("Index", "Locals");
         }
 
         // GET: Events/Create

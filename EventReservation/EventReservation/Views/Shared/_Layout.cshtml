@@ -60,11 +60,12 @@
                                 <i class="fa fa-info-circle"></i> Requests
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Account/Login">
-                                <i class="fa fa-user"></i> Log in
-                            </a>
-                        </li>
+                        @*<li class="nav-item">
+                                <a class="nav-link" href="/Account/Login">
+                                    <i class="fa fa-user"></i> Log in
+                                </a>
+                            </li>*@
+                        @Html.Partial("_LoginPartial")
 
                     </ul>
                 </div>
@@ -83,7 +84,6 @@
 </body>
 </html>
 <style>
-    #proba{
-      
+    #proba {
     }
 </style>

@@ -24,18 +24,18 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Register</h5>
-                             @Html.ValidationSummary("", new { @class = "text-danger" })
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
                             <form class="form-signin">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", type = "email", required = "true", autofocus = "autofocus" })
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPass" class="form-control" placeholder="Password" name="password" required autofocus>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "required", autofocus = "autofocus" })
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="password" id="confirmPass" class="form-control" placeholder="Confirm password" name="password" required autofocus>
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Password", required = "required", autofocus = "autofocus" })
                                 </div>
-                               
+
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create account</button>
 
                             </form>

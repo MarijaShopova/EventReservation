@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using EventReservation.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PagedList;
 
 namespace EventReservation.Controllers
 {
@@ -17,7 +18,7 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Locals
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? pageSize)
         {
             if (User.IsInRole("Manager"))
             {
@@ -26,18 +27,11 @@ namespace EventReservation.Controllers
                 return View("~/Views/Locals/Details.cshtml", local);
             }
             else
-                return View(db.Locals.ToList());
+                return View(db.Locals.OrderByDescending(l => l.Id).ToPagedList(page ?? 1, pageSize ?? 2));
         }
 
-        public ActionResult AddImage()
-        {
-            Local l1 = new Local();
-
-            return View(l1);
-        }
-
-        [HttpPost]
-        /* public ActionResult AddImage([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking")] Local local,HttpPostedFileBase photo)
+        /*[HttpPost]
+         public ActionResult AddImage([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,ClosingHour,Parking")] Local local,HttpPostedFileBase photo)
           {
               var db = new Entities();
               if (photo != null) {
@@ -115,7 +109,7 @@ namespace EventReservation.Controllers
             //P@ssw0rdPassword
             MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
             mm.Subject = "Local accepted";
-            mm.Body = "Dear" + user.Email + ", your local has been added to our webside. Thank you for choosing us. You can now loging to" +
+            mm.Body = "Dear " + user.Email + ", your local has been added to our webside. Thank you for choosing us. You can now loging to" +
                 "your account";
             mm.Body += "Username: " + user.Email + "\n Password: " + password;
             mm.IsBodyHtml = false;
