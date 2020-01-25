@@ -261,6 +261,14 @@
     <Compile Include="Migrations\202001240033509_localsModelEdited.Designer.cs">
       <DependentUpon>202001240033509_localsModelEdited.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001251915247_locals_images.cs" />
+    <Compile Include="Migrations\202001251915247_locals_images.Designer.cs">
+      <DependentUpon>202001251915247_locals_images.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001251927483_column_rename.cs" />
+    <Compile Include="Migrations\202001251927483_column_rename.Designer.cs">
+      <DependentUpon>202001251927483_column_rename.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -268,6 +276,7 @@
     <Compile Include="Models\EventWithFiltersViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Local.cs" />
+    <Compile Include="Models\LocalImage.cs" />
     <Compile Include="Models\LocalRequest.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Reservation.cs" />
@@ -699,6 +708,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Admin\LocalRequest.cshtml" />
     <Content Include="Views\Manager\Local.cshtml" />
+    <Content Include="Views\Events\List.cshtml" />
     <Content Include="Views\Events\ListReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -761,6 +771,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001240033509_localsModelEdited.resx">
       <DependentUpon>202001240033509_localsModelEdited.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001251915247_locals_images.resx">
+      <DependentUpon>202001251915247_locals_images.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001251927483_column_rename.resx">
+      <DependentUpon>202001251927483_column_rename.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

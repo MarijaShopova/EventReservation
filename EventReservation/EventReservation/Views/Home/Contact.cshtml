@@ -34,11 +34,13 @@
                                 <div class="form-label-group">
                                     @Html.DropDownList("LocalCity", new SelectList(ViewBag.cities), new { @class = "form-control", @required = true, @id = "inputLocalCity" })
                                 </div>
-
+                                <hr class="my-4">
                                 <div class="form-label-group">
-                                    <input value="Register" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"/>
+                                    <input value="Register" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" />
                                 </div>
-                                    <hr class="my-4">
+                                <div class="form-label-group">
+                                    <p class="text-small">You will receive your sign-in data by email.</p>
+                                </div>
                             </form>
                         </div>
                     </div>

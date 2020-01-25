@@ -7,29 +7,45 @@
 }
 <link href="~/Css/event-details.css" rel="stylesheet" />
 <div class="container">
-        <img src="~/Content/IT_sliki/audience.jpg" class="mt-2" style="width:80%; margin-left:100px; height:450px; opacity:0.9" />
-        <div class="centered">
-            @Html.DisplayFor(model => model.Title)
-        </div>
-        <div class="centered1 mt-4">
-            @Html.DisplayNameFor(model => model.Description)
+    <img src="~/Content/IT_sliki/audience.jpg" class="mt-2" style="width:80%; margin-left:100px; height:450px; opacity:0.9" />
+    <div class="centered">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+    <div class="centered1 mt-4">
+        @Html.DisplayNameFor(model => model.Description)
 
-            @Html.DisplayFor(model => model.Description)
+        @Html.DisplayFor(model => model.Description)
+      
 
-            <div class="mt-2 p-2"><a class="aboutus-more" data-toggle="modal" data-target="#myModal" href="#">Reserve Table</a></div>
-        </div>
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
+        <div class="mt-2 p-2"><a class="aboutus-more" data-toggle="modal" data-target="#myModal" href="#">Reserve Table</a></div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            @if (!User.IsInRole("User"))
+            {
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Please sign in</h5>
+                    </div>
+                    <div class="container">
+                        <p class="px-4 pt-4 bold">You need to sign in to make a reservation! </p>
+                        <div class="m-4 float-right"> <a class="btn btn-sm btn-outline-info" href="/Account/Login">Sign in</a></div>
 
+                    </div>
+                </div>
+            }
+            else
+            {
                 <!-- Modal content-->
-                @if (Model.NoTables == Model.ReservedTables)
+                if (Model.NoTables == Model.ReservedTables)
                 {
                     <div class="modal-content p-3">
                         <h4 class="modal-header">No tables available</h4>
                         <p class="pl-3 pt-2">Unfortunately, All tables for this event are reserved :( </p>
                         <div class="p-4"></div>
                     </div>
-                } else
+                }
+                else
                 {
                     <div class="modal-content m-5 p-2">
                         <div class="modal-header">
@@ -50,21 +66,23 @@
                                 <div class="form-group row">
                                     <div class="col-sm-2 col-form-label"> <label for="numberT">Tables</label></div>
                                     <div class="col-10"> <input type="number" id="numberT" class="form-control" name="notables" placeholder="Number of tables" min="1" max="3"></div>
-                                <div id="price-hidden"></div>
+                                    <div id="price-hidden"></div>
                                 </div>
                                 <br />
+
                                 <h6 class="small">By clicking <span class="btn btn-sm bg-imperial rounded text-white" style="padding:1px;">Reserve</span> you will receive an email confirmation for your reservation.</h6>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" id="btn-reserve" class="btn bg-imperial text-mint" >Reserve</button>
+                                <button type="submit" id="btn-reserve" class="btn bg-imperial text-mint">Reserve</button>
                                 <button type="button" class="btn bg-imperial text-mint" data-dismiss="modal">Cancel</button>
                             </div>
                         }
                     </div>
                 }
-            </div>
+            }
         </div>
+    </div>
 
 
 
@@ -130,9 +148,9 @@
 
 
 
-                @Html.DisplayNameFor(model => model.local.City):
-                @Html.DisplayFor(model => model.local.City)
-           
+            @Html.DisplayNameFor(model => model.local.City):
+            @Html.DisplayFor(model => model.local.City)
+
         </div>
     </div>
     <br />

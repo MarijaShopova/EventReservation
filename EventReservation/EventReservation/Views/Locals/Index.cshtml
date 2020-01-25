@@ -32,18 +32,18 @@
                     <a class="border mt-3" href="/Locals/Details/@item.Id">
                         <div class="content shadow-lg rounded">
                             <div class="content-overlay"></div>
-                            @if (@item.LocalsImage == null)
+                            @if (@item.LocalImages == null || !@item.LocalImages.Any())
                             {
-                                <img src="~/Content/IT_sliki/b52.jpg" style="height: 30px; width: 50px; " class="content-image" />
+                                <img src="~/Content/IT_sliki/b52.jpg" style="height: 230px; width: 250px;" class="content-image" />
                             }
                             else
                             {
                                 <div>
-                                    @{
-                                        var base64 = Convert.ToBase64String(@item.LocalsImage);
-                                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                                    @foreach(var localImage in @item.LocalImages)
+                                    {
+                                        var base64 = Convert.ToBase64String(localImage.Image);
+                                        <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 230px; width: 250px;" class="content-image" />
                                     }
-                                    <img src="@imgSrc" style="height: 30px; width: 50px;" class="content-image" />
                                 </div>}
                             <div class="content-details fadeIn-top">
                                 <h3>@item.Name</h3>

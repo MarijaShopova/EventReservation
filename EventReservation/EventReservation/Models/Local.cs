@@ -20,7 +20,7 @@ namespace EventReservation.Models
         public string City { get; set; }
         [Display(Name = "Stret")]
         public string StreetName { get; set; }
-        [Range(0,99999,ErrorMessage = "Please enter a valid number.")]
+        [Range(0, 99999, ErrorMessage = "Please enter a valid number.")]
         public int StreetNo { get; set; }
         [Display(Name = "Opens")]
         public DateTime OpeningHour { get; set; } = DateTime.Parse("Jan 1, 2000");
@@ -29,14 +29,13 @@ namespace EventReservation.Models
         public Boolean Parking { get; set; }
         public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<LocalImage> LocalImages { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] LocalsImage { get; set; }
-
-        public Local ()
+        public Local()
         {
             Events = new List<Event>();
             Reviews = new List<Review>();
+            LocalImages = new List<LocalImage>();
         }
     }
 }
