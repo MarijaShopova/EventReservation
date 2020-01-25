@@ -10,7 +10,7 @@ namespace EventReservation.Models
     {
         [Key]
         public int Id { get; set; }
-        [Range(1,5)]
+        [Range(0,5)]
         public int Stars { get; set; }
         public Local Local { get; set; }
         public string User { get; set; } //user email

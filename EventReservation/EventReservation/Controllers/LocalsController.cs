@@ -63,6 +63,20 @@ namespace EventReservation.Controllers
             {
                 return HttpNotFound();
             }
+
+            int stars = 0;
+            var result = db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == local.Id).Reviews;
+            if (result.Any())
+                stars = (int)System.Math.Round(db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == local.Id).Reviews.Average(review => review.Stars));
+
+            int yourReview = 0;
+            var yourReviewResult = db.Reviews.FirstOrDefault(r => r.Local.Id == local.Id);
+            // && r.User == User.Identity.Name
+            if (yourReviewResult != null)
+                yourReview = db.Reviews.FirstOrDefault(r => r.Local.Id == local.Id).Stars;
+            // && r.User == User.Identity.Name
+            ViewBag.average = stars;
+            ViewBag.yourReview = yourReview;
             return View(local);
         }
 
@@ -185,10 +199,37 @@ namespace EventReservation.Controllers
         }
 
         [HttpPost]
-        public ActionResult Rating(Review data)
+        public ActionResult Rating(FormCollection data)
         {
-            Review review = new Review { Stars = data.Stars };
-            return Json(new { success = true });
+            //if (User.Identity.IsAuthenticated)
+            //{
+            int numberStars = int.Parse(data["Stars"]);
+            int LocalId = int.Parse(data["Local"]);
+            var tableRow = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId);
+            int oldReview = 0;
+            // && r.User == User.Identity.Name
+            if (tableRow != null)
+            {
+                oldReview = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId).Stars;
+                // && r.User == User.Identity.Name
+                db.Reviews.Remove(tableRow);
+            }
+            Local local = db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == LocalId);
+            Review review = new Review { Stars = numberStars, Local = local };
+            // , User = User.Identity.Name
+            db.Reviews.Add(review);
+            local.Reviews.Add(review);
+            if (oldReview != 0)
+            {
+                var removeReview = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId);
+                // && r.User == User.Identity.Name
+                local.Reviews.Remove(removeReview);
+            }
+            db.SaveChanges();
+            double av = local.Reviews.Average(r => r.Stars);
+            //}
+            //return Json(new { success = true});
+            return Json(new { average = av });
         }
     }
 }

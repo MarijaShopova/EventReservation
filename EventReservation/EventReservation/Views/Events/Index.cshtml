@@ -109,11 +109,13 @@
                         <span class="fa fa-circle text-mint mr-2 mt-2"></span>
                         Hosted by
                         <a href="/Locals/Details/@item.local.Id" class="text-decoration-none text-mint">@item.local.Name</a>
-                        <span class="fa fa-star text-warning"></span>
-                        <span class="fa fa-star text-warning"></span>
-                        <span class="fa fa-star text-warning"></span>
-                        <span class="fa fa-star-half-alt text-warning"></span>
-                        <span class="far fa-star text-warning"></span>
+                        <div style="display: inline-block">
+                            <i class="fa fa-star" id="@(item.local.Id + "star1" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star2" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star3" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star4" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star5" + item.Id)" style="color: darkgray"></i>
+                        </div>
                     </div>
                     <button class="btn btn-green mt-3">@Html.ActionLink("Read More", "Details", new { id = item.Id }, new { htmlAttributes = new { @class = "link" } })</button>
                 </div>
@@ -123,4 +125,23 @@
         }
 
     </div>
-       
+
+
+    <script>
+    $(document).ready(function () {
+        @foreach (var item in Model.events)
+        {
+
+            double numberStars = 0;
+            var reviews = item.local.Reviews.Count;
+
+            if (reviews != 0) {
+                numberStars = item.local.Reviews.Average(r => r.Stars);
+            }
+            for (int i = 0; i < numberStars; i++) {
+                var id = item.local.Id.ToString() + "star" + (i + 1) + item.Id;
+                @: document.getElementById("@id").style.color = "#f0ad4e";
+            }
+        }
+    });
+    </script>

@@ -194,11 +194,11 @@
             </div>
 
             <div>
-                <i class="fa fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
-                <i class="fa fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
-                <i class="fa fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
-                <i class="fa fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
-                <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray; cursor: pointer"></i>
+                <i class="fa fa-star" id="review1" value="@ViewBag.average" style="color: darkgray;"></i>
+                <i class="fa fa-star" id="review2" value="@ViewBag.average" style="color: darkgray;"></i>
+                <i class="fa fa-star" id="review3" value="@ViewBag.average" style="color: darkgray;"></i>
+                <i class="fa fa-star" id="review4" value="@ViewBag.average" style="color: darkgray;"></i>
+                <i class="fa fa-star" id="review5" value="@ViewBag.average" style="color: darkgray;"></i>
             </div>
 
             <div style=" width: 700px; margin-top: 10px;">
@@ -228,6 +228,13 @@
                                 <br /> Closing time <label style="text-transform:lowercase"> - @Model.ClosingHour.ToString("hh:mm tt")</label>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        <i class="fa fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                        <i class="fa fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                        <i class="fa fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                        <i class="fa fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                        <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
                     </div>
                 </div>
             </div>
@@ -274,9 +281,35 @@
         </div>
     </div>
 </div> @*div container*@
-
 <script>
     var numberStars = 0;
+    $(document).ready(function() {
+        var stars = document.getElementById("review1").getAttribute("value");
+        numberStars = @ViewBag.yourReview;
+        if (numberStars != 0) {
+            for (var i = 0; i < numberStars; i++) {
+                var newId = "star" + (i + 1);
+                document.getElementById(newId).style.color = "#f0ad4e";
+            }
+        }
+
+        for (var i = 0; i < stars; i++) {
+            var id = "review" + (i + 1);
+            document.getElementById(id).style.color = "#f0ad4e";
+        }
+    });
+
+    function staticStarsUpdate(a) {
+        var stars = a;
+        for (var i = 0; i < stars; i++) {
+            var id = "review" + (i + 1);
+            document.getElementById(id).style.color = "#f0ad4e";
+        }
+        for (var i = stars; i < 5; i++) {
+            var id = "review" + (i + 1);
+            document.getElementById(id).style.color = "darkgrey";
+        }
+    }
 
     function changeColor(element) {
         var id = parseInt(element.id[4]);
@@ -296,7 +329,7 @@
 
     }
 
-    function rate(element) {
+    function rate(element, modelId) {
         var id = parseInt(element.id[4]);
 
         changeBackColor();
@@ -307,21 +340,30 @@
 
         numberStars = id;
 
+        var formData = new FormData();
+        formData.append("Stars", numberStars);
+        formData.append("Local", modelId);
+
+        var a = 0;
+
         $.ajax({
             url: "@Url.Content("~/Locals/Rating")",
             type: 'POST',
-            data: JSON.stringify({
-                "Stars": numberStars
-            }),
-            contentType: 'application/json; charset=utf-8',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (data) {
-                alert(data.success);
+                staticStarsUpdate(data.average);
+                //alert(data.success);
             },
             error: function () {
                 alert("error");
             }
         });
     }
+
+
 </script>
 
 

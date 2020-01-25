@@ -44,11 +44,11 @@
                                 <h3>@item.Name</h3>
                                 <div>
                                     <div>
-                                        <i class="fa fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                        <i class="fa fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                        <i class="fa fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                        <i class="fa fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
-                                        <i class="fa fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this)" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="@(item.Id + "star1")" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="@(item.Id + "star2")" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="@(item.Id + "star3")" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="@(item.Id + "star4")" style="color: darkgray"></i>
+                                        <i class="fa fa-star" id="@(item.Id + "star5")" style="color: darkgray"></i>
                                     </div>
 
                                 </div>
@@ -60,6 +60,27 @@
             }
         </div>
     </div>
+    <script>
+    $(document).ready(function () {
+        @foreach (var item in Model)
+        {
+
+            double numberStars = 0;
+            var reviews = item.Reviews.Count;
+
+            if (reviews != 0) {
+                numberStars = item.Reviews.Average(r => r.Stars);
+            }
+            for (int i = 0; i < numberStars; i++) {
+                var id = item.Id.ToString() + "star" + (i + 1);
+
+                @: document.getElementById("@id").style.color = "#f0ad4e";
+            }
+        }
+    });
+    </script>
+
+
 
 
 </div>
