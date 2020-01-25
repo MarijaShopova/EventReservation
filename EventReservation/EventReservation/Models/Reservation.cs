@@ -10,9 +10,11 @@ namespace EventReservation.Models
     public class Reservation
     {
         [Key, Column(Order = 0)]
-        public String Name { get; set; }
+        public string Name { get; set; }
+
         [Key, Column(Order = 1)]
         public int eventId { get; set; }
+        public virtual Event Event { get; set; }
         public int NoTables { get; set; }
         public string userEmail { get; set; }
     }

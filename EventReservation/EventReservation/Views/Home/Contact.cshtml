@@ -34,8 +34,10 @@
                                 <div class="form-label-group">
                                     @Html.DropDownList("LocalCity", new SelectList(ViewBag.cities), new { @class = "form-control", @required = true, @id = "inputLocalCity" })
                                 </div>
-
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                                <div class="form-label-group">
+                                    <p class="text-small">You will receave your sign-in data by email.</p>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase rounded" type="submit">Register</button>
                                 <hr class="my-4">
                             </form>
                         </div>
