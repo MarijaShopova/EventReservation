@@ -160,7 +160,7 @@
 
     .boja {
         color: #004E64;
-        font-size: 25px;
+        font-size: 20px;
     }
 </style>
 
@@ -201,7 +201,7 @@
                         @Html.DisplayFor(model => model.Name)
 
                     </div>
-
+                    
                     <div class="" style="font-size: 0.5rem; margin-top: 35px; margin-left: 10px; display: inline-block;">
                         <i class="fa fa-2x fa-star" id="review1" value="@ViewBag.average" style="color: darkgray;"></i>
                         <i class="fa fa-2x fa-star" id="review2" value="@ViewBag.average" style="color: darkgray;"></i>
@@ -249,6 +249,8 @@
                         </label>
                     </i>
                 </div>
+                @if (User.IsInRole("User"))
+                {
                 <div class="row boja" style="margin-bottom: 20px;">
                     <i class="fa">
                         Leave your review
@@ -259,7 +261,7 @@
                         <i class="fa fa-xs fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
                     </i>
                 </div>
-
+                }
             </div>
             <div class="col-4" style="margin-top: -20px;">
                 <div class="single category">

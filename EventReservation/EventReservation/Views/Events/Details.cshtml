@@ -11,13 +11,11 @@
     <div class="centered">
         @Html.DisplayFor(model => model.Title)
     </div>
-    <div class="centered1 mt-4">
-        @Html.DisplayNameFor(model => model.Description)
-
+    <div class="centered1 mt-4 text-center">
         @Html.DisplayFor(model => model.Description)
       
 
-        <div class="mt-2 p-2"><a class="aboutus-more" data-toggle="modal" data-target="#myModal" href="#">Reserve Table</a></div>
+        <div class="mt-2 p-2 text-center"><a class="aboutus-more" data-toggle="modal" data-target="#myModal" href="#">Reserve Table</a></div>
     </div>
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

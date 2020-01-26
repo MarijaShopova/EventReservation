@@ -44,7 +44,8 @@
                                         var base64 = Convert.ToBase64String(localImage.Image);
                                         <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 230px; width: 250px;" class="content-image" />
                                     }
-                                </div>}
+                                </div>
+                                }
                             <div class="content-details fadeIn-top">
                                 <h3>@item.Name</h3>
                                 <div>
@@ -91,6 +92,6 @@
 </div>
 
 
-<div class="text-center">
+<div class="d-flex justify-content-center">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
 </div>

@@ -21,7 +21,15 @@
     <div id="page-container">
         <nav class="navbar navbar-expand-lg bg-imperial static-top" id="proba">
             <div class="container-page container">
-                <a class="navbar-brand text-mint" href="/Home/Index"><img src="~/Content/logo.png">  </a>
+                @if (!User.IsInRole("Manager"))
+                {
+                    <a class="navbar-brand text-mint" href="/Locals/ListEvents"><img src="~/Content/logo.png">  </a>
+                }
+                else
+                {
+                    <a class="navbar-brand text-mint" href="/Home/Index"><img src="~/Content/logo.png">  </a>
+                }
+
                 <button class="navbar-toggler"
                         type="button"
                         data-toggle="collapse"
@@ -33,21 +41,30 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Home/Index">
-                                <i class="fa fa-home"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="~/Events/Index">
-                                <i class="fa fa-calendar-check"></i> Events
-                            </a>
-                        </li>                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Locals/Index">
-                                <i class="fa fa-map"></i> Locals
-                            </a>
-                        </li>
+                        @if (!User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Home/Index">
+                                    <i class="fa fa-home"></i> Home
+                                </a>
+                            </li>
+                        }
+                        @if (!User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item active">
+                                <a class="nav-link" href="~/Events/Index">
+                                    <i class="fa fa-calendar-check"></i> Events
+                                </a>
+                            </li>
+                        }
+                        @if (!User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Locals/Index">
+                                    <i class="fa fa-map"></i> Locals
+                                </a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link" href="~/Home/About">
                                 <i class="fa fa-info-circle"></i> About Us
@@ -57,7 +74,7 @@
                         @if (User.IsInRole("User"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link"  href="~/Events/List">
+                                <a class="nav-link" href="~/Events/List">
                                     <i class="fa fa-glass-martini"></i> My events
                                 </a>
                             </li>
@@ -66,8 +83,17 @@
                         @if (User.IsInRole("Manager"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" href="~/Locals/MyLocals">
-                                    <i class="fa fa-glass-martini"></i> My locals
+                                <a class="nav-link" href="~/Events/ListReservations">
+                                    <i class="fa fa-glass-martini"></i> My local
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Locals/ListEvents">
+                                    <i class="fa fa-glass-cheers"></i> My events
                                 </a>
                             </li>
                         }
@@ -81,10 +107,10 @@
                             </li>
                         }
                         @*<li class="nav-item">
-            <a class="nav-link" href="/Account/Login">
-                <i class="fa fa-user"></i> Log in
-            </a>
-        </li>*@
+                    <a class="nav-link" href="/Account/Login">
+                        <i class="fa fa-user"></i> Log in
+                    </a>
+                </li>*@
                         @Html.Partial("_LoginPartial")
 
                     </ul>

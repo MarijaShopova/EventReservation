@@ -125,11 +125,12 @@ namespace EventReservation.Controllers
                 return RedirectToAction("Index");
             }
            
+            
             ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
             var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
             ViewBag.LocalId = LocalId;
-            ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
             return View(@event);
+
         }
 
         // GET: Events/Edit/5
@@ -204,23 +205,22 @@ namespace EventReservation.Controllers
         public ActionResult ListReservations() {
             var currentUser = User.Identity.Name;
 
-            //if(User.IsInRole("Manager"))
+            if(User.IsInRole("Manager"))
             {
-                var eventIds = db.Locals
+                var eventIds = db.Reservations
+                    .Select(r => r.eventId)
+                    .Distinct();
+
+                var events = db.Locals
                     .Include(l => l.Events)
                     .Where(l => l.Manager == currentUser)
                     .SelectMany(l => l.Events)
-                    .Select(e => e.Id);
-
-                var events = db.Reservations
-                    .Include(r => r.Event)
-                    .Where(r => eventIds.Contains(r.eventId))
-                    .Select(r => r.Event);
+                    .Where(e => eventIds.Contains(e.Id));
 
                 return View(events);
             }
 
-            return View();
+            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
     }
 }

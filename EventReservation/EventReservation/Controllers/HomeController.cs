@@ -15,6 +15,10 @@ namespace EventReservation.Controllers
 
         public ActionResult Index()
         {
+            if(User.IsInRole("Manager"))
+            {
+                return RedirectToAction("ListEvents", "Locals");
+            }
             return View();
         }
 

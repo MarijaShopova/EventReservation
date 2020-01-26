@@ -211,6 +211,16 @@ namespace EventReservation.Controllers
             }
             base.Dispose(disposing);
         }
+        [HttpGet]
+        public ActionResult ListEvents() {
+
+            var currentUser = User.Identity.Name;
+            var events = db.Locals
+                    .Include(l => l.Events)
+                    .Where(l => l.Manager == currentUser)
+                    .SelectMany(l => l.Events);
+            return View(events);
+        }
 
         [HttpPost]
         public ActionResult Rating(FormCollection data)
