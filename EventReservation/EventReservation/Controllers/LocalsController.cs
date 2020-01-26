@@ -95,10 +95,10 @@ namespace EventReservation.Controllers
             var result = UserManager.Create(user, password);
             //P@ssw0rdPassword
             MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
-            mm.Subject = "Local accepted";
-            mm.Body = "Dear " + user.Email + ", your local has been added to our webside. Thank you for choosing us. You can now loging to" +
-                "your account";
-            mm.Body += "Username: " + user.Email + "\n Password: " + password;
+            mm.Subject = "Confirmation for account";
+            mm.Body = "Your local account has been accepted and added to our webside. Thank you for choosing us. You can now log in to " +
+                "your account." + "\n";
+            mm.Body += "Username: " + user.Email + "\nPassword: " + password;
             mm.IsBodyHtml = false;
 
             SmtpClient smtp = new SmtpClient();
