@@ -182,7 +182,7 @@ namespace EventReservation.Controllers
         {
             if (User.IsInRole("Manager"))
             {
-                var files = Request.Form.Files;
+                var files = Request.Files;
 
                 if (ModelState.IsValid)
                 {

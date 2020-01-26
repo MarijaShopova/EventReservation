@@ -19,10 +19,10 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Events
+        [AllowAnonymous]
         public ActionResult Index(EventFiltersViewModel @filters)
         {
-            if (User.IsInRole("User"))
-            {
+            
                 EventWithFiltersViewModel model = new EventWithFiltersViewModel();
                 model.locals = db.Locals.ToList();
                 model.cities = model.locals.Select(m => m.City).Distinct().ToList();
@@ -50,8 +50,7 @@ namespace EventReservation.Controllers
                 model.events = result.Where(m => m.DateStart.CompareTo(DateTime.Now) >= 0).OrderBy(m => m.DateStart).ToList();
                 model.filters = filters;
                 return View(model);
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+          
         }
 
         // GET: Events/Details/5
