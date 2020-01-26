@@ -173,14 +173,32 @@
                     <div>
                         <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
                             <div class="carousel-inner" role="listbox" style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+                                @*@<div class="carousel-item active">
+                                        <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 430px; width: 750px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 430px; width: 750px;">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/IT_sliki/clubs.jpg" style="height: 430px; width: 750px;">
+                                    </div>*@
                                 <div class="carousel-item active">
-                                    <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 430px; width: 750px;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/Content/IT_sliki/bestParties.jpg" style="height: 430px; width: 750px;">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="~/Content/IT_sliki/clubs.jpg" style="height: 430px; width: 750px;">
+                                    @foreach (var item in Model.LocalImages)
+                                    {
+                                        if (@item == null)
+                                        {
+                                            <img src="~/Content/IT_sliki/b52.jpg" style="height: 430px; width: 750px;" class="content-image" />
+                                        }
+                                        else
+                                        {
+                                            var base64 = Convert.ToBase64String(@item.Image);
+                                            <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 430px; width: 750px;" class="content-image" />
+
+                                        }
+                                        <img src="~/Content/IT_sliki/b52.jpg" style="height: 430px; width: 750px;" class="content-image" />
+                                    }
+                                    <img src="~/Content/IT_sliki/b52.jpg" style="height: 430px; width: 750px;" class="content-image" />
+                                    
                                 </div>
                             </div>
 
@@ -201,7 +219,7 @@
                         @Html.DisplayFor(model => model.Name)
 
                     </div>
-                    
+
                     <div class="" style="font-size: 0.5rem; margin-top: 35px; margin-left: 10px; display: inline-block;">
                         <i class="fa fa-2x fa-star" id="review1" value="@ViewBag.average" style="color: darkgray;"></i>
                         <i class="fa fa-2x fa-star" id="review2" value="@ViewBag.average" style="color: darkgray;"></i>
@@ -251,16 +269,16 @@
                 </div>
                 @if (User.IsInRole("User"))
                 {
-                <div class="row boja" style="margin-bottom: 20px;">
-                    <i class="fa">
-                        Leave your review
-                        <i class="fa fa-xs fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
-                        <i class="fa fa-xs fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
-                        <i class="fa fa-xs fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
-                        <i class="fa fa-xs fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
-                        <i class="fa fa-xs fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
-                    </i>
-                </div>
+                    <div class="row boja" style="margin-bottom: 20px;">
+                        <i class="fa">
+                            Leave your review
+                            <i class="fa fa-xs fa-star" id="star1" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                            <i class="fa fa-xs fa-star" id="star2" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                            <i class="fa fa-xs fa-star" id="star3" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                            <i class="fa fa-xs fa-star" id="star4" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                            <i class="fa fa-xs fa-star" id="star5" onmouseover="changeColor(this)" onmouseleave="changeBackColor()" onclick="rate(this, @Model.Id)" style="color: darkgray; cursor: pointer"></i>
+                        </i>
+                    </div>
                 }
             </div>
             <div class="col-4" style="margin-top: -20px;">

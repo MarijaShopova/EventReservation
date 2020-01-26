@@ -76,7 +76,7 @@
                     <p id="tableH"></p>
                 </div>
                 <div class="form-group field2" style="margin-right:45px;">
-                    <a class="btn pl-3 pr-3 btn-green" href="/Events/Index">Cancel</a>
+                    <a class="btn pl-3 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a>
                     <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
             </fieldset>
@@ -85,7 +85,7 @@
                 <h5 class="title">Date & Time</h5>
                 <div>
                     @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
-                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class="cust-width"})
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class = "cust-width" })
                     <p id="datepickerH"></p>
                 </div>
                 <div>
@@ -107,10 +107,11 @@
                 <div class="form-group field2 row">
 
                     <div class="col-4">  <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green"></div>
-                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
+                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a></div>
+
                     <div class="col-4"><input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right"></div>
                 </div>
-</fieldset>
+            </fieldset>
 
             <fieldset id="third" style="width:500px;">
 
@@ -131,15 +132,29 @@
 
                 </div>
                 <div class="form-group pl-5">
-                    @Html.TextBoxFor(m => m.EventImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", @class = "form-control" })
+                    Image
+                    @if (Model.EventImage == null)
+                    {
+                        <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
+                    }
+                    else
+                    {
+                        var base64 = Convert.ToBase64String(Model.EventImage);
+                        <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 100px; width: 100px;" class="content-image" />
 
+                    }
+                </div>
+                <div class="form-group pl-5">
+                    @Html.TextBoxFor(m => m.EventImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", value = "Change photo" })
                 </div>
                 <div class="form-group field2 row">
-
                     <div class="col-4">  <input id="pre_btn1" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green"></div>
-                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
-                    <div class="col-4">  <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 mt-3 float-right" />></div>
+                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a></div>
+                    <div class="col-4">                   
+                            <input type="submit" class="btn pl-3 ml-2 pr-3 btn-green" value="Save">     
+                    </div>
                 </div>
+
             </fieldset>
 
         </div>
