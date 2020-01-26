@@ -14,8 +14,10 @@
     <div class="centered1 mt-4 text-center">
         @Html.DisplayFor(model => model.Description)
       
-
+        @if (!User.IsInRole("Manager"))
+        {
         <div class="mt-2 p-2 text-center"><a class="aboutus-more" data-toggle="modal" data-target="#myModal" href="#">Reserve Table</a></div>
+        }
     </div>
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

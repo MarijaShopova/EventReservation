@@ -83,12 +83,12 @@ namespace EventReservation.Controllers
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
 
-                MailMessage mm = new MailMessage("eventreservationit@gmail.com", reservation.userEmail);
-                mm.Subject = "Confrming for your reservation";
-                mm.Body = "Thank you for your reservation for the event " + e.Title + ". The event starts at " +
-                  e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled!";
-                mm.Body += "<br/>Have fun! :)";
-                mm.IsBodyHtml = true;
+            MailMessage mm = new MailMessage("eventreservationit@gmail.com", reservation.userEmail);
+            mm.Subject = "Confirmation for reservation";
+            mm.Body = "Thank you for your reservation for the event " + e.Title + ". The event starts at " +
+              e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled.";
+            mm.Body += "<br/>Have fun! :)";
+            mm.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
