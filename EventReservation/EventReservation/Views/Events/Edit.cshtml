@@ -12,6 +12,28 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="~/Content/timepicki.js"></script>
+<style>
+    select {
+        margin-left: 42px;
+    }
+    .first {
+        width: 80%;
+        margin: auto;
+    }
+
+        .first .btn {
+            width: 40%;
+        }
+
+    .second {
+        width: 88%;
+        margin: auto;
+    }
+
+        .second .btn {
+            width: 100%;
+        }
+</style>
 
 
 @using (Html.BeginForm("Edit", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -55,13 +77,12 @@
                 </div>
                 <div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-
+                    <div class="form-group mb-0">
                         @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
-                        <div style="width: 80%" class="d-flex justify-content-center">
-                            @Html.DropDownListFor(model => model.Genre, new SelectList(ViewBag.genres), new { htmlAttributes = new { @class = "form-control align-self-center", @id = "genre" } })
+                        <div style="width: 81%">
+                            @Html.DropDownListFor(model => model.Genre, new SelectList(ViewBag.genres), new { htmlAttributes = new { @class = "form-control", @id = "genre" } })
                         </div>
-                        <p id="BandH"></p>
+                        <p id="BandH" class="pb-0 mb-0"></p>
                     </div>
                 </div>
                 <div>
@@ -73,11 +94,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text" })
+                    @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text mb-2" })
                     @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control cust-width", @id = "tables" } })
                     <p id="tableH"></p>
                 </div>
-                <div class="form-group field2" style="margin-right:45px;">
+                <div class="form-group mt-4 first">
                     <a class="btn pl-3 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a>
                     <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
@@ -87,30 +108,28 @@
                 <h5 class="title">Date & Time</h5>
                 <div>
                     @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
-                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class = "cust-width" })
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @Value = Model.DateStart.ToString("dd.MM.yyyy"), @placeholder = "Select date", @id = "datepicker", @class = "cust-width" })
                     <p id="datepickerH"></p>
                 </div>
                 <div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "start", @placeholder = "hh:mm" } })
+                        @Html.LabelFor(model => model.TimeStart, htmlAttributes: new { @class = "label-text mb-2" })
+                        @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @Value = Model.TimeStart.ToString("HH:mm"), @class = "form-control cust-width cust-border", @id = "start", @placeholder = "hh:mm" } })
                         <p id="startH"></p>
                     </div>
                 </div>
                 <div>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control cust-width cust-border", @id = "end", @placeholder = "hh:mm" } })
+                        @Html.LabelFor(model => model.TimeEnd, htmlAttributes: new { @class = "label-text mb-2" })
+                        @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @Value = Model.TimeEnd.ToString("HH:mm"), @class = "form-control cust-width cust-border", @id = "end", @placeholder = "hh:mm" } })
                         <p id="endH"></p>
                     </div>
                 </div>
-                <div class="form-group field2 row">
-
+                <div class="form-group row second mt-4">
                     <div class="col-4">  <input id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green"></div>
-                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a></div>
-
+                    <div class="col-4">  <a class="btn pl-3 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a></div>
                     <div class="col-4"><input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right"></div>
                 </div>
             </fieldset>
@@ -121,7 +140,7 @@
                 <div class="pt-3">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
-                        @Html.LabelFor(model => model.HasTicket, htmlAttributes: new { @class = "label-text cust-width" })
+                        @Html.LabelFor(model => model.HasTicket, htmlAttributes: new { @class = "label-text cust-width mb-2" })
                         <br />
                         <input type="radio" onclick="handleClick(this);" id="yes" name="HasTicker" class="ml-5" value="Yes" />Yes
                         <input type="radio" onclick="handleClick(this);" checked name="HasTicker" class="ml-3" value="No" />No
@@ -149,11 +168,11 @@
                 <div class="form-group pl-5">
                     @Html.TextBoxFor(m => m.EventImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", value = "Change photo" })
                 </div>
-                <div class="form-group field2 row">
+                <div class="form-group second mt-4 row">
                     <div class="col-4">  <input id="pre_btn1" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green"></div>
                     <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a></div>
-                    <div class="col-4">                   
-                            <input type="submit" class="btn pl-3 ml-2 pr-3 btn-green" value="Save">     
+                    <div class="col-4">
+                        <input type="submit" class="btn pl-3 ml-2 pr-3 btn-green" value="Save">
                     </div>
                 </div>
 
@@ -172,7 +191,7 @@
             max_hour_value: 23,
             step_size_minutes: 15,
             increase_direction: 'up',
-            start_time: ["20", "00"]
+            start_time: [@Model.TimeEnd.Hour.ToString(), @Model.TimeEnd.Minute.ToString()]
         });
         $('#start').timepicki({
             show_meridian: false,
@@ -180,7 +199,7 @@
             max_hour_value: 23,
             step_size_minutes: 15,
             increase_direction: 'up',
-            start_time: ["20", "00"]
+            start_time: [@Model.TimeStart.Hour.ToString(), @Model.TimeStart.Minute.ToString()]
         });
     });
 
@@ -195,13 +214,9 @@
 
         }
     }
-
-
-
     document.getElementById("active2").style.color = "lightgrey";
     document.getElementById("active3").style.color = "lightgrey";
 </script>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

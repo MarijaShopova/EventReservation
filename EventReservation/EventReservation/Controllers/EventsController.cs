@@ -85,7 +85,7 @@ namespace EventReservation.Controllers
             MailMessage mm = new MailMessage("eventreservationit@gmail.com", reservation.userEmail);
             mm.Subject = "Confirmation for reservation";
             mm.Body = "Thank you for your reservation for the event " + e.Title + ". The event starts at " +
-              e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled.";
+              e.DateStart.TimeOfDay + ". Please arrive 15 minutes earlier or your reservation will be canceled.";
             mm.Body += "<br/>Have fun! :)";
             mm.IsBodyHtml = true;
 
@@ -127,7 +127,7 @@ namespace EventReservation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (EventImage != null)
+            +-        if (EventImage != null)
                     {
                         using (var ms = new MemoryStream())
                         {
@@ -180,6 +180,9 @@ namespace EventReservation.Controllers
                     }
 
                     return View(@event);
+                } else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
