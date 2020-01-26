@@ -21,7 +21,7 @@ namespace EventReservation.Controllers
         // GET: Events
         public ActionResult Index(EventFiltersViewModel @filters)
         {
-            if (!User.IsInRole("User"))
+            if (User.IsInRole("User"))
             {
                 EventWithFiltersViewModel model = new EventWithFiltersViewModel();
                 model.locals = db.Locals.ToList();
@@ -128,10 +128,13 @@ namespace EventReservation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var ms = new MemoryStream())
+                    if (EventImage != null)
                     {
-                        EventImage.InputStream.CopyTo(ms);
-                        @event.EventImage = ms.ToArray();
+                        using (var ms = new MemoryStream())
+                        {
+                            EventImage.InputStream.CopyTo(ms);
+                            @event.EventImage = ms.ToArray();
+                        }
                     }
                     db.Events.Add(@event);
                     db.SaveChanges();
@@ -155,12 +158,30 @@ namespace EventReservation.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Event @event = db.Events.Find(id);
-                if (@event == null)
+
+                var events = db.Locals
+                    .Include(l => l.Events)
+                    .Where(l => l.Manager == User.Identity.Name)
+                    .SelectMany(l => l.Events);
+
+                var exists = events.Where(e => e.Id == id);
+
+                if (exists != null)
                 {
-                    return HttpNotFound();
+
+                    Event @event = db.Events.Find(id);
+                    ViewBag.EventImage = @event.EventImage;
+
+                    ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
+                    var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+                    ViewBag.LocalId = LocalId;
+                    if (@event == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    return View(@event);
                 }
-                return View(@event);
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
@@ -176,15 +197,21 @@ namespace EventReservation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var ms = new MemoryStream())
+                    if (EventImage != null)
                     {
-                        EventImage.InputStream.CopyTo(ms);
-                        @event.EventImage = ms.ToArray();
+                        using (var ms = new MemoryStream())
+                        {
+                            EventImage.InputStream.CopyTo(ms);
+                            @event.EventImage = ms.ToArray();
+                        }
                     }
                     db.Entry(@event).State = EntityState.Modified;
                     db.SaveChanges();
-                    int Id = @event.Id;
-                    return RedirectToAction("ListEvents", new { id =  Id});
+
+                    ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
+                    var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+                    ViewBag.LocalId = LocalId;
+                    return RedirectToAction("ListEvents", "Locals");
                 }
                 return View(@event);
             }
@@ -221,7 +248,6 @@ namespace EventReservation.Controllers
                     .Include(r => r.Event)
                     .Where(r => r.userEmail == currentUser)
                     .Select(r => r.Event);
-
                 return View(events);
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);

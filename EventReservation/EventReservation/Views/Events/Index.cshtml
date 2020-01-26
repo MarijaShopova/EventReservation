@@ -71,14 +71,16 @@
         {
     <div class="row container row-hover mt-4 ml-0 mr-0 pl-0 pr-0">
         <div class="col-lg-4 p-0 bg-imperial">
-            <span>
-                @{
-                    var base64 = Convert.ToBase64String(@item.EventImage);
-                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                }
+            @if (@item.EventImage != null)
+            {
+                var base64 = Convert.ToBase64String(@item.EventImage);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-                <img src="@imgSrc" style="width:250px; height:300px;" />
-            </span>
+                <img src="@imgSrc" style="width: 250px; height: 300px; " />}
+            else
+            {
+            <img src="~/Content/IT_sliki/b52.jpg" style="width: 250px; height: 300px; " />}
+
         </div>
         <div class="col-lg-8 bg-imperial py-4 pr-4">
             <div class="row text-light">

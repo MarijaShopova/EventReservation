@@ -58,7 +58,9 @@
                     <div class="form-group">
 
                         @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "label-text" })
-                        @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control cust-width", @id = "genre" } })
+                        <div style="width: 80%" class="d-flex justify-content-center">
+                            @Html.DropDownListFor(model => model.Genre, new SelectList(ViewBag.genres), new { htmlAttributes = new { @class = "form-control align-self-center", @id = "genre" } })
+                        </div>
                         <p id="BandH"></p>
                     </div>
                 </div>

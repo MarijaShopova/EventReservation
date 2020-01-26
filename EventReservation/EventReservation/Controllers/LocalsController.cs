@@ -182,12 +182,13 @@ namespace EventReservation.Controllers
         {
             if (User.IsInRole("Manager"))
             {
-                var files = Request.Files;
+                var files = Request.Form.Files;
 
                 if (ModelState.IsValid)
                 {
                     if (files != null)
                     {
+                        
                         foreach (HttpPostedFileBase file in files)
                         {
                             using (var ms = new MemoryStream())
@@ -233,18 +234,18 @@ namespace EventReservation.Controllers
             }
             base.Dispose(disposing);
         }
+
         [HttpGet]
         public ActionResult ListEvents() {
-            if (User.IsInRole("Manager"))
-            {
+           
                 var currentUser = User.Identity.Name;
                 var events = db.Locals
                         .Include(l => l.Events)
                         .Where(l => l.Manager == currentUser)
                         .SelectMany(l => l.Events);
                 return View(events);
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+
+          ///  return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
 
         [HttpGet]
