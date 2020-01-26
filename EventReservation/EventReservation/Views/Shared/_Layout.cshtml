@@ -79,12 +79,19 @@
                                 </a>
                             </li>
                         }
-
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Locals/MyLocal">
+                                    <i class="fa fa-map"></i> My Local
+                                </a>
+                            </li>
+                        }
                         @if (User.IsInRole("Manager"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link" href="~/Events/ListReservations">
-                                    <i class="fa fa-glass-martini"></i> My local
+                                    <i class="fa fa-glass-martini"></i> My Reservation
                                 </a>
                             </li>
                         }
@@ -107,10 +114,10 @@
                             </li>
                         }
                         @*<li class="nav-item">
-                    <a class="nav-link" href="/Account/Login">
-                        <i class="fa fa-user"></i> Log in
-                    </a>
-                </li>*@
+            <a class="nav-link" href="/Account/Login">
+                <i class="fa fa-user"></i> Log in
+            </a>
+        </li>*@
                         @Html.Partial("_LoginPartial")
 
                     </ul>
