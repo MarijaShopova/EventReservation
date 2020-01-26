@@ -120,7 +120,7 @@ namespace EventReservation.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //POST: Locals/Delete
+        //POST: Locals/DeleteRequest
         [HttpPost]
         public ActionResult DeleteRequest(FormCollection data)
         {
@@ -254,6 +254,26 @@ namespace EventReservation.Controllers
             //}
             //return Json(new { success = true});
             return Json(new { average = av });
+        }
+
+        //POST: Locals/DeleteEvent
+        [HttpPost]
+        public ActionResult DeleteEvent(FormCollection data)
+        {
+            int id = int.Parse(data["id"]);
+            
+            Event myEvent = db.Events.Find(id);
+
+            if (myEvent == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                db.Events.Remove(myEvent);
+                db.SaveChanges();
+                return Json("{}");
+            }
         }
     }
 }
