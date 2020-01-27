@@ -184,7 +184,7 @@ namespace EventReservation.Controllers
                     db.Entry(@event).State = EntityState.Modified;
                     db.SaveChanges();
                     int Id = @event.Id;
-                    return RedirectToAction("ListEvents", new { id =  Id});
+                    return RedirectToAction("ListEvents", "Locals");
                 }
                 return View(@event);
             }
