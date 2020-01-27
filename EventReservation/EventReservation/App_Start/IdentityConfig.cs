@@ -37,7 +37,6 @@ namespace EventReservation
             //client.Timeout = 10000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("macatv.123@gmail.com", "kamen123");
 
             return client.SendMailAsync("macatv.123@gmail.com", message.Destination, message.Subject, message.Body);
         }

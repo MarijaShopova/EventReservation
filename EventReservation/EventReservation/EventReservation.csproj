@@ -943,7 +943,6 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Admin\LocalRequest.cshtml" />
-    <Content Include="Views\Manager\Local.cshtml" />
     <Content Include="Views\Events\List.cshtml" />
     <Content Include="Views\Events\ListReservations.cshtml" />
     <Content Include="Views\Locals\ListEvents.cshtml" />
