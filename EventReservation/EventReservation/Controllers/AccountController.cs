@@ -250,6 +250,7 @@ namespace EventReservation.Controllers
             {
                 return View(model);
             }
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
