@@ -206,7 +206,7 @@ namespace EventReservation.Controllers
 
                     db.Entry(local).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MyLocal");
                 }
                 return View(local);
             }

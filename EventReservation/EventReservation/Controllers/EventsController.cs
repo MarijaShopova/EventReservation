@@ -98,7 +98,7 @@ namespace EventReservation.Controllers
                 smtp.Credentials = nc;
                 smtp.Send(mm);
 
-                return RedirectToAction("Index", "Locals");
+                return RedirectToAction("List");
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
@@ -137,7 +137,7 @@ namespace EventReservation.Controllers
                     }
                     db.Events.Add(@event);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ListEvents", "Locals");
                 }
 
                 ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
