@@ -4,11 +4,101 @@
     ViewBag.Title = "LokalRequest";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .row {
+        width: 90%;
+        margin: auto;
+    }
+
+    td {
+        display: table-cell;
+        vertical-align: middle !important;
+    }
+
+    select {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    label {
+        justify-content: flex-start !important;
+        margin-left: 4%;
+    }
+
+    .col-sm-6:nth-child(2) label {
+        margin-left: 52%;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+        float: right;
+        text-align: right;
+        padding-top: 0.25em;
+    }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            box-sizing: border-box;
+            display: inline-block;
+            min-width: 1.5em;
+            padding: 0.5em 1em;
+            margin-left: 2px;
+            text-align: center;
+            text-decoration: none !important;
+            cursor: pointer;
+            *cursor: hand;
+            color: #333333 !important;
+            border: 1px solid transparent;
+        }
+
+
+    div.dataTables_paginate {
+        margin: 0;
+        white-space: nowrap;
+        text-align: right;
+        float: left !important;
+    }
+
+        div.dataTables_paginate ul.pagination {
+            margin: 2px 0;
+            white-space: nowrap;
+            align-self: center;
+        }
+
+    .dataTables_info {
+        visibility: hidden;
+    }
+
+    .row:last-of-type {
+        width: 100%;
+    }
+
+    .col-sm-7:last-of-type {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    .paginate_button {
+        border: 1px solid darkgray !important;
+        border-radius: 5px;
+    }
+
+        .paginate_button:hover {
+            background-color: lightgray !important;
+            cursor: pointer !important;
+        }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    #localsRequests_wrapper {
+        margin-bottom: 4%;
+    }
+</style>
 <script src="~/Scripts/bootbox.js"></script>
 <h4 class="text-green text-center display-4 font-header mt-5 mb-5">Local Requests</h4>
 
-<div style="width: 80%; margin: auto">
-    <table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="localsRequests">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
@@ -30,7 +120,8 @@
             </th>
             <th></th>
         </tr>
-
+    </thead>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr id="@item.Id">
@@ -58,31 +149,37 @@
                 </td>
             </tr>
         }
+    </tbody>
+</table>
 
-    </table>
-</div>
 
 <script>
-    function post(id) {
-        var formData = new FormData();
-        formData.append("id", id);
-        bootbox.confirm("Do you want to delete this request?", function (result) {
-            if (result) {
-                $.ajax({
-                    url: "/Locals/DeleteRequest/",
-                    type: 'POST',
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function () {
-                        $("#" + id).remove();
-                    },
-                    error: function () {
-                        alert("error");
-                    }
-                });
-            }
+    $(document).ready(function () {
+        $("#localsRequests").DataTable({
+            "pagingType": "full_numbers"
         });
-    }
+
+        function post(id) {
+            var formData = new FormData();
+            formData.append("id", id);
+            bootbox.confirm("Do you want to delete this request?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/Locals/DeleteRequest/",
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function () {
+                            $("#" + id).remove();
+                        },
+                        error: function () {
+                            alert("error");
+                        }
+                    });
+                }
+            });
+        }
+    });
 </script>

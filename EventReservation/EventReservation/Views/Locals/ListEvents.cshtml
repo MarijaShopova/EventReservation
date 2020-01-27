@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<EventReservation.Models.Event>
-
+<script src="~/Scripts/bootbox.js"></script>
 <style>
     td{
         display: table-cell;
@@ -147,18 +147,22 @@
     function deleteEvent(id) {
         var formData = new FormData();
         formData.append("id", id);
-        $.ajax({
-            url: "/Locals/DeleteEvent/",
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function () {
-                $("#" + id).remove();
-            },
-            error: function () {
-                alert("error");
+        bootbox.confirm("Do you want to delete this event?", function (result) {
+            if (result) {
+                $.ajax({
+                    url: "/Locals/DeleteEvent/",
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        $("#" + id).remove();
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+                });
             }
         });
     }
