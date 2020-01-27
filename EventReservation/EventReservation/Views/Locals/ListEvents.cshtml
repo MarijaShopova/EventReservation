@@ -1,11 +1,38 @@
 ﻿@model IEnumerable<EventReservation.Models.Event>
 
-<h3 class="my-3 text-center">My Events</h3>
+<h2 class="text-green text-center display-4 font-header mt-4 mb-1">My Events</h2>
 <div class="row my-2 mx-auto" style="width:87%">
     <div class="col-2 offset-10 text-right">
         @Html.ActionLink("Create New", "Create", "Events", null, new { @class = "btn btn-outline-info" })
     </div>
 </div>
+
+<table class="table table-striped text-center container">
+    <tr class="text-green">
+        <th style="width: 20%">&nbsp;</th>
+        <th style="width: 7%">Title</th>
+        <th style="width: 8%">Date</th>
+        <th style="width: 17%">Time</th>
+        <th style="width: 3%">Ticket</th>
+        <th style="width: 5%">Reserved Tables</th>
+        <th style="width: 5%">Performer</th>
+        <th style="width: 5%">Genre</th>
+        <th style="width: 5%">Reservations</th>
+        <th style="width: 25%"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.Id">
+            <td>
+                @if (@item.EventImage == null)
+                {
+                    <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
+                }
+                else
+                {
+                    var base64 = Convert.ToBase64String(@item.EventImage);
+                    <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 100px; width: 100px;" class="content-image" />
 <div class="offset-1">
     <table class="table table-striped text-center container " id="listEventsId">
         <thead>

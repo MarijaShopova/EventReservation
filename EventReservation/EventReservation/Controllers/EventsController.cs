@@ -98,7 +98,7 @@ namespace EventReservation.Controllers
                 smtp.Credentials = nc;
                 smtp.Send(mm);
 
-                return RedirectToAction("Index", "Locals");
+                return RedirectToAction("List");
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
@@ -137,7 +137,7 @@ namespace EventReservation.Controllers
                     }
                     db.Events.Add(@event);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ListEvents", "Locals");
                 }
 
                 ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
@@ -235,16 +235,18 @@ namespace EventReservation.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(int? page)
         {
             if (User.IsInRole("User"))
             {
                 var currentUser = User.Identity.Name;
-                var events = db.Reservations
+                var reservations = db.Reservations
                     .Include(r => r.Event)
+                    .Include(r => r.Event.local)
                     .Where(r => r.userEmail == currentUser)
-                    .Select(r => r.Event);
-                return View(events);
+                    .OrderBy(r => r.Event.DateStart)
+                    .ToPagedList(page ?? 1, 6);
+                return View(reservations);
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
