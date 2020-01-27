@@ -252,23 +252,25 @@ namespace EventReservation.Controllers
         }
 
         // GET
-        public ActionResult ListReservations()
+        public ActionResult ListReservations(int? id)
         {
             var currentUser = User.Identity.Name;
 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (User.IsInRole("Manager"))
             {
-                var eventIds = db.Reservations
-                    .Select(r => r.eventId)
-                    .Distinct();
+                var @event = db.Events
+                    .Where(e => e.Id == id)
+                    .First();
 
-                var events = db.Locals
-                    .Include(l => l.Events)
-                    .Where(l => l.Manager == currentUser)
-                    .SelectMany(l => l.Events)
-                    .Where(e => eventIds.Contains(e.Id));
-
-                return View(events);
+                var reservations = db.Reservations
+                    .Where(r => r.eventId == id);
+                ViewBag.eventName = @event.Title;
+                return View(reservations);
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);

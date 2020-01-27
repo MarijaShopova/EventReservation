@@ -53,8 +53,8 @@
                     @Html.DisplayFor(modelItem => item.LocalCity)
                 </td>
                 <td>
-                    @Html.ActionLink("Confirm", "Confirm", "Locals", new { id = item.Id }, new { @class = "btn btn-link" , style = "padding: 0 !important" })
-                    <button type="button" class="btn btn-link" style="padding: 0 !important" onclick="post(@item.Id)">Delete</button>
+                    @Html.ActionLink("Confirm", "Confirm", "Locals", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
+                    <button type="button" class="btn btn-outline-danger" onclick="post(@item.Id)">Delete <span class="fa fa-trash"></span></button>
                 </td>
             </tr>
         }

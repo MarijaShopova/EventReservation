@@ -1,50 +1,41 @@
-﻿@model IEnumerable<EventReservation.Models.Event>
+﻿@model IEnumerable<EventReservation.Models.Reservation>
 
 @{
     ViewBag.Title = "ListReservations";
 }
+<style>
+    .row {
+        width:90%;
+        margin: auto;
+    }
+    td {
+        display: table-cell;
+        vertical-align: middle !important;
+    }
 
-<h3 class="text-center my-3">Reservations</h3>
+    select {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    label {
+        justify-content: flex-start !important;
+        margin-left: 4%;
+    }
+
+    .col-sm-6:nth-child(2) label {
+        margin-left: 52%;
+    }
+</style>
+<h4 class="text-green text-center display-5 font-header mt-5">Reservations for</h4>
+<h4 class="text-green text-center display-5 font-header ">@ViewBag.eventName</h4>
 
 <table class="table table-striped container text-center" id="listReservationsId">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TimeEnd)
-            </th>
-            <th>
-                <label>Ticket?</label>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TicketPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoTables)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReservedTables)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Performer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventImage)
-            </th>
+            <th>Reservation Name</th>
+            <th>Reserved Tables</th>
+            <th>User</th>
         </tr>
     </thead>
 
@@ -52,61 +43,9 @@
         @foreach (var item in Model)
         {
             <tr>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateStart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeStart)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TimeEnd)
-                </td>
-                <td>
-
-                    @if (item.HasTicket)
-                    {
-                        <label>Yes</label>
-                    }
-                    else
-                    {
-                        <label>No</label>
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TicketPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NoTables)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReservedTables)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Performer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
-                </td>
-                <td>
-                    @if (@item.EventImage == null)
-                    {
-                        <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
-                    }
-                    else
-                    {
-                        var base64 = Convert.ToBase64String(@item.EventImage);
-                        <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 100px; width: 100px;" class="content-image" />
-
-                    }
-                </td>
-
+                <td>@item.Name</td>
+                <td>@item.NoTables</td>
+                <td>@item.userEmail</td>
             </tr>
         }
     </tbody>
