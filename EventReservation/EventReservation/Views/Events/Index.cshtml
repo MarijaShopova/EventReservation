@@ -1,7 +1,9 @@
 ﻿@model  EventReservation.Models.EventWithFiltersViewModel
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+                /**/
+
+                ViewBag.Title = "Index";
 }
 <link href="~/Css/events-index.css" rel="stylesheet" />
 <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
@@ -22,42 +24,42 @@
 
         @using (Html.BeginForm("Index", "Events"))
         {<br />
-         <div class="container pl-0 pr-0">
-             <div class="row">
-                 <div class="form-inline col-4" style="padding-right:0px;">
-                     <label class="mr-3">Select city:</label>
-                     @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control w60" })
-                 </div>
+            <div class="container pl-0 pr-0">
+                <div class="row">
+                    <div class="form-inline col-4" style="padding-right:0px;">
+                        <label class="mr-3">Select city:</label>
+                        @Html.DropDownList("city", new SelectList(Model.cities), "", new { @class = "form-control w60" })
+                    </div>
 
-                 <div class="form-inline col-4" style="padding-right:0px;">
-                     <label class="mr-3">Select local:</label>
-                     @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control w60" })
-                 </div>
+                    <div class="form-inline col-4" style="padding-right:0px;">
+                        <label class="mr-3">Select local:</label>
+                        @Html.DropDownList("localId", new SelectList(Model.locals, "Id", "Name"), "", new { @class = "form-control w60" })
+                    </div>
 
-                 <div class="form-inline col-4" style="padding-right:0px;">
-                     <label class="mr-3">Select genre:</label>
-                     @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control w60" })
-                 </div>
+                    <div class="form-inline col-4" style="padding-right:0px;">
+                        <label class="mr-3">Select genre:</label>
+                        @Html.DropDownList("genre", new SelectList(Model.genres), "", new { @class = "form-control w60" })
+                    </div>
 
-             </div>
-             <br />
-             <div class="row ">
-                 <div class="form-inline col-4" style="padding-right:0px;">
-                     <label for="dateFrom" class="mr-3">Date from:</label>
-                     @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control w60" })
-                 </div>
+                </div>
+                <br />
+                <div class="row ">
+                    <div class="form-inline col-4" style="padding-right:0px;">
+                        <label for="dateFrom" class="mr-3">Date from:</label>
+                        @Html.TextBox("dateFrom", Model.filters.dateFrom.Year == 0001 ? "" : Model.filters.dateFrom.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date from", @id = "dateFrom", @class = "form-control w60" })
+                    </div>
 
-                 <div class="form-inline col-4" style="padding-right:0px;">
-                     <label for="dateFrom" class="mr-4">Date to:</label>
-                     @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control w60 ml-3" })
-                 </div>
-                 <div class="col-4 form-inline align-self-end">
-                     <button class="btn btn-primary pl-4 pr-4 mx-auto" type="submit">Filter</button>
-                     <button class="btn btn-primary" type="button">Clear Filter</button>
-                 </div>
+                    <div class="form-inline col-4" style="padding-right:0px;">
+                        <label for="dateFrom" class="mr-4">Date to:</label>
+                        @Html.TextBox("dateTo", Model.filters.dateTo.Year == 0001 ? "" : Model.filters.dateTo.ToString("dd.MM.yyyy"), htmlAttributes: new { @placeholder = "Select date to", @id = "dateTo", @class = "form-control w60 ml-3" })
+                    </div>
+                    <div class="col-4 form-inline align-self-end">
+                        <button class="btn btn-primary pl-4 pr-4 mx-auto" type="submit">Filter</button>
+                        <button class="btn btn-primary" type="button">Clear Filter</button>
+                    </div>
 
-             </div>
-         </div>
+                </div>
+            </div>
 
         }
         <!-- List events -->
@@ -69,66 +71,62 @@
         <br />
         @foreach (var item in Model.events)
         {
-    <div class="row container row-hover mt-4 ml-0 mr-0 pl-0 pr-0">
-        <div class="col-lg-4 p-0 bg-imperial">
-            @if (@item.EventImage != null)
-            {
-                var base64 = Convert.ToBase64String(@item.EventImage);
-                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            <div class="row container row-hover mt-4 ml-0 mr-0 pl-0 pr-0">
+                <div class="col-lg-4 p-0 bg-imperial">
+                    @if (@item.EventImage != null)
+                    {
+                        var base64 = Convert.ToBase64String(@item.EventImage);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
 
-                <img src="@imgSrc" style="width: 250px; height: 300px; " />}
-            else
-            {
-            <img src="~/Content/IT_sliki/b52.jpg" style="width: 250px; height: 300px; " />}
+                        <img src="@imgSrc" style="width: 250px; height: 300px; " />}
+                    else
+                    {
+                        <img src="~/Content/IT_sliki/b52.jpg" style="width: 250px; height: 300px; " />                }
 
-        </div>
-        <div class="col-lg-8 bg-imperial py-4 pr-4">
-            <div class="row text-light">
-                <div class="col-lg-10 text-white">
-                    <h2 class="mb-3 text-mint">@item.Title</h2>
-                    <div><span class="fa fa-calendar-alt mr-2 mt-2 text-mint"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.TimeStart.ToString("hh:mm tt") - @item.TimeEnd.ToString("hh:mm tt")</div>
                 </div>
-                <div class="col-lg-2 text-white">
-                    <div class="calendar-date text-center bg-green calendar">@item.DateStart.Day</div>
-                    <div class="calendar-month bg-imperial text-center calendar">@item.DateStart.ToString("MMM")</div>
+                <div class="col-lg-8 bg-imperial py-4 pr-4">
+                    <div class="row text-light">
+                        <div class="col-lg-10 text-white">
+                            <h2 class="mb-3 text-mint">@item.Title</h2>
+                            <div><span class="fa fa-calendar-alt mr-2 mt-2 text-mint"></span>@item.DateStart.ToString("MM/dd/yyyy") @@ @item.TimeStart.ToString("hh:mm tt") - @item.TimeEnd.ToString("hh:mm tt")</div>
+                        </div>
+                        <div class="col-lg-2 text-white">
+                            <div class="calendar-date text-center bg-green calendar">@item.DateStart.Day</div>
+                            <div class="calendar-month bg-imperial text-center calendar">@item.DateStart.ToString("MMM")</div>
+                        </div>
+                    </div>
+                    <div class="text-white">
+                        <span class="fa fa-map text-mint mr-2 mt-2"></span>@item.local.Name,
+                        @if (@item.local.StreetName != null)
+                        {<span>@item.local.StreetName, @item.local.StreetNo,</span>}
+                        @item.local.City, North Macedonia
+                    </div>
+                    <div class="text-white"><span class="fa fa-music text-mint mr-2 mt-2"></span>@item.Genre</div>
+                    <div class="text-white">
+                        <span class="fa fa-ticket-alt text-mint mr-2 mt-2"></span>
+                        Entrance:
+                        @if (item.HasTicket)
+                        {<span>@item.TicketPrice ден.</span>}
+                    else
+                    {<span>Free</span>                }
+                    </div>
+
+                    <div class="text-white">
+                        <span class="fa fa-circle text-mint mr-2 mt-2"></span>
+                        Hosted by
+                        <a href="/Locals/Details/@item.local.Id" class="text-decoration-none text-mint">@item.local.Name</a>
+                        <div style="display: inline-block">
+                            <i class="fa fa-star" id="@(item.local.Id + "star1" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star2" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star3" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star4" + item.Id)" style="color: darkgray"></i>
+                            <i class="fa fa-star" id="@(item.local.Id + "star5" + item.Id)" style="color: darkgray"></i>
+                        </div>
+                    </div>
+                    @Html.ActionLink("Read More", "Details", new { id = item.Id }, new { @class = "btn btn-green mt-3" })
                 </div>
             </div>
-            <div class="text-white">
-                <span class="fa fa-map text-mint mr-2 mt-2"></span>@item.local.Name,
-                @if (@item.local.StreetName != null)
-                {<span>@item.local.StreetName, @item.local.StreetNo,</span>}
-                @item.local.City, North Macedonia
-            </div>
-            <div class="text-white"><span class="fa fa-music text-mint mr-2 mt-2"></span>@item.Genre</div>
-            <div class="text-white">
-                <span class="fa fa-ticket-alt text-mint mr-2 mt-2"></span>
-                Entrance:
-                @if (item.HasTicket)
-                {<span>@item.TicketPrice ден.</span>}
-            else
-            {<span>Free</span>}
-            </div>
-
-            <div class="text-white">
-                <span class="fa fa-circle text-mint mr-2 mt-2"></span>
-                Hosted by
-                <a href="/Locals/Details/@item.local.Id" class="text-decoration-none text-mint">@item.local.Name</a>
-                <div style="display: inline-block">
-                    <i class="fa fa-star" id="@(item.local.Id + "star1" + item.Id)" style="color: darkgray"></i>
-                    <i class="fa fa-star" id="@(item.local.Id + "star2" + item.Id)" style="color: darkgray"></i>
-                    <i class="fa fa-star" id="@(item.local.Id + "star3" + item.Id)" style="color: darkgray"></i>
-                    <i class="fa fa-star" id="@(item.local.Id + "star4" + item.Id)" style="color: darkgray"></i>
-                    <i class="fa fa-star" id="@(item.local.Id + "star5" + item.Id)" style="color: darkgray"></i>
-                </div>
-            </div>
-            @Html.ActionLink("Read More", "Details", new { id = item.Id }, new { @class = "btn btn-green mt-3" })
-        </div>
-        
-    </div>
-
-
         }
-
     </div>
 
 

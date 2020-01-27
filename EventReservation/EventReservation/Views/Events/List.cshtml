@@ -1,97 +1,61 @@
-﻿@model IEnumerable<EventReservation.Models.Event>
+﻿@model PagedList.IPagedList<EventReservation.Models.Reservation>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "List";
 }
+<style>
+    .btn-outline-green {
+        border: 1px solid #25A18E;
+        background-color: transparent;
+        color: #25A18E;
+        cursor: pointer;
+    }
 
-<h2 class="text-center my-3">MyEvents</h2>
+        .btn-outline-green:hover {
+            color: white;
+            background-color: #25A18E;
+        }
+</style>
 
+<h2 class="text-green text-center display-4 font-header my-4">My events</h2>
 <table class="table table-striped container text-center">
-    <tr>
-      
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeEnd)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.TicketPrice)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.ReservedTables)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Performer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EventImage)
-        </th>
+    <tr class="text-green">
+        <th></th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Place</th>
+        <th>Reservation Name</th>
+        <th>Reserved Tables</th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeEnd)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketPrice)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservedTables)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Performer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre)
-        </td>
-        <td>
-            @if (@item.EventImage == null)
-            {
-                <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
-            }
-            else
-            {
-            var base64 = Convert.ToBase64String(@item.EventImage);
-            <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 100px; width: 100px;" class="content-image" />
-           
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class="btn btn-outline-info"})
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (@item.Event.EventImage == null)
+                {
+                    <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
+                }
+                else
+                {
+                    var base64 = Convert.ToBase64String(@item.Event.EventImage);
+                    <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 100px; width: 100px;" class="content-image" />
 
+                }
+            </td>
+            <td>@item.Event.Title</td>
+            <td>@item.Event.DateStart.ToString("dd.MM.yyyy")</td>
+            <td>@item.Event.TimeStart.ToString("HH:mm") - @item.Event.TimeEnd.ToString("HH:mm")</td>
+            <td>@item.Event.local.Name, @item.Event.local.City</td>
+            <td>@item.Name</td>
+            <td>@item.NoTables</td>
+            <td>@Html.ActionLink("Details", "Details", new { id = item.Event.Id }, new { @class = "btn btn-outline-green" })</td>
+        </tr>
+    }
 </table>
+<div class="d-flex justify-content-center">
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page = page }))
+</div>

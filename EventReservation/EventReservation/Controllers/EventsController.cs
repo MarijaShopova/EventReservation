@@ -235,16 +235,18 @@ namespace EventReservation.Controllers
         }
 
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(int? page)
         {
             if (User.IsInRole("User"))
             {
                 var currentUser = User.Identity.Name;
-                var events = db.Reservations
+                var reservations = db.Reservations
                     .Include(r => r.Event)
+                    .Include(r => r.Event.local)
                     .Where(r => r.userEmail == currentUser)
-                    .Select(r => r.Event);
-                return View(events);
+                    .OrderBy(r => r.Event.DateStart)
+                    .ToPagedList(page ?? 1, 6);
+                return View(reservations);
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }

@@ -45,3 +45,29 @@
 #content-wrap {
     padding-bottom: 83px;
 }
+
+.btn-outline-green {
+    border: 1px solid #25A18E;
+    background-color: transparent;
+    color: #25A18E;
+    cursor: pointer;
+}
+
+    .btn-outline-green:hover {
+        color: white;
+        background-color: #25A18E;
+    }
+
+,pagination li {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px lightgray solid;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+    .pagination li:hover {
+        background-color: lightgray;
+    }
