@@ -157,9 +157,14 @@ namespace EventReservation.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Local local = db.Locals.Find(id);
+                var currentUser = User.Identity.Name;
                 if (local == null)
                 {
                     return HttpNotFound();
+                }
+                if (local.Manager != currentUser)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                 }
                 return View(local);
             }
