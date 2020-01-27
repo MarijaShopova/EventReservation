@@ -87,15 +87,7 @@
                                 </a>
                             </li>
                         }
-                        @if (User.IsInRole("Manager"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" href="~/Events/ListReservations">
-                                    <i class="fa fa-glass-martini"></i> Reservations
-                                </a>
-                            </li>
-                        }
-
+                       
                         @if (User.IsInRole("Manager"))
                         {
                             <li class="nav-item">
@@ -113,12 +105,31 @@
                                 </a>
                             </li>
                         }
-                        @*<li class="nav-item">
-            <a class="nav-link" href="/Account/Login">
-                <i class="fa fa-user"></i> Log in
-            </a>
-        </li>*@
-                        @Html.Partial("_LoginPartial")
+                        @if (!User.IsInRole("Manager"))
+                        {@Html.Partial("_LoginPartial")}
+                        @if(User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item" style="margin-top: 6px;">
+                                <div class="dropdown bg-imperial">
+                                    <button class="btn btn-outline-green dropdown-toggle" style="color: #9fffcb !important;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @User.Identity.Name
+                                    </button>
+                                    <div class="dropdown-menu text-imperial" aria-labelledby="dropdownMenuButton">
+                                        <a class="nav-link text-imperial" href="javascript:document.getElementById('logoutForm').submit()">
+                                            <i class="fa fa-user text-imperial"></i> Log off
+                                        </a>
+                                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "form-inline" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                        }
+                                        <a class="nav-link" href="~/Account/ResetPassword">
+                                            <i class="fa fa-circle"></i> Reset Password
+                                        </a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
 
                     </ul>
                 </div>
