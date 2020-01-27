@@ -19,8 +19,8 @@
     color: #9fffcb;
 }
 
-.grey{
-    color:lightgrey;
+.grey {
+    color: lightgrey;
 }
 
 .hidden {
@@ -80,7 +80,6 @@ input[type=text], input[type=password], select {
     padding: 5px;
     border: 1px solid black;
     border-radius: 4px;
-    
 }
 
 .btn-green {
@@ -89,10 +88,11 @@ input[type=text], input[type=password], select {
     padding: 5px;
 }
 
-label{
+label {
     margin-bottom: -20px !important;
-    margin-left:45px;
+    margin-left: 45px;
 }
+
 p {
     margin-left: 45px !important;
 }
@@ -105,16 +105,16 @@ p {
     border: 1px solid black !important;
 }
 
-.cust-width { 
+.cust-width {
     margin-left: 45px !important;
     margin-right: 45px !important;
     width: 370px !important;
-} 
+}
 
 input[type=button] {
     background: #004E64;
     color: #9fffcb;
-    padding:5px;
+    padding: 5px;
 }
 
 .title {
@@ -137,3 +137,25 @@ input[type=button] {
     width: 90% !important;
     margin-left: 12%;
 }
+
+select {
+    margin-left: 42px;
+}
+
+.first {
+    width: 80%;
+    margin: auto;
+}
+
+    .first .btn {
+        width: 40%;
+    }
+
+.second {
+    width: 88%;
+    margin: auto;
+}
+
+    .second .btn {
+        width: 100%;
+    }

@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="form-group field2">
-                    <a class="btn pl-3 pr-3 btn-green" href="/Locals/Index">Cancel</a>
+                    <a class="btn pl-3 pr-3 btn-green" href="/Locals/MyLocal">Cancel</a>
                     <input onclick="next_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
                 @Html.HiddenFor(m => m.Manager)
@@ -98,7 +98,7 @@
 
                 <div class="row form-group field2 m-auto">
                     <div class="col-4"><button id="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">Previous</button></div>
-                    <div class="col-4"><a class="btn ml-2 pl-3 pr-3 btn-green" href="/Locals/Index" value="Cancel">Cancel </a></div>
+                    <div class="col-4"><a class="btn ml-2 pl-3 pr-3 btn-green" href="/Locals/MyLocal" value="Cancel">Cancel </a></div>
                     <div class="col-4"><button id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class="btn pl-3 pr-3 btn-green">Next </button></div>
 
                 </div>
@@ -106,13 +106,6 @@
 
             <fieldset id="third" style="width:500px;">
                 <h5 class="title">Additional Info</h5>
-
-                @*<div class="form-group">
-            @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control",@id="NoOfTables" } })
-            @Html.ValidationMessageFor(model => model.NoTables, "", new { @class = "text-danger" })
-        </div>*@
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control cust-width", @id = "desc" } })
@@ -131,7 +124,7 @@
 
                 <div class="row form-group field2 m-auto">
                     <div class="col-4"><button id="pre_btn2" onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">Previous</button> </div>
-                    <div class="col-4"><a class="btn bg-imperial ml-2 text-mint" href="/Locals/Index">Cancel</a> </div>
+                    <div class="col-4"><a class="btn bg-imperial ml-2 text-mint" href="/Locals/MyLocal">Cancel</a> </div>
                     <div class="col-4"><button type="submit" onclick="validate_step3()" value="Submit" class="btn bg-imperial" style="color:#9fffcb;">Edit</button> </div>
                 </div>
 

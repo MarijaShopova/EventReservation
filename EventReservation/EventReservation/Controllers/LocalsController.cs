@@ -18,19 +18,12 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Locals
-        public ActionResult Index(int? page, int? pageSize)
+        public ActionResult Index(int? page)
         {
-            if (User.IsInRole("Manager"))
-            {
-                string user = User.Identity.Name;
-                Local local = db.Locals.Where(l => l.Manager.Equals(user)).First();
-                return View("~/Views/Locals/Details.cshtml", local);
-            }
-            else
-                return View(db.Locals.Include(l => l.LocalImages).OrderByDescending(l => l.Id).ToPagedList(page ?? 1, pageSize ?? 9));
+            return View(db.Locals.Include(l => l.LocalImages).OrderByDescending(l => l.Id).ToPagedList(page ?? 1, 9));
         }
 
-       
+
 
         // GET: Locals/Details/5
         public ActionResult Details(int? id)
@@ -88,26 +81,26 @@ namespace EventReservation.Controllers
                 local.Manager = request.Email;
                 db.Locals.Add(local);
 
-            // create new user
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
-            string password = System.Web.Security.Membership.GeneratePassword(12, 4);
-            var user = new ApplicationUser();
-            user.Email = request.Email;
-            user.UserName = request.Email;
-            var result = UserManager.Create(user, password);
-            //P@ssw0rdPassword
-            MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
-            mm.Subject = "Confirmation for account";
-            mm.Body = "Your local account has been accepted and added to our webside. Thank you for choosing us. You can now log in to " +
-                "your account." + "\n";
-            mm.Body += "Username: " + user.Email + "\nPassword: " + password;
-            mm.IsBodyHtml = false;
+                // create new user
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = true
+                };
+                string password = System.Web.Security.Membership.GeneratePassword(12, 4);
+                var user = new ApplicationUser();
+                user.Email = request.Email;
+                user.UserName = request.Email;
+                var result = UserManager.Create(user, password);
+                //P@ssw0rdPassword
+                MailMessage mm = new MailMessage("eventreservationit@gmail.com", user.Email);
+                mm.Subject = "Confirmation for account";
+                mm.Body = "Your local account has been accepted and added to our webside. Thank you for choosing us. You can now log in to " +
+                    "your account." + "\n";
+                mm.Body += "Username: " + user.Email + "\nPassword: " + password;
+                mm.IsBodyHtml = false;
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
@@ -164,9 +157,14 @@ namespace EventReservation.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 Local local = db.Locals.Find(id);
+                var currentUser = User.Identity.Name;
                 if (local == null)
                 {
                     return HttpNotFound();
+                }
+                if (local.Manager != currentUser)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
                 }
                 return View(local);
             }
@@ -188,6 +186,7 @@ namespace EventReservation.Controllers
                 {
                     if (files != null)
                     {
+
                         foreach (HttpPostedFileBase file in files)
                         {
                             using (var ms = new MemoryStream())
@@ -233,18 +232,19 @@ namespace EventReservation.Controllers
             }
             base.Dispose(disposing);
         }
+
         [HttpGet]
-        public ActionResult ListEvents() {
-            if (User.IsInRole("Manager"))
-            {
-                var currentUser = User.Identity.Name;
-                var events = db.Locals
-                        .Include(l => l.Events)
-                        .Where(l => l.Manager == currentUser)
-                        .SelectMany(l => l.Events);
-                return View(events);
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+        public ActionResult ListEvents()
+        {
+
+            var currentUser = User.Identity.Name;
+            var events = db.Locals
+                    .Include(l => l.Events)
+                    .Where(l => l.Manager == currentUser)
+                    .SelectMany(l => l.Events);
+            return View(events);
+
+            ///  return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
 
         [HttpGet]
@@ -269,28 +269,28 @@ namespace EventReservation.Controllers
             double av = 0;
             if (User.Identity.IsAuthenticated)
             {
-            int numberStars = int.Parse(data["Stars"]);
-            int LocalId = int.Parse(data["Local"]);
-            var tableRow = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId && r.User == User.Identity.Name);
-            int oldReview = 0;
-            
-            if (tableRow != null)
-            {
-                oldReview = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId && r.User == User.Identity.Name).Stars;
-                db.Reviews.Remove(tableRow);
-            }
-            Local local = db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == LocalId);
-            Review review = new Review { Stars = numberStars, Local = local, User = User.Identity.Name };
- 
-            db.Reviews.Add(review);
-            local.Reviews.Add(review);
-            if (oldReview != 0)
-            {
-                var removeReview = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId && r.User == User.Identity.Name);
-                local.Reviews.Remove(removeReview);
-            }
-            db.SaveChanges();
-            av = local.Reviews.Average(r => r.Stars);
+                int numberStars = int.Parse(data["Stars"]);
+                int LocalId = int.Parse(data["Local"]);
+                var tableRow = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId && r.User == User.Identity.Name);
+                int oldReview = 0;
+
+                if (tableRow != null)
+                {
+                    oldReview = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId && r.User == User.Identity.Name).Stars;
+                    db.Reviews.Remove(tableRow);
+                }
+                Local local = db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == LocalId);
+                Review review = new Review { Stars = numberStars, Local = local, User = User.Identity.Name };
+
+                db.Reviews.Add(review);
+                local.Reviews.Add(review);
+                if (oldReview != 0)
+                {
+                    var removeReview = db.Reviews.FirstOrDefault(r => r.Local.Id == LocalId && r.User == User.Identity.Name);
+                    local.Reviews.Remove(removeReview);
+                }
+                db.SaveChanges();
+                av = local.Reviews.Average(r => r.Stars);
             }
             return Json(new { average = av });
         }

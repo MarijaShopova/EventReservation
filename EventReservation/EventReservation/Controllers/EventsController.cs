@@ -19,39 +19,38 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Events
+        [AllowAnonymous]
         public ActionResult Index(EventFiltersViewModel @filters)
         {
-            if (!User.IsInRole("User"))
+
+            EventWithFiltersViewModel model = new EventWithFiltersViewModel();
+            model.locals = db.Locals.ToList();
+            model.cities = model.locals.Select(m => m.City).Distinct().ToList();
+            var result = db.Events.Include(@event => @event.local).ToList();
+            if (filters.city != null)
             {
-                EventWithFiltersViewModel model = new EventWithFiltersViewModel();
-                model.locals = db.Locals.ToList();
-                model.cities = model.locals.Select(m => m.City).Distinct().ToList();
-                var result = db.Events.Include(@event => @event.local).ToList();
-                if (filters.city != null)
-                {
-                    result = result.Where(e => e.local.City == filters.city).ToList();
-                }
-                if (filters.genre != null)
-                {
-                    result = result.Where(e => e.Genre == filters.genre).ToList();
-                }
-                if (filters.localId != 0)
-                {
-                    result = result.Where(e => e.local.Id == filters.localId).ToList();
-                }
-                if (filters.dateFrom.Year != 0001)
-                {
-                    result = result.Where(e => e.DateStart.CompareTo(filters.dateFrom) >= 0).ToList();
-                }
-                if (filters.dateTo.Year != 0001)
-                {
-                    result = result.Where(e => e.DateStart.CompareTo(filters.dateTo) <= 0).ToList();
-                }
-                model.events = result.Where(m => m.DateStart.CompareTo(DateTime.Now) >= 0).OrderBy(m => m.DateStart).ToList();
-                model.filters = filters;
-                return View(model);
+                result = result.Where(e => e.local.City == filters.city).ToList();
             }
-            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+            if (filters.genre != null)
+            {
+                result = result.Where(e => e.Genre == filters.genre).ToList();
+            }
+            if (filters.localId != 0)
+            {
+                result = result.Where(e => e.local.Id == filters.localId).ToList();
+            }
+            if (filters.dateFrom.Year != 0001)
+            {
+                result = result.Where(e => e.DateStart.CompareTo(filters.dateFrom) >= 0).ToList();
+            }
+            if (filters.dateTo.Year != 0001)
+            {
+                result = result.Where(e => e.DateStart.CompareTo(filters.dateTo) <= 0).ToList();
+            }
+            model.events = result.Where(m => m.DateStart.CompareTo(DateTime.Now) >= 0).OrderBy(m => m.DateStart).ToList();
+            model.filters = filters;
+            return View(model);
+
         }
 
         // GET: Events/Details/5
@@ -83,12 +82,12 @@ namespace EventReservation.Controllers
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
 
-            MailMessage mm = new MailMessage("eventreservationit@gmail.com", reservation.userEmail);
-            mm.Subject = "Confirmation for reservation";
-            mm.Body = "Thank you for your reservation for the event " + e.Title + ". The event starts at " +
-              e.DateStart + ". Please arrive 15 minutes earlier or your reservation will be canceled.";
-            mm.Body += "<br/>Have fun! :)";
-            mm.IsBodyHtml = true;
+                MailMessage mm = new MailMessage("eventreservationit@gmail.com", reservation.userEmail);
+                mm.Subject = "Confirmation for reservation";
+                mm.Body = "Thank you for your reservation for the event " + e.Title + ". The event starts at " +
+                  e.DateStart.TimeOfDay + ". Please arrive 15 minutes earlier or your reservation will be canceled.";
+                mm.Body += "<br/>Have fun! :)";
+                mm.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
@@ -128,10 +127,13 @@ namespace EventReservation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var ms = new MemoryStream())
+                    if (EventImage != null)
                     {
-                        EventImage.InputStream.CopyTo(ms);
-                        @event.EventImage = ms.ToArray();
+                        using (var ms = new MemoryStream())
+                        {
+                            EventImage.InputStream.CopyTo(ms);
+                            @event.EventImage = ms.ToArray();
+                        }
                     }
                     db.Events.Add(@event);
                     db.SaveChanges();
@@ -155,12 +157,27 @@ namespace EventReservation.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Event @event = db.Events.Find(id);
+
+                var @event = db.Events.Include(e => e.local).FirstOrDefault(e => e.Id == id);
+
                 if (@event == null)
                 {
                     return HttpNotFound();
                 }
-                return View(@event);
+
+                var currentUser = User.Identity.Name;
+      
+                if (@event.local.Manager == currentUser)
+                {
+                    ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
+                    ViewBag.EventImage = @event.EventImage;
+                    ViewBag.LocalId = @event.LocalId;
+                    return View(@event);
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                }
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
@@ -176,14 +193,20 @@ namespace EventReservation.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (var ms = new MemoryStream())
+                    if (EventImage != null)
                     {
-                        EventImage.InputStream.CopyTo(ms);
-                        @event.EventImage = ms.ToArray();
+                        using (var ms = new MemoryStream())
+                        {
+                            EventImage.InputStream.CopyTo(ms);
+                            @event.EventImage = ms.ToArray();
+                        }
                     }
                     db.Entry(@event).State = EntityState.Modified;
                     db.SaveChanges();
-                    int Id = @event.Id;
+
+                    ViewBag.genres = new List<string> { "Rock", "Pop", "Techno", "Balkan", "Hip Hop", "XY Hits" };
+                    var LocalId = db.Locals.FirstOrDefault(local => local.Manager == User.Identity.Name).Id;
+                    ViewBag.LocalId = LocalId;
                     return RedirectToAction("ListEvents", "Locals");
                 }
                 return View(@event);
@@ -221,17 +244,17 @@ namespace EventReservation.Controllers
                     .Include(r => r.Event)
                     .Where(r => r.userEmail == currentUser)
                     .Select(r => r.Event);
-
                 return View(events);
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
 
         // GET
-        public ActionResult ListReservations() {
+        public ActionResult ListReservations()
+        {
             var currentUser = User.Identity.Name;
 
-            if(User.IsInRole("Manager"))
+            if (User.IsInRole("Manager"))
             {
                 var eventIds = db.Reservations
                     .Select(r => r.eventId)

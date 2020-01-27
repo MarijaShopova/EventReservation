@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 
+.pagination li {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px lightgray solid;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+    .pagination li:hover {
+        background-color: lightgray;
+    }
+
 .content {
     position: relative;
     max-width: 350px;

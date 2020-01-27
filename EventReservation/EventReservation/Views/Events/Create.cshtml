@@ -12,7 +12,24 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="~/Content/timepicki.js"></script>
+<style>
+    .first {
+        width: 80%;
+        margin: auto;
+    }
 
+        .first .btn {
+            width: 40%;
+        }
+
+    .second {
+        width: 88%;
+        margin: auto;
+    }
+        .second .btn {
+            width: 100%;
+        }
+</style>
 
 @using (Html.BeginForm("Create", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -36,9 +53,6 @@
             <fieldset id="first" style="width:500px;">
                 <h5 class="title">General Details</h5>
                 @Html.Hidden("LocalId", (object)ViewBag.LocalId)
-
-
-             
                 <div>
                     <br />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -74,13 +88,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text" })
+                    @Html.LabelFor(model => model.NoTables, htmlAttributes: new { @class = "label-text mb-2" })
                     @Html.EditorFor(model => model.NoTables, new { htmlAttributes = new { @class = "form-control cust-width border solid", @id = "tables" }, min = 1 })
                     <p id="tableH"></p>
                 </div>
 
-                <div class="form-group field2" style="margin-right:45px;">
-                    <a class="btn pl-3 pr-3 btn-green" href="/Events/Index">Cancel</a>
+                <div class="form-group first mt-4">
+                    <a class="btn pl-3 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a>
                     <input id="next_btn1" onclick="validate_step1()" type="button" value="Next" class="btn pl-3 pr-3 btn-green float-right">
                 </div>
             </fieldset>
@@ -89,7 +103,7 @@
                 <h5 class="title">Date & Time</h5>
                 <div>
                     @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
-                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class="cust-width" })
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @placeholder = "Select date", @id = "datepicker", @class = "cust-width" })
                     <p id="datepickerH"></p>
                 </div>
                 <div>
@@ -108,16 +122,16 @@
                         <p id="endH"></p>
                     </div>
                 </div>
-                <div class="row form-group field2 m-auto">
+                <div class="row form-group second mt-4">
                     <div class="col-4">
-                        <input class="pre_btn1" onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
+                        <input onclick="prev_step1()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
                     </div>
-                   
-                    <div class="col-4">  <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
+                    <div class="col-4">  <a class="btn pl-3 pr-3 btn-green" href="/Locals/ListEvents">Cancel</a></div>
                     <div class="col-4">
-                        <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right"></div>
+                        <input id="next_btn2" name="next" onclick="validate_step2()" type="button" value="Next" class=" btn pl-3 pr-3 btn-green float-right">
                     </div>
-</fieldset>
+                </div>
+            </fieldset>
 
             <fieldset id="third" style="width:500px;">
 
@@ -140,13 +154,13 @@
                     @Html.TextBoxFor(m => m.EventImage, new { type = "file", accept = ".jpg,.jpeg,.png,.bmp,.gif,.tif,.tiff", @class = "form-control" })
                 </div>
 
-                <div class="row form-group field2 m-auto">
+                <div class="row form-group second mt-4">
                     <div class="col-4">
                         <input onclick="prev_step2()" type="button" value="Previous" class="btn pl-3 pr-3 btn-green">
                     </div>
-                    <div class="col-4"> <a class="btn pl-3 ml-2 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
+                    <div class="col-4"> <a class="btn pl-3 pr-3 btn-green" href="/Events/Index">Cancel</a></div>
                     <div class="col-4">
-                        <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 mt-3 float-right" />
+                        <input type="submit" value="Create" class="btn btn-green pl-3 pr-3 float-right" />
                     </div>
                 </div>
             </fieldset>
@@ -156,15 +170,15 @@
 }
 
 <script type="text/javascript">
- $(function () {
-        $("#datepicker").datepicker({ minDate: 0 });
+    $(function () {
+        $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
         $('#end').timepicki({
             show_meridian: false,
             min_hour_value: 0,
             max_hour_value: 23,
             step_size_minutes: 15,
             increase_direction: 'up',
-            start_time: ["20", "00"]
+            start_time: ["22", "00"]
         });
         $('#start').timepicki({
             show_meridian: false,
@@ -175,20 +189,20 @@
             start_time: ["20", "00"]
         });
     });
-  
+
     function handleClick(HasTicker) {
-     
-        if (HasTicker.value == "Yes") {    
+
+        if (HasTicker.value == "Yes") {
             document.getElementById("price").disabled = false;
             document.getElementById("price").focus();
         }
-         if (HasTicker.value == "No") {    
+        if (HasTicker.value == "No") {
             document.getElementById("price").disabled = true;
-         
-    }
-} 
 
-   
+        }
+    }
+
+
 
     document.getElementById("active2").style.color = "lightgrey";
     document.getElementById("active3").style.color = "lightgrey";
