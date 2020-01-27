@@ -948,6 +948,7 @@
     <Content Include="Views\Events\ListReservations.cshtml" />
     <Content Include="Views\Locals\ListEvents.cshtml" />
     <Content Include="Views\Locals\MyLocal.cshtml" />
+    <Content Include="Views\Locals\ListLocalsForAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

@@ -234,9 +234,10 @@ namespace EventReservation.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Manager")]
         public ActionResult ListEvents()
         {
-
+           
             var currentUser = User.Identity.Name;
             var events = db.Locals
                     .Include(l => l.Events)
@@ -246,6 +247,17 @@ namespace EventReservation.Controllers
 
             ///  return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult ListLocalsForAdmin()
+        {
+       
+            var locals = db.Locals;
+            return View(locals);
+        }
+
+
 
         [HttpGet]
         public ActionResult MyLocal()
@@ -319,5 +331,16 @@ namespace EventReservation.Controllers
             else
                 return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
+        //Locals/DeleteLocal
+        [HttpPost]
+        [Authorize(Roles="Admin")]
+        public void DeleteLocal(int id)
+        {
+         
+            var local = db.Locals.Where(l => l.Id == id).First();
+            db.Locals.Remove(local);
+            db.SaveChanges();
+        }
+
     }
 }

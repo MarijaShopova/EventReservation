@@ -138,6 +138,12 @@
                                     <i class="fa fa-info-circle"></i> Requests
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Locals/ListLocalsForAdmin">
+                                    <i class="fa fa-cocktail"></i>Locals
+                                </a>
+                            </li>
                         }
                         @if (!User.IsInRole("Manager") && !User.IsInRole("User"))
                         {@Html.Partial("_LoginPartial")}
