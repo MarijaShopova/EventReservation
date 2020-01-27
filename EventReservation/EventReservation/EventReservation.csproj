@@ -269,6 +269,10 @@
     <Compile Include="Migrations\202001251927483_column_rename.Designer.cs">
       <DependentUpon>202001251927483_column_rename.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001271914220_localid to review.cs" />
+    <Compile Include="Migrations\202001271914220_localid to review.Designer.cs">
+      <DependentUpon>202001271914220_localid to review.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -1014,6 +1018,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001251927483_column_rename.resx">
       <DependentUpon>202001251927483_column_rename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001271914220_localid to review.resx">
+      <DependentUpon>202001271914220_localid to review.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

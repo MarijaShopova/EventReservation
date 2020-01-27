@@ -280,7 +280,7 @@ namespace EventReservation.Controllers
                     db.Reviews.Remove(tableRow);
                 }
                 Local local = db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == LocalId);
-                Review review = new Review { Stars = numberStars, Local = local, User = User.Identity.Name };
+                Review review = new Review { Stars = numberStars, localId = local.Id, Local = local, User = User.Identity.Name };
 
                 db.Reviews.Add(review);
                 local.Reviews.Add(review);
