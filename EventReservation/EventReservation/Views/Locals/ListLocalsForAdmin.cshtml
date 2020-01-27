@@ -45,7 +45,7 @@
             </td>
             <td>
                 <a href="/Locals/Details/@item.Id" class="btn btn-info btn-sm m-1"><span class="fa fa-eye text-white"></span></a>
-                <button type="button" class="btn btn-danger btn-sm m-1" onclick="deleteLocal(@item.Id)"><span class="fa fa-trash text-white"></span></button>
+                <button type="button" data-local-id="@item.Id" class="btn btn-danger btn-sm m-1 js-delete" onclick="deleteLocal(@item.Id)"><span class="fa fa-trash text-white"></span></button>
 
             </td>
         </tr>
@@ -54,7 +54,7 @@
     </tbody>
 </table>
 <script>
-    function deleteLocal(id) {
+  /*  function deleteLocal(id) {
         var formData = new FormData();
         formData.append("id", id);
         $.ajax({
@@ -71,5 +71,25 @@
                 alert("error");
             }
         });
-    }
+    }*/
+   
+  
+        $(document).ready(function () {
+            var table = $("#LocalsList").DataTable();
+            $("#LocalsList .js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Do you want to delete this local?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Locals/DeleteLocal/" + button.attr("data-local-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+   
 </script>
