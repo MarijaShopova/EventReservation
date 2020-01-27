@@ -264,9 +264,18 @@ namespace EventReservation.Controllers
             if (User.IsInRole("Manager"))
             {
                 var @event = db.Events
-                    .Where(e => e.Id == id)
-                    .First();
+                    .Include(e => e.local)
+                    .FirstOrDefault(e => e.Id == id);
 
+                if(@event == null)
+                {
+                    return HttpNotFound();
+                }
+
+                if(@event.local.Manager != currentUser)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                }
                 var reservations = db.Reservations
                     .Where(r => r.eventId == id);
                 ViewBag.eventName = @event.Title;

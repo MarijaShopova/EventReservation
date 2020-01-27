@@ -38,6 +38,7 @@
         margin: 0;
         white-space: nowrap;
         text-align: right;
+        float: left !important;
     }
 
     div.dataTables_paginate ul.pagination {
@@ -73,10 +74,14 @@
         text-decoration: none !important;
     }
 
+    .col-sm-6:nth-child(2) label {
+        margin-left: 329%;
+    }
+
 </style>
 
 <h2 class="text-green text-center display-4 font-header mt-4 mb-4">My Events</h2>
-<div class="mx-auto" style="width: 90%;">
+<div class="mx-auto mb-4" style="width: 90%;">
     <table class="table table-striped text-center" id="listEventsId">
         <thead>
             <tr class="text-green">
