@@ -127,7 +127,7 @@ namespace EventReservation.Controllers
         [HttpPost]
         public ActionResult DeleteRequest(FormCollection data)
         {
-            if (User.IsInRole("Manager"))
+            if (User.IsInRole("Admin"))
             {
                 int id = int.Parse(data["id"]);
                 //find local request
@@ -334,11 +334,32 @@ namespace EventReservation.Controllers
         //Locals/DeleteLocal
         [HttpPost]
         [Authorize(Roles="Admin")]
-        public void DeleteLocal(int id)
+        public async System.Threading.Tasks.Task DeleteLocal(int id)
         {
-         
-            var local = db.Locals.Where(l => l.Id == id).First();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            var logins = user.Logins;
+            var roles = await UserManager.GetRolesAsync(user.Id);
+            if (logins != null)
+            {
+                foreach (var login in logins)
+                {
+                    await UserManager.RemoveLoginAsync(login.UserId,
+                        new UserLoginInfo(
+                            login.LoginProvider, login.ProviderKey));
+                }
+            }
+            // Supposed to only be 1 role but just in case -
+            if (roles.Count() > 0)
+            {
+                foreach (var r in roles)
+                {
+                    var deleteRole = await UserManager.RemoveFromRoleAsync(user.Id, r);
+                }
+            }
+            Local local = db.Locals.Find(id);
             db.Locals.Remove(local);
+            var result = await UserManager.DeleteAsync(user);
             db.SaveChanges();
         }
 
