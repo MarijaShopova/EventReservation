@@ -107,6 +107,11 @@ namespace EventReservation
             }
             return manager;
         }
+
+        internal Task GetRolesAsync(ApplicationUser user)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.

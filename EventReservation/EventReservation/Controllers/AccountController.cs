@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,13 +6,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EventReservation.Models;
-using System.Security.Principal;
 
 namespace EventReservation.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         public AccountController()
@@ -50,6 +47,40 @@ namespace EventReservation.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        //POST: /Account/Deactivate
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Deactivate()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            //delete account
+            var user = await UserManager.FindByEmailAsync(User.Identity.Name);
+            var logins = user.Logins;
+            var roles = await UserManager.GetRolesAsync(user.Id);
+            if (logins != null)
+            {
+                foreach (var login in logins)
+                {
+                    await UserManager.RemoveLoginAsync(login.UserId,
+                        new UserLoginInfo(
+                            login.LoginProvider, login.ProviderKey));
+                }
+            }
+            // Supposed to only be 1 role but just in case -
+            if (roles.Count() > 0)
+            {
+                foreach (var r in roles)
+                {
+                    var deleteRole = await UserManager.RemoveFromRoleAsync(user.Id, r);
+                }
+            }
+            var local = db.Locals.Where(l => l.Manager == user.Email).First();
+            db.Locals.Remove(local);
+            var result = await UserManager.DeleteAsync(user);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
         //
