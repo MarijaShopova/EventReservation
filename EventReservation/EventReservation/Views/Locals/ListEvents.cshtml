@@ -1,49 +1,36 @@
 ﻿@model IEnumerable<EventReservation.Models.Event>
 
+<style>
+    td{
+        display: table-cell;
+        vertical-align: middle !important;
+    }
+    select {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    label {
+        justify-content: flex-start !important;
+    }
+</style>
+
 <h2 class="text-green text-center display-4 font-header mt-4 mb-1">My Events</h2>
-<div class="row my-2 mx-auto" style="width:87%">
-    <div class="col-2 offset-10 text-right">
+<div class="row my-2 mx-auto" style="width:92%">
+    <div class="col-2 text-left">
         @Html.ActionLink("Create New", "Create", "Events", null, new { @class = "btn btn-outline-info" })
     </div>
 </div>
-
-<table class="table table-striped text-center container">
-    <tr class="text-green">
-        <th style="width: 20%">&nbsp;</th>
-        <th style="width: 7%">Title</th>
-        <th style="width: 8%">Date</th>
-        <th style="width: 17%">Time</th>
-        <th style="width: 3%">Ticket</th>
-        <th style="width: 5%">Reserved Tables</th>
-        <th style="width: 5%">Performer</th>
-        <th style="width: 5%">Genre</th>
-        <th style="width: 5%">Reservations</th>
-        <th style="width: 25%"></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr id="@item.Id">
-            <td>
-                @if (@item.EventImage == null)
-                {
-                    <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
-                }
-                else
-                {
-                    var base64 = Convert.ToBase64String(@item.EventImage);
-                    <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 100px; width: 100px;" class="content-image" />
-<div class="offset-1">
-    <table class="table table-striped text-center container " id="listEventsId">
+<div class="mx-auto" style="width: 90%;">
+    <table class="table table-striped text-center" id="listEventsId">
         <thead>
-            <tr>
+            <tr class="text-green">
                 <th style="width: 20%">&nbsp;</th>
                 <th style="width: 7%">Title</th>
                 <th style="width: 8%">Date</th>
-                <th style="width: 17%">Time</th>
+                <th style="width: 19%">Time</th>
                 <th style="width: 3%">Ticket</th>
                 <th style="width: 5%">Reserved Tables</th>
-                <th style="width: 5%">Performer</th>
+                <th style="width: 3%">Performer</th>
                 <th style="width: 5%">Genre</th>
                 <th style="width: 5%"></th>
                 <th style="width: 25%"></th>
@@ -84,7 +71,7 @@
                     <td>
                         @Html.ActionLink("Reservations", "ListReservations", "Events", new { id = item.Id }, new { @class = "btn btn-info btn-sm m-1" })
                     </td>
-                    <td>
+                    <td style="width: 13%;">
                         <a href="/Events/Details/@item.Id" class="btn btn-info btn-sm m-1"><span class="fa fa-eye text-white"></span></a>
                         <a href="/Events/Edit/@item.Id" class="btn btn-info btn-sm m-1"><span class="fa fa-pen text-white"></span></a>
                         <button type="button" class="btn btn-danger btn-sm m-1" onclick="deleteEvent(@item.Id)"><span class="fa fa-trash text-white"></span></button>
@@ -94,6 +81,7 @@
         </tbody>
     </table>
 </div>
+
 <script>
     function deleteEvent(id) {
         var formData = new FormData();
