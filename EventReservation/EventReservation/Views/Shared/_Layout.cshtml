@@ -122,6 +122,15 @@
                             </li>
                         }
 
+                        @if (User.IsInRole("Manager"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Events/Create">
+                                    <i class="fa fa-cocktail"></i> Create event
+                                </a>
+                            </li>
+                        }
+
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">

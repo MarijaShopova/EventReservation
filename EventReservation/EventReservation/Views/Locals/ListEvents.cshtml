@@ -12,14 +12,70 @@
     label {
         justify-content: flex-start !important;
     }
+    
+    .dataTables_wrapper .dataTables_paginate {
+        float: right;
+        text-align: right;
+        padding-top: 0.25em;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        box-sizing: border-box;
+        display: inline-block;
+        min-width: 1.5em;
+        padding: 0.5em 1em;
+        margin-left: 2px;
+        text-align: center;
+        text-decoration: none !important;
+        cursor: pointer;
+        *cursor: hand;
+        color: #333333 !important;
+        border: 1px solid transparent;
+    }
+
+    
+    div.dataTables_paginate {
+        margin: 0;
+        white-space: nowrap;
+        text-align: right;
+    }
+
+    div.dataTables_paginate ul.pagination {
+        margin: 2px 0;
+        white-space: nowrap;
+        align-self: center;
+    }
+
+    .dataTables_info {
+        visibility: hidden;
+    }
+
+    .row:last-of-type {
+        width: 100%;
+    }
+
+    .col-sm-7:last-of-type {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    .paginate_button {
+        border: 1px solid darkgray !important;
+        border-radius: 5px;
+    }
+
+    .paginate_button:hover {
+        background-color: lightgray !important;
+        cursor: pointer !important;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
 </style>
 
-<h2 class="text-green text-center display-4 font-header mt-4 mb-1">My Events</h2>
-<div class="row my-2 mx-auto" style="width:92%">
-    <div class="col-2 text-left">
-        @Html.ActionLink("Create New", "Create", "Events", null, new { @class = "btn btn-outline-info" })
-    </div>
-</div>
+<h2 class="text-green text-center display-4 font-header mt-4 mb-4">My Events</h2>
 <div class="mx-auto" style="width: 90%;">
     <table class="table table-striped text-center" id="listEventsId">
         <thead>
@@ -107,7 +163,9 @@
 
     <script>
         $(document).ready(function () {
-            $("#listEventsId").DataTable();
+            $("#listEventsId").DataTable({
+                "pagingType": "full_numbers"
+            } );
         });
 
     </script>
