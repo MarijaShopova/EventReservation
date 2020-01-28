@@ -44,7 +44,7 @@
     <div id="page-container">
         <nav class="navbar navbar-expand-lg bg-imperial static-top" id="proba">
             <div class="container-page container">
-                @if (!User.IsInRole("Manager"))
+                @if (User.IsInRole("Manager"))
                 {
                     <a class="navbar-brand text-mint" href="/Locals/ListEvents"><img src="~/Content/logo.png">  </a>
                 }

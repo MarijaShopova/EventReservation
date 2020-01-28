@@ -24,8 +24,7 @@ namespace EventReservation.Controllers
             return View(db.Locals.Include(l => l.LocalImages).OrderByDescending(l => l.Id).ToPagedList(page ?? 1, 9));
         }
 
-
-        [Authorize(Roles = "User")]
+        [AllowAnonymous]
         // GET: Locals/Details/5
         public ActionResult Details(int? id)
         {

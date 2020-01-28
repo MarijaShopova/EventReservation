@@ -13,14 +13,11 @@ namespace EventReservation.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            if(User.IsInRole("Manager"))
-            {
-                return RedirectToAction("ListEvents", "Locals");
-            }
-            return View();
+                return View();
+           
         }
 
         public ActionResult About()
