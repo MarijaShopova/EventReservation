@@ -109,7 +109,7 @@
                 <h5 class="title">Date & Time</h5>
                 <div>
                     @Html.LabelFor(model => model.DateStart, htmlAttributes: new { @class = "label-text" })
-                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @Value = Model.DateStart.ToString("dd.MM.yyyy"), @placeholder = "Select date", @id = "datepicker", @class = "cust-width" })
+                    @Html.TextBoxFor(model => model.DateStart, htmlAttributes: new { @Value = Model.DateStart.ToString("MM/dd/yyyy"), @placeholder = "Select date", @id = "datepicker", @class = "cust-width" })
                     <p id="datepickerH"></p>
                 </div>
                 <div>
@@ -185,7 +185,7 @@
 
 <script type="text/javascript">
     $(function () {
-        $("#datepicker").datepicker({ dateFormat: 'dd.mm.yy', minDate: 0 });
+        $("#datepicker").datepicker({ dateFormat: 'mm/dd/yy', minDate: 0 });
         $('#end').timepicki({
             show_meridian: false,
             min_hour_value: 0,

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace EventReservation.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

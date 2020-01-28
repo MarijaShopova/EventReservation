@@ -51,6 +51,7 @@ namespace EventReservation.Controllers
 
         //POST: /Account/Deactivate
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Deactivate()
         {

@@ -81,6 +81,12 @@
 </style>
 
 <h2 class="text-green text-center display-4 font-header mt-4 mb-4">My Events</h2>
+@if (Model.Count() == 0)
+{
+    <h4 class="text-center text-green">No events to show :(</h4>
+}
+else
+{
 <div class="mx-auto mb-4" style="width: 90%;">
     <table class="table table-striped text-center" id="listEventsId">
         <thead>
@@ -104,7 +110,7 @@
                     <td>
                         @if (@item.EventImage == null)
                         {
-                            <img src="~/Content/IT_sliki/b52.jpg" style="height: 70px; width: 100px;" class="content-image" />
+                            <img src="~/Content/IT_sliki/b52.jpg" style="height: 100px; width:100px;" class="content-image" />
                         }
                         else
                         {
@@ -141,7 +147,7 @@
             }
         </tbody>
     </table>
-</div>
+</div>}
 
 <script>
     function deleteEvent(id) {

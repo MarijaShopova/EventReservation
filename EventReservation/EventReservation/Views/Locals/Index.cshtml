@@ -17,19 +17,16 @@
                     <a class="border mt-3" href="/Locals/Details/@item.Id">
                         <div class="content shadow-lg rounded">
                             <div class="content-overlay"></div>
-                            @if (@item.LocalImages == null || !@item.LocalImages.Any())
+                            @if (@item.LocalsImage == null)
                             {
                                 <img src="~/Content/IT_sliki/b52.jpg" style="height: 230px; width: 250px;" class="content-image" />
                             }
                             else
                             {
-                                <div>
-                                    @foreach (var localImage in @item.LocalImages)
-                                    {
-                                        var base64 = Convert.ToBase64String(localImage.Image);
-                                        <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 230px; width: 250px;" class="content-image" />
-                                    }
-                                </div>
+                 
+
+                                    var base64 = Convert.ToBase64String(@item.LocalsImage);
+                                    <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 230px; width: 250px;" class="content-image" />
                             }
                             <div class="content-details fadeIn-top">
                                 <h3>@item.Name</h3>
@@ -66,11 +63,17 @@
 
             if (reviews != 0) {
                 numberStars = item.Reviews.Average(r => r.Stars);
+                @: console.log(@numberStars);
             }
-            for (int i = 0; i < numberStars; i++) {
+            for (int i = 0; i < (int)numberStars; i++) {
                 var id = item.Id.ToString() + "star" + (i + 1);
 
                 @: document.getElementById("@id").style.color = "#f0ad4e";
+            }
+            for (int i = (int)numberStars; i < 5; i++) {
+                var id = item.Id.ToString() + "star" + (i + 1);
+
+                @: document.getElementById("@id").style.color = "darkgrey";
             }
         }
     });

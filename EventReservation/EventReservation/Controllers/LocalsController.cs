@@ -18,13 +18,14 @@ namespace EventReservation.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Locals
+        [AllowAnonymous]
         public ActionResult Index(int? page)
         {
             return View(db.Locals.Include(l => l.LocalImages).OrderByDescending(l => l.Id).ToPagedList(page ?? 1, 9));
         }
 
 
-
+        [Authorize(Roles = "User")]
         // GET: Locals/Details/5
         public ActionResult Details(int? id)
         {
@@ -43,7 +44,7 @@ namespace EventReservation.Controllers
                 int stars = 0;
                 var result = db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == local.Id).Reviews;
                 if (result.Any())
-                    stars = (int)System.Math.Round(db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == local.Id).Reviews.Average(review => review.Stars));
+                    stars = (int)db.Locals.Include(l => l.Reviews).FirstOrDefault(l => l.Id == local.Id).Reviews.Average(review => review.Stars);
 
                 int yourReview = 0;
                 var yourReviewResult = db.Reviews.FirstOrDefault(r => r.Local.Id == local.Id && r.User == User.Identity.Name);
@@ -57,6 +58,7 @@ namespace EventReservation.Controllers
         }
 
         // GET: Locals/Requests
+        [Authorize(Roles = "Admin")]
         public ActionResult Requests()
         {
             if (User.IsInRole("Admin"))
@@ -66,6 +68,7 @@ namespace EventReservation.Controllers
             return HttpNotFound();
         }
 
+        [Authorize(Roles = "Admin")]
         //GET: Locals/Confirm/5
         public ActionResult Confirm(int id)
         {
@@ -118,12 +121,13 @@ namespace EventReservation.Controllers
                 db.LocalRequests.Remove(request);
                 db.SaveChanges();
                 //this needs to be made with ajax call so that it will only be deleted from the table
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Requests");
             }
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
         }
 
         //POST: Locals/DeleteRequest
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult DeleteRequest(FormCollection data)
         {
@@ -148,6 +152,7 @@ namespace EventReservation.Controllers
         }
 
         // GET: Locals/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int? id)
         {
             if (User.IsInRole("Manager"))
@@ -176,33 +181,23 @@ namespace EventReservation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,Manager,ClosingHour,Parking")] Local local)
+        [Authorize(Roles = "Manager")]
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,City,StreetName,StreetNo,OpeningHour,Manager,ClosingHour,Parking")] Local local, HttpPostedFileBase LocalsImage)
         {
             if (User.IsInRole("Manager"))
             {
-                var files = Request.Files;
+                
 
                 if (ModelState.IsValid)
                 {
-                    if (files != null)
-                    {
-
-                        foreach (HttpPostedFileBase file in files)
-                        {
+                    if (LocalsImage != null)
+                    {    
                             using (var ms = new MemoryStream())
                             {
-                                file.InputStream.CopyTo(ms);
-                                var localImage = new LocalImage
-                                {
-                                    Local = local,
-                                    Image = ms.ToArray()
-                                };
-
-                                local.LocalImages.Add(localImage);
+                            LocalsImage.InputStream.CopyTo(ms);
+                                @local.LocalsImage = ms.ToArray();
                             }
-                        }
                     }
-                    db.Locals.Add(local);
 
                     db.Entry(local).State = EntityState.Modified;
                     db.SaveChanges();
@@ -215,6 +210,7 @@ namespace EventReservation.Controllers
 
         // POST: Locals/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -260,6 +256,7 @@ namespace EventReservation.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Manager")]
         public ActionResult MyLocal()
         {
             if (User.IsInRole("Manager"))
@@ -276,6 +273,7 @@ namespace EventReservation.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         public ActionResult Rating(FormCollection data)
         {
             double av = 0;
@@ -309,6 +307,7 @@ namespace EventReservation.Controllers
 
         //POST: Locals/DeleteEvent
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public ActionResult DeleteEvent(FormCollection data)
         {
             if (User.IsInRole("Manager"))

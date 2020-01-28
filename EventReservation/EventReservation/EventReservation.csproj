@@ -273,6 +273,10 @@
     <Compile Include="Migrations\202001271914220_localid to review.Designer.cs">
       <DependentUpon>202001271914220_localid to review.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001281420190_localsImage added.cs" />
+    <Compile Include="Migrations\202001281420190_localsImage added.Designer.cs">
+      <DependentUpon>202001281420190_localsImage added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -1024,6 +1028,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001271914220_localid to review.resx">
       <DependentUpon>202001271914220_localid to review.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281420190_localsImage added.resx">
+      <DependentUpon>202001281420190_localsImage added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

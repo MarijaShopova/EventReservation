@@ -54,6 +54,7 @@ namespace EventReservation.Controllers
         }
 
         // GET: Events/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -71,6 +72,7 @@ namespace EventReservation.Controllers
         //POST: Events/Reserve/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles="User")]
         public ActionResult Reserve(Reservation @reservation)
         {
             if (User.IsInRole("User"))
@@ -104,6 +106,7 @@ namespace EventReservation.Controllers
         }
 
         // GET: Events/Create
+        [Authorize(Roles="Manager")]
         public ActionResult Create()
         {
             if (User.IsInRole("Manager"))
@@ -120,6 +123,7 @@ namespace EventReservation.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Description,DateStart,TimeStart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event, HttpPostedFileBase EventImage)
         {
@@ -149,6 +153,7 @@ namespace EventReservation.Controllers
         }
 
         // GET: Events/Edit/5
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int? id)
         {
             if (User.IsInRole("Manager"))
@@ -186,6 +191,7 @@ namespace EventReservation.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Description,DateStart,Timestart,TimeEnd,HasTicket,TicketPrice,NoTables,Performer,Genre,LocalId")] Event @event, HttpPostedFileBase EventImage)
         {
@@ -215,6 +221,7 @@ namespace EventReservation.Controllers
         }
 
         // POST: Events/Delete/5
+        [Authorize(Roles = "Manager")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -235,6 +242,7 @@ namespace EventReservation.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         public ActionResult List(int? page)
         {
             if (User.IsInRole("User"))
@@ -252,6 +260,7 @@ namespace EventReservation.Controllers
         }
 
         // GET
+        [Authorize(Roles = "Manager")]
         public ActionResult ListReservations(int? id)
         {
             var currentUser = User.Identity.Name;

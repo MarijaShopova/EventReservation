@@ -173,7 +173,7 @@
                     <div>
                         <div id="video-carousel-example" class="carousel slide carousel-fade" data-ride="carousel">
                             <div class="carousel-inner" role="listbox" style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
-                                @*@<div class="carousel-item active">
+                               <div class="carousel-item active">
                                         <img src="~/Content/IT_sliki/lightSignCoctails.jpeg" style="height: 430px; width: 750px;">
                                     </div>
                                     <div class="carousel-item">
@@ -181,25 +181,8 @@
                                     </div>
                                     <div class="carousel-item">
                                         <img src="~/Content/IT_sliki/clubs.jpg" style="height: 430px; width: 750px;">
-                                    </div>*@
-                                <div class="carousel-item active">
-                                    @foreach (var item in Model.LocalImages)
-                                    {
-                                        if (@item == null)
-                                        {
-                                            <img src="~/Content/IT_sliki/b52.jpg" style="height: 430px; width: 750px;" class="content-image" />
-                                        }
-                                        else
-                                        {
-                                            var base64 = Convert.ToBase64String(@item.Image);
-                                            <img src="@string.Format("data:image;base64,{0}", base64)" style="height: 430px; width: 750px;" class="content-image" />
-
-                                        }
-                                        <img src="~/Content/IT_sliki/b52.jpg" style="height: 430px; width: 750px;" class="content-image" />
-                                    }
-                                    <img src="~/Content/IT_sliki/b52.jpg" style="height: 430px; width: 750px;" class="content-image" />
-                                    
-                                </div>
+                                    </div>
+                              
                             </div>
 
                             <a class="carousel-control-prev" href="#video-carousel-example" role="button" data-slide="prev">
@@ -238,7 +221,7 @@
                 </div>
                 <div class="row boja">
                     <i class="fa fa-clock">
-                        Closing time <label style="text-transform:lowercase"> - @Model.OpeningHour.ToString("hh:mm tt")</label>
+                        Closing time <label style="text-transform:lowercase"> - @Model.ClosingHour.ToString("hh:mm tt")</label>
                     </i>
                 </div>
                 <div class="row boja">
@@ -332,6 +315,8 @@
             }
         }
 
+        console.log(stars);
+
         for (var i = 0; i < stars; i++) {
             var id = "review" + (i + 1);
             document.getElementById(id).style.color = "#f0ad4e";
@@ -340,6 +325,7 @@
 
     function staticStarsUpdate(a) {
         var stars = a;
+        console.log(stars);
         for (var i = 0; i < stars; i++) {
             var id = "review" + (i + 1);
             document.getElementById(id).style.color = "#f0ad4e";
